@@ -48,7 +48,7 @@ repository on the command line_ 依次输入指令，比如我的是:
     `git push -u origin master`
 然后会出现以下提示：
     `Username for 'https://github.com':` （输入github上的用户名）
-    `Password for 'https://Danjame@github.com':` （输入github的登录密码）
+    `Password for 'https://username@github.com':` （输入github的登录密码）
     
 11. 提交项目，打开终端，同样利用cd指令进入本地仓库，输入:
     `git add 文件/文件夹路径`
