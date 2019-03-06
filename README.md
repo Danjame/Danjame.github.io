@@ -10,9 +10,9 @@ Bonjour, bienvenue sur ma gage.
 ```markdown
 自学前端半年了，今天才对github的使用有了初步了解，于是根据自己的经验总结了使用方法。
 
-1. 进入github的网站 https://github.com/ 注册帐号。
+1. 进入[github]的网站 (https://github.com/) 注册帐号。
 
-2. 下载安装git https://git-scm.com/downloads 。
+2. 下载安装[git] (https://git-scm.com/downloads) 。
 
 3. 打开终端输入 `git --version` 指令可查看已安装git的版本。
 
