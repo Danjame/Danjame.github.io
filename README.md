@@ -34,10 +34,10 @@ Bonjour, bienvenue sur ma gage.
    件隐藏即可找到_is_rsa.pub_文件)
    最后点击 **Add SSH key**。
    
-9. 创建版本库，回到github个人主页，点击位于中央的 **Start a project**, 在 **Repository name** 处输入一
+6. 创建版本库，回到github个人主页，点击位于中央的 **Start a project**, 在 **Repository name** 处输入一
 个版本库名称，点击**Create repository**。
 
-10. 成功创建版本库之后，在终端使用“cd /文件夹路径” 选择你想建立本地版本库的文件夹路径，比如我的是项目是在桌面的
+7. 成功创建版本库之后，在终端使用“cd /文件夹路径” 选择你想建立本地版本库的文件夹路径，比如我的是项目是在桌面的
 文件夹myGit,则输入 `cd /Users/username/Desktop/myGit`，然后按照github上新库的提示 _…or create a new 
 repository on the command line_ 依次输入指令，比如我的是:
     `echo "# MonGit" >> README.md`
@@ -50,7 +50,7 @@ repository on the command line_ 依次输入指令，比如我的是:
     `Username for 'https://github.com':` （输入github上的用户名）
     `Password for 'https://username@github.com':` （输入github的登录密码）
     
-11. 提交项目，打开终端，同样利用cd指令进入本地仓库，输入:
+8. 提交项目，打开终端，同样利用cd指令进入本地仓库，输入:
     `git add 文件/文件夹路径`
     `git commit –m “你的注释”`
     `git push origin master`
