@@ -30,7 +30,7 @@ Bonjour, bienvenue sur ma gage.
 中的 **SSH and GPG keys**，进入之后选择 **New SSH key**，然后填写Title和Key。
    **Title**: 可填写注册邮箱地址
    **Key**: 进入目录 _/User/username/.ssh/_ 找到 _is_rsa.pub_，用文本编辑器打开，拷贝里面的内容即可。(
-   打开Finder使用快捷键_Command + Shift + h_ 进入用户根目录，再使用快捷键 _Command + Shift +_ . 取消文
+   打开Finder使用快捷键_Command + Shift + h_ 进入用户根目录，再使用快捷键 _Command + Shift + ._ 取消文
    件隐藏即可找到_is_rsa.pub_文件)
    最后点击 **Add SSH key**。
    
