@@ -143,6 +143,10 @@
     color: #545454;
 }
 
+.year{
+    font-weight: bold;
+}
+
 #container #btnBox {
     position: absolute;
     margin-top: -40px;
