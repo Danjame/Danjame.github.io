@@ -1,6 +1,6 @@
 #myLanguage {
-    min-width: 800px;
-    height: 140px;
+    min-width: 640px;
+    height: auto;
     display: flex;
     justify-content: space-around;
     padding-top: 50px;
@@ -11,13 +11,25 @@
     width: 20%;
 }
 
+@media only screen and (width: 1024px) and (height: 1366px) {
+    #myLanguage img {
+        width: 50%;
+    }
+}
+
+@media only screen and (width: 768px) and (height: 1024px) {
+    #myLanguage img {
+        width: 40%;
+    }
+}
+
 #myLanguage>div {
     text-align: center;
     color: #666666;
     opacity: 0.1;
 }
 
-#myLanguage>.language {
+#myLanguage>.lan {
     opacity: 1;
     transform: scale(1.05);
     -ms-transform: scale(1.05);
@@ -29,30 +41,118 @@
 
 #floatText {
     position: absolute;
-    right: 6%;
-    bottom: 35%;
-    font-size: 36px;
+    left: 20%;
+    top: 15px;
+    font-size: 25px;
     color: #1989C0;
 }
 
-#floatTitle {
+@media only screen and (width: 1024px) and (height: 1366px) {
+    #floatText {
+        left: 7%;
+        top: 90px;
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #floatText {
+        left: 7%;
+        top: 83px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (width: 768px) and (height: 1024px) {
+    #floatText {
+        top: 90px;
+        font-size: 25px;
+    }
+}
+
+.floatTitle {
     position: absolute;
-    left: 10%;
-    top: 25%;
-    font-size: 60px;
+    margin-top: -560px;
+    font-size: 56px;
     color: white;
 }
 
-#floatTitle>li {
+@media only screen and (max-width: 1300px) {
+    .floatTitle {
+        margin-top: -528px;
+        font-size: 48px;
+    }
+}
+
+@media only screen and (max-width: 1130px) {
+    .floatTitle {
+        margin-top: -480px;
+        font-size: 40px;
+    }
+}
+
+@media only screen and (width: 1024px) and (height: 1366px) {
+    .floatTitle {
+        width: auto;
+        top: 923px;
+        margin-left: 280px;
+        margin-top: 0;
+        font-size: 45px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .floatTitle {
+        width: 260px;
+        top: 451px;
+        margin-top: 0;
+        margin-left: 370px;
+        font-size: 28px;
+    }
+}
+
+@media only screen and (width: 768px) and (height: 1024px) {
+    .floatTitle {
+        width: auto;
+        top: 720px;
+        margin-left: 300px;
+        margin-top: 0;
+        font-size: 30px;
+    }
+}
+
+.floatTitle>li {
+    margin-left: 20px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
 }
 
-#floatTitle>li:hover {
+@media only screen and (width: 1024px) and (height: 1366px) {
+    .floatTitle>li {
+        float: left;
+        margin-left: 100px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .floatTitle>li {
+        float: left;
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (width: 768px) and (height: 1024px) {
+    .floatTitle>li {
+        float: left;
+        margin-left: 50px;
+    }
+}
+
+.floatTitle>li:hover {
     border-bottom: 2px solid #1989C0;
 }
 
-#floatTitle .floatTitleAni {
+#content .floatTitle .floatTitleAni {
     border-bottom: 2px solid #1989C0;
     color: #1989C0;
 }

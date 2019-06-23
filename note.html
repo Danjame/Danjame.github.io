@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Danjun Xie</title>
-    <link rel="stylesheet" href="CSS/common.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="screen and (max-device-width: 425px)" href="CSS/mobile/commonMobile.css" type="text/css" />
+    <link rel="stylesheet" media="not screen and (max-device-width: 425px)" href="CSS/common.css" type="text/css" />
     <link rel="stylesheet" href="CSS/note.css">
     <style>
-    .headNav li:nth-child(2) a {
+        .headNav li:nth-child(2) a {
         color: #87c0cd;
     }
     </style>
+    <script type="text/javascript" src="JS/GetDOM.js"></script>
 </head>
 
 <body>
@@ -21,18 +24,33 @@
                 <div class="logoDown">Jun</div>
             </div>
             <div>
-                <ul class="headNav">
-                    <li><a href="index.html">关于</a></li>
-                    <li><a href="index.html">笔记</a></li>
-                    <li><a href="https://github.com/Danjame/MonGit" target="_blank">作品</a></li>
-                </ul>
+                <div>
+                    <ul class="headNav">
+                        <li><a href="index.html">
+                                <div>关于</div>
+                            </a></li>
+                        <li><a href="note.html">
+                                <div>笔记</div>
+                            </a></li>
+                        <li><a href="https://github.com/Danjame/MonGit" target="_blank">
+                                <div>作品</div>
+                            </a></li>
+                    </ul>
+                </div>
+                <span id="menu" class="unclickMenu">
+                    <em></em>
+                    <span class="menuBarsOff"></span>
+                    <span class="menuBarsOff"></span>
+                    <span class="menuBarsOff"></span>
+                    <em></em>
+                </span>
             </div>
         </div>
         <div id="content">
-            <div></div>
+            <div id="head"></div>
             <div class="titleBox">
                 <ul>
-                    <li onclick="window.location.href = '#header'">
+                    <li onclick="window.location.href = '#head'">
                         <div></div>
                         <div></div>
                     </li>
@@ -43,7 +61,7 @@
                         <div></div>
                         <div class="blank"></div>
                     </li>
-                    <li onclick="window.location.href = '#bottom'">
+                    <li onclick="window.location.href = '#foot'">
                         <div></div>
                         <div></div>
                     </li>
@@ -68,7 +86,7 @@
                     <p>动画可控性更好, 但是cpu占用大, 动画帧数低。</p>
                     <p>原理同样需要在图片组最后放置第一张图实现无缝的视觉。</p>
                     <p>难点: 关于math.ceil()和math.floor()两个方法的使用, 在负值的时候要取整取更小的值, 而正值的时候需要取更大的整数, 意味着取整都要让位移最大化, 最后才能走完目标距离, 否则, 永远无法到达目标距离。</p>
-                    <p>尽量以setTimeout和递归来代替setInterval, 因为setTimeou可以每次释放内存, 而setInterval会一直占用资源, 直到其被清除。</p>
+                    <p>尽量以setTimeout和递归来代替setInterval, 因为setTimeout可以每次释放内存, 而setInterval会一直占用资源, 直到其被清除。</p>
                     <h3>选项卡</h3>
                     <p>如果直接对每个li标签进行遍历绑定事件, 会消耗内存, 影响性能. 而使用事件委托的方法, 让标签被点击之后才触发事件的绑定和回调相应的函数可以节省更多的内存。</p>
                     <p>在遍历的时候使用let变量可以打印每次的i值, 而使用var变量只会输出最后一个i的值。</p>
@@ -119,11 +137,12 @@
                     <p>git push origin master</p>
                     <p>成功执行后会显示几行数据，最后以 master -> master 结束。</p>
                 </div>
-                <div id="bottom"></div>
+                <div id="foot"></div>
             </div>
         </div>
     </div>
-    <script src="JS/note.js"></script>
+    <script type="text/javascript" src="JS/mobile/commonMobile.js"></script>
+    <script type="text/javascript" src="JS/note.js"></script>
 </body>
 
 </html>
