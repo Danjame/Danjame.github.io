@@ -64,7 +64,6 @@ SlideImg.prototype.slideAnimation = function() {
     //单张图片动画定时器
     this.slideTimer = setInterval(
         () => {
-            console.log(slideBar.style.top);
             let targetPosition = index * (-clientHeight + header.offsetHeight) + iniPosition;
             let currentPosition = slideBar.offsetTop;
             let step = (targetPosition - currentPosition) / speed;
@@ -75,7 +74,6 @@ SlideImg.prototype.slideAnimation = function() {
             step > 0 ? step = Math.ceil(step) : step = Math.floor(step);
             currentPosition += step;
             slideBar.style.top = `${currentPosition}px`;
-            console.log(slideBar.style.top);
         }, 1)
     //图片点动画方法
     this.dotsAnimation();
