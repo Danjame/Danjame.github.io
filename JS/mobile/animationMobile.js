@@ -129,7 +129,7 @@ function timeLineAnimationMobile() {
     (function timeLineAni() {
         cancelAnimationFrame(timeLineTimer);
         timeLineTimer = requestAnimationFrame(() => {
-            lineHeight += 0.3;
+            lineHeight += 0.4;
             if (lineHeight <= 239) {
                 timeLine.style.height = `${lineHeight}px`;
                 timeLineAni();
