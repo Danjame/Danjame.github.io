@@ -127,48 +127,54 @@ Animation.prototype.initialization = function() {
 function timeLineAnimationMobile() {
     //时间轴动画函数
     (function timeLineAni() {
-        clearTimeout(timeLineTimer);
-        timeLineTimer = setTimeout(() => {
-            lineHeight += 1;
+        cancelAnimationFrame(timeLineTimer);
+        timeLineTimer = requestAnimationFrame(() => {
+            lineHeight += 0.5;
             if (lineHeight <= 239) {
                 timeLine.style.height = `${lineHeight}px`;
                 timeLineAni();
             } else {
-                clearTimeout(timeLineTimer);
+                cancelAnimationFrame(timeLineTimer);
             }
-        }, 50);
+        });
     })();
     //文本框和时间点根据时间轴长度分别淡出和显示
     (function contentAni() {
-        clearInterval(contentTimer);
-        dots[0].style.display = "block";
-        textDiv1.className = "text";
-        contentTimer = setInterval(() => {
+        cancelAnimationFrame(contentTimer);
+        contentTimer = requestAnimationFrame(() => {
             lineLength = timeLine.offsetHeight;
-            switch (lineLength) {
-                case 70:
+            switch (true) {
+                case lineLength < 70:
+                    dots[0].style.display = "block";
+                    textDiv1.className = "text";
+                    contentAni();
+                    break;
+                case (lineLength >= 70 && lineLength < 139):
                     dots[1].style.display = "block";
                     textDiv2.className = "text";
+                    contentAni();
                     break;
-                case 150:
+                case lineLength >= 139 && lineLength < 209:
                     dots[2].style.display = "block";
                     textDiv3.className = "text";
+                    contentAni();
                     break;
-                case 220:
+                case lineLength >= 209 && lineLength < 239:
                     dots[3].style.display = "block";
                     textDiv4.className = "text";
+                    contentAni();
                     break;
-                case 239:
-                    clearInterval(contentTimer);
+                case lineLength >= 239:
+                    cancelAnimationFrame(contentTimer);
                     break;
             }
-        }, 30);
+        })
     })();
 }
 
 function clearAllTimer() {
     clearTimeout(aboutMeObj.manTimer);
     clearTimeout(aboutMeObj.bgTimer);
-    clearTimeout(timeLineTimer);
-    clearInterval(contentTimer);
+    cancelAnimationFrame(timeLineTimer);
+    cancelAnimationFrame(contentTimer);
 }

@@ -56,25 +56,29 @@ function SlideImg(obj) { //定义构造函数
 };
 //单张图片动画方法
 SlideImg.prototype.slideAnimation = function() {
+    const self = this;
     const slideBar = document.querySelector(this.barNode);
     const iniPosition = this.iniPosition;
     const speed = this.speed;
     let index = this.index;
-    clearInterval(this.slideTimer);
+    clearTimeout(this.slideTimer);
     //单张图片动画定时器
-    this.slideTimer = setInterval(
-        () => {
-            let targetPosition = index * (-clientHeight + header.offsetHeight) + iniPosition;
-            let currentPosition = slideBar.offsetTop;
-            let step = (targetPosition - currentPosition) / speed;
-            if (!step) {
-                clearInterval(this.slideTimer);
-                return;
-            }
-            step > 0 ? step = Math.ceil(step) : step = Math.floor(step);
-            currentPosition += step;
-            slideBar.style.top = `${currentPosition}px`;
-        }, 1)
+    (function slideAni() {
+        self.slideTimer = setTimeout(
+            () => {
+                let targetPosition = index * (-clientHeight + header.offsetHeight) + iniPosition;
+                let currentPosition = slideBar.offsetTop;
+                let step = (targetPosition - currentPosition) / speed;
+                if (!step) {
+                    clearTimeout(self.slideTimer);
+                    return;
+                }
+                step > 0 ? step = Math.ceil(step) : step = Math.floor(step);
+                currentPosition += step;
+                slideBar.style.top = `${currentPosition}px`;
+                slideAni();
+            }, 1)
+    })();
     //图片点动画方法
     this.dotsAnimation();
 };
@@ -89,9 +93,8 @@ SlideImg.prototype.reStore = function() {
 //全局动画初始化方法
 SlideImg.prototype.autoSlide = function() {
     const self = this;
-
     function iniTimer() {
-        self.iniTimer = setTimeout(function() {
+        self.iniTimer = setTimeout(() => {
             self.index += 1;
             self.reStore();
             self.slideAnimation();
