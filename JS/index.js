@@ -38,7 +38,7 @@ function SlideImg(obj) { //定义构造函数
     this.dotUnactived = obj.dotUnactived; //图片点消失动画
 
     this.index = obj.initIndex || 0; //初始下标
-    this.speed = obj.speed || 60; //轮播速度
+    this.speed = obj.speed || 70; //轮播速度
     this.interval = obj.timeMs || 4000; //时间间隔
     this.slideTimer = null; //单张滑动定时器
     this.iniTimer = null; //全局定时器
