@@ -127,16 +127,16 @@ Animation.prototype.initialization = function() {
 function timeLineAnimationMobile() {
     //时间轴动画函数
     (function timeLineAni() {
-        cancelAnimationFrame(timeLineTimer);
-        timeLineTimer = requestAnimationFrame(() => {
-            lineHeight += 0.4;
+        clearTimeout(timeLineTimer);
+        timeLineTimer = setTimeout(() => {
+            lineHeight += 1;
             if (lineHeight <= 239) {
                 timeLine.style.height = `${lineHeight}px`;
                 timeLineAni();
             } else {
-                cancelAnimationFrame(timeLineTimer);
+                clearTimeout(timeLineTimer);
             }
-        });
+        }, 50);
     })();
     //文本框和时间点根据时间轴长度分别淡出和显示
     (function contentAni() {
@@ -175,6 +175,6 @@ function timeLineAnimationMobile() {
 function clearAllTimer() {
     clearTimeout(aboutMeObj.manTimer);
     clearTimeout(aboutMeObj.bgTimer);
-    cancelAnimationFrame(timeLineTimer);
+    clearTimeout(timeLineTimer);
     cancelAnimationFrame(contentTimer);
 }
