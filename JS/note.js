@@ -7,7 +7,7 @@ const artiSelection = getEle("#artiSelection");
 const arrowUp = getEle(".titleBox>ul>li:first-child div:last-child");
 const arrowDown = getEle(".titleBox>ul>li:last-child div:last-child");
 //浮动导航适应手机和悬浮导航交互适应桌面端
-if (window.matchMedia("(max-device-width:425px)").matches) {
+if (matchMedia("(max-device-width:425px)").matches) {
     autoTitleBox();
 }else{
     arrowColorDesktop();

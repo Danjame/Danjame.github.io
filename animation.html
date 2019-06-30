@@ -155,7 +155,7 @@
     <script type="text/javascript" src="JS/mobile/commonMobile.js"></script>
     <script id="animationScript" type = "text/javascript"></script>
     <script type="text/javascript">
-    if (window.matchMedia("(max-device-width:425px)").matches) {
+    if (matchMedia("(max-device-width:425px)").matches) {
         getEle("#animationScript").src = "JS/mobile/animationMobile.js";
     } else {
         getEle("#animationScript").src = "JS/animation.js";
