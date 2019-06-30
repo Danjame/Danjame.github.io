@@ -81,7 +81,7 @@
                     <div class="line"></div>
                     <h3>关于响应式和自适应</h3>
                     <p>在网站开发过程中，我们往往需要考虑到移动端的视觉效果需要符合桌面端的视觉效果。但是和物理像素px不同的是，CSS中的像素px是个相对单位。大部分的桌面显示器的物理像素等同于CSS像素，而目前主流的手机屏幕的物理像素都远远超过了桌面显示器的物理像素，也就是说，同样的面积，移动端会使用更多的物理像素来显示CSS的像素单位。因此开发移动端的页面需要在head标签中加入meta name="viewport" content="width=device-width, initial-scale=1”。即让viewport宽度等同于设备宽度，同时不允许用户手动缩放。</p>
-                    <p>媒体查询的使用，首先需要有一个默认样式，然后后面使用@media 媒体查询写入不同的CSS, 不需要改变的样式就不需写入，会自动采用默认的样式。需要注意的是，如果媒体查询的条件有重合的话，比如min-width: 300px 是属于min-width: 500px范围之内的，所以媒体条件min-width: 300px的样式需要写在min-width: 500px后面，否则会后者的样式会覆盖前者的样式。</p>
+                    <p>媒体查询的使用，首先需要有一个默认样式，如果后面使用@media 媒体查询写入不同的CSS, 不需要改变的样式则不需写入，会自动采用默认的样式。需要注意的是，如果媒体查询的条件有重合的话，比如min-width: 300px 是属于min-width: 500px范围之内的，所以媒体条件min-width: 300px的样式需要写在min-width: 500px后面，否则会后者的样式会覆盖前者的样式。</p>
                     <p>如果移动端样式和桌面端样式有较大的不一，可以通过在head标签中的link里加入媒体条件，根据屏幕宽度，自动加载独立的css文件。但是我发现尽管给移动端（使用min-device-width）加载独立的CSS文件，若后面再加入不同的媒体查询条件，比如min-width的使用会与min-device-width有条件上的重合，导致同时导入两个css文件，那是因为meta name="viewport" content="width=device-width, initial-scale=1”的使用让 min-width实际上等同于min-device-width。为了解决这个问题，对于移动端和桌面端的CSS文件加载条件，我分别使用了 screen and (max-device-width) 和 not screen and (max-device-width)。这样就不会出现同时加载两个CSS文件的情况了。</p>
                     <p>对于不同的设备，为了防止冗余的函数和变量占用内存，动画页面的JS我也是独立写了移动端和桌面端，通过页面初始化使用matchMedia()方法判断当前设备宽度，自行加入在script标签里加入的src路径。</p>
                     <h3>请求动画帧API</h3>
