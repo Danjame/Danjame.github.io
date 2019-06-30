@@ -7,6 +7,7 @@
 
 /* 头部 */
 #header {
+    width: 98%;
     height: 3rem;
     display: flex;
     justify-content: space-between;
