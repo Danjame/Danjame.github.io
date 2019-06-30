@@ -12,7 +12,7 @@ const text2 = getEle("#text2 p:nth-child(2)");
 const text3 = getEle("#text3 p:nth-child(2)");
 const text4 = getEle("#text4 p:nth-child(2)");
 //选择语言
-floatTitle.onclick = () => { 
+floatTitle.onclick = () => {
     let target = event.target;
     if (target.nodeName.toLowerCase() == "li") {
         for (var i = 0; i < floatTitles.length; i++) {
@@ -48,7 +48,7 @@ floatTitle.onclick = () => {
     }
 }
 //英语
-function toEn() { 
+function toEn() {
     btn0.value = "En";
     btn1.value = "Start";
     btn2.value = "Pause";
@@ -63,7 +63,7 @@ function toEn() {
     menuItem3.innerHTML = "MY PROJECTS";
 }
 //西班牙语
-function toEs() { 
+function toEs() {
     btn0.value = "ES";
     btn1.value = "Empezar";
     btn2.value = "Pausar";
@@ -79,7 +79,7 @@ function toEs() {
     menuItem3.innerHTML = "MIS PROJECTOS";
 }
 //葡萄牙语
-function toPt() { 
+function toPt() {
     btn0.value = "PT";
     btn1.value = "Começar";
     btn2.value = "Pausar";
@@ -95,7 +95,7 @@ function toPt() {
     menuItem3.innerHTML = "MEUS PROJETOS";
 }
 //法语
-function toFr() { 
+function toFr() {
     btn0.value = "FR";
     btn1.value = "Commencer";
     btn2.value = "Pauser";

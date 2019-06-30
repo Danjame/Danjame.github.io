@@ -31,8 +31,9 @@ let i = 0;
 let offset = 0;
 
 //适配Ipad
-if (matchMedia("(width:768px)").matches & matchMedia("(height:1024px)").matches) {
+if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024px)").matches) {
     forTablet();
+
     btn1.addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
@@ -43,8 +44,9 @@ if (matchMedia("(width:768px)").matches & matchMedia("(height:1024px)").matches)
         }
     }, false);
     //适配Ipad Pro
-} else if (matchMedia("(width:1024px)").matches & matchMedia("(height:1366px)").matches) {
+} else if (window.matchMedia("(width:1024px)").matches & window.matchMedia("(height:1366px)").matches) {
     forTablet();
+
     btn1.addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
@@ -56,6 +58,7 @@ if (matchMedia("(width:768px)").matches & matchMedia("(height:1024px)").matches)
     }, false);
 } else { //桌面浏览器
     forDeskTop();
+
     btn1.addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
@@ -164,6 +167,7 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
     (function contentAnimation() {
         dots[0].style.display = "block";
         textDiv1.className = "text";
+
         contentTimer = setInterval(() => {
             lineWidth = timeLine.offsetWidth;
             switch (lineWidth) {

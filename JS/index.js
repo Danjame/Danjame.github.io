@@ -93,6 +93,7 @@ SlideImg.prototype.reStore = function() {
 //全局动画初始化方法
 SlideImg.prototype.autoSlide = function() {
     const self = this;
+
     function iniTimer() {
         self.iniTimer = setTimeout(() => {
             self.index += 1;

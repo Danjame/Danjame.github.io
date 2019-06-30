@@ -116,6 +116,7 @@ Animation.prototype.initialization = function() {
     const man = document.querySelector(this.man);
     const imgBar = document.querySelector(this.imgBar);
     this.imgOffset = 0;
+
     man.style.backgroundPositionX = "0";
     imgBar.style.transform = `translate3d(${this.imgOffset}px, 0, 0)`;
     imgBar.style.transition = "all 1s ease 0s";
