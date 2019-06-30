@@ -38,7 +38,7 @@ function SlideImg(obj) { //定义构造函数
     this.dotUnactived = obj.dotUnactived; //图片点消失动画
 
     this.index = obj.initIndex || 0; //初始下标
-    this.speed = obj.speed || 70; //轮播速度
+    this.speed = obj.speed || 40; //轮播速度
     this.interval = obj.timeMs || 4000; //时间间隔
     this.slideTimer = null; //单张滑动定时器
     this.iniTimer = null; //全局定时器
@@ -49,9 +49,6 @@ function SlideImg(obj) { //定义构造函数
 
     this.colorForActivedDot = obj.colorForActivedDot; //图片点激活颜色
     this.colorForUnactivedDot = obj.colorForUnactivedDot; //图片点未激活颜色
-
-    this.autoSlide(); //全局动画初始化方法
-    this.slideEngine(); //停止与启动轮播控制方法
     this.dotsEvent(); //图片点控制方法
 };
 //单张图片动画方法
@@ -85,6 +82,7 @@ SlideImg.prototype.slideAnimation = function() {
 //轮播首尾过度方法
 SlideImg.prototype.reStore = function() {
     const slideBar = document.querySelector(this.barNode);
+
     if (this.index >= this.totalNum + 1) {
         this.index = 1;
         slideBar.style.top = `${this.iniPosition}px`;
@@ -104,6 +102,48 @@ SlideImg.prototype.autoSlide = function() {
     }
     iniTimer();
 };
+//移动端触屏事件
+SlideImg.prototype.touchEvent = function() {
+    const self = this;
+    let startX, startY, endX, endY, x, y;
+
+    document.addEventListener("touchmove", function(event) {
+        event.preventDefault();
+    }, { passive: false });
+
+    slideBox.addEventListener("touchstart", function(event) {
+        startX = event.touches[0].pageX;
+        startY = event.touches[0].pageY;
+    }, { passive: false });
+
+    slideBox.addEventListener("touchend", function(event) {
+        endX = event.changedTouches[0].pageX;
+        endY = event.changedTouches[0].pageY;
+        x = endX - startX;
+        y = endY - startY;
+
+        if (Math.abs(x) > Math.abs(y) && x > 0) {
+            //向右
+            return;
+        } else if (Math.abs(x) > Math.abs(y) && x < 0) {
+            //向左
+            return;
+        } else if (Math.abs(x) < Math.abs(y) && y > 0) {
+            //向上
+            self.index -= 1;
+            if (self.index < 0) {
+                self.index = self.totalNum - 1;
+                slideBar.style.top = `${self.totalNum * (-clientHeight + header.offsetHeight) + self.iniPosition}px`;
+            };
+        } else if (Math.abs(x) < Math.abs(y) && y < 0) {
+            //向下
+            self.index += 1;
+            self.reStore();
+        }
+        self.slideAnimation();
+    }, { passive: false });
+}
+
 //停止与启动轮播控制方法
 SlideImg.prototype.slideEngine = function() {
     const self = this;
