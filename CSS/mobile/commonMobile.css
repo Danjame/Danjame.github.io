@@ -78,7 +78,7 @@
     background-color: rgb(170, 170, 170, 0.9);
     font-size: 1.3rem;
     overflow: hidden;
-    z-index: 1;
+    z-index: 2;
 }
 
 .headNav li {
