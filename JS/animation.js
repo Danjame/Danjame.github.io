@@ -4,7 +4,6 @@ const imgGroup = getEle("#imgGroup");
 const eachImg = getEle("#imgGroup>li:first-child img");
 const imgNum = getAll("#imgGroup>li").length;
 const mainLeft = getEle("#mainLeft");
-creatImg();
 const skateMan = getEle("#mainLeft>img");
 const screenWidth = document.documentElement.clientWidth;
 // 时间线和时间点
@@ -33,7 +32,6 @@ let offset = 0;
 //适配Ipad
 if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024px)").matches) {
     forTablet();
-
     btn1.addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
@@ -46,7 +44,6 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
     //适配Ipad Pro
 } else if (window.matchMedia("(width:1024px)").matches & window.matchMedia("(height:1366px)").matches) {
     forTablet();
-
     btn1.addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
@@ -58,7 +55,6 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
     }, false);
 } else { //桌面浏览器
     forDeskTop();
-
     btn1.addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
@@ -88,9 +84,6 @@ btn4.addEventListener("click", () => {
     location.reload()
 }, false);
 
-function creatImg() {
-    mainLeft.innerHTML = "<img src='img/transparent/skateMan0.jpg' alt='' />"
-};
 //桌面浏览器自动适配
 function forDeskTop() {
     bgBox.style.height = `${eachImg.offsetHeight}px`;
