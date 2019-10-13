@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>笔记|谢丹军的个人网站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" media="screen and (max-device-width: 425px)" href="CSS/mobile/commonMobile.css" type="text/css" />
-    <link rel="stylesheet" media="not screen and (max-device-width: 425px)" href="CSS/common.css" type="text/css" />
+    <link rel="stylesheet" media="screen and (max-device-width: 425px)" href="CSS/mobile/commonMobile.css" type="text/css">
+    <link rel="stylesheet" media="not screen and (max-device-width: 425px)" href="CSS/common.css" type="text/css">
     <link rel="stylesheet" href="CSS/note.css">
     <style>
         .headNav li:nth-child(2) a {
@@ -77,82 +77,175 @@
             <div class="textBox">
                 <div id="a3">
                     <h2 class="title">关于此站</h2>
-                    <h5 class="time">2019.06.30 23:21</h5>
+                    <h5 class="time">2019.06.30 23:21 Porto</h5>
                     <div class="line"></div>
                     <h3>响应式和自适应</h3>
-                    <p>在网站开发过程中，我们往往需要考虑到移动端的视觉效果需要符合桌面端的视觉效果。但是和物理像素px不同的是，CSS中的像素px是个相对单位。大部分的桌面显示器的物理像素等同于CSS像素，而目前主流的手机屏幕的物理像素都远远超过了桌面显示器的物理像素，也就是说，同样的面积，移动端会使用更多的物理像素来显示CSS的像素单位。因此开发移动端的页面需要在head标签中加入meta name="viewport" content="width=device-width, initial-scale=1”。即让viewport宽度等同于设备宽度，同时不允许用户手动缩放。</p>
-                    <p>媒体查询的使用，首先需要有一个默认样式，如果后面使用@media 媒体查询写入不同的CSS, 不需要改变的样式则不需写入，会自动采用默认的样式。需要注意的是，如果媒体查询的条件有重合的话，比如min-width: 300px 是属于min-width: 500px范围之内的，所以媒体条件min-width: 300px的样式需要写在min-width: 500px后面，否则会后者的样式会覆盖前者的样式。</p>
-                    <p>如果移动端样式和桌面端样式有较大的不一，可以通过在head标签中的link里加入媒体条件，根据屏幕宽度，自动加载独立的css文件。但是我发现尽管给移动端（使用min-device-width）加载独立的CSS文件，若后面再加入不同的媒体查询条件，比如min-width的使用会与min-device-width有条件上的重合，导致同时导入两个css文件，那是因为meta name="viewport" content="width=device-width, initial-scale=1”的使用让 min-width实际上等同于min-device-width。为了解决这个问题，对于移动端和桌面端的CSS文件加载条件，我分别使用了 screen and (max-device-width) 和 not screen and (max-device-width)。这样就不会出现同时加载两个CSS文件的情况了。</p>
-                    <p>对于不同的设备，为了防止冗余的函数和变量占用内存，动画页面的JS我也是独立写了移动端和桌面端，通过页面初始化使用matchMedia()方法判断当前设备宽度，自行加入在script标签里加入的src路径。</p>
+                    <p>在网站开发过程中，我们往往需要考虑到移动端的视觉效果需要符合桌面端的视觉效果。但是和物理像素px不同的是，CSS中的像素px是个相对单位。大部分的桌面显示器的物理像素等同于CSS像素，而目前主流的手机屏幕的物理像素都远远超过了桌面显示器的物理像素，也就是说，同样的面积，移动端会使用更多的物理像素来显示CSS的像素单位。因此开发移动端的页面需要在head标签中加入
+                        <span class="code">&lt;meta name="viewport" content="width=device-width, initial-scale=1”&gt;</span>
+                        。即让viewport宽度等同于设备宽度，同时不允许用户手动缩放。</p>
+                    <p>媒体查询的使用，首先需要有一个默认样式，如果后面使用
+                        <span class="code">@media</span>
+                        媒体查询写入不同的CSS, 不需要改变的样式则不需写入，会自动采用默认的样式。需要注意的是，如果媒体查询的条件有重合的话，比如
+                        <span class="code">min-width: 300px</span>
+                        是属于
+                        <span class="code">min-width: 500px</span>
+                        范围之内的，所以媒体条件
+                        <span class="code">min-width: 300px</span>
+                        的样式需要写在
+                        <span class="code">min-width: 500px</span>
+                        后面，否则会后者的样式会覆盖前者的样式。</p>
+                    <p>如果移动端样式和桌面端样式有较大的不一，可以通过在head标签中的link里加入媒体条件，根据屏幕宽度，自动加载独立的css文件。但是我发现尽管给移动端（使用
+                        <span class="code">min-device-width</span>
+                        ）加载独立的CSS文件，若后面再加入不同的媒体查询条件，比如
+                        <span class="code">min-width</span>
+                        的使用会与
+                        <span class="code">min-device-width</span>
+                        有条件上的重合，导致同时导入两个css文件，那是因为
+                        <span class="code">&lt;meta name="viewport" content="width=device-width, initial-scale=1”&gt;</span>
+                        的使用让
+                        <span class="code">min-width</span>
+                        实际上等同于
+                        <span class="code">min-device-width</span>
+                        。为了解决这个问题，对于移动端和桌面端的CSS文件加载条件，我分别使用了
+                        <span class="code">screen and (max-device-width)</span>
+                        和
+                        <span class="code">not screen and (max-device-width)</span>
+                        。这样就不会出现同时加载两个CSS文件的情况了。</p>
+                    <p>对于不同的设备，为了防止冗余的函数和变量占用内存，动画页面的JS我也是独立写了移动端和桌面端，通过页面初始化使用
+                        <span class="code">matchMedia()</span>
+                        方法判断当前设备宽度，自行加入在
+                        <span class="code">&lt;script&gt;</span>
+                        标签里加入的src路径。</p>
                     <h3>请求动画帧API</h3>
-                    <p>原想使用requestAnimationFrame代替setTimeout以优化动画，节省资源。但是由于该请求动画帧API无法控制动画速度以及时间，最终放弃使用。但是我使用了该方法监控DOM样式的变化（以前使用setInterval）。</p>
+                    <p>原想使用
+                        <span class="code">requestAnimationFrame</span>
+                        代替
+                        <span class="code">setTimeout</span>
+                        以优化动画，节省资源。但是由于该请求动画帧API无法控制动画速度以及时间，最终放弃使用。但是我使用了该方法监控DOM样式的变化（以前使用
+                        <span class="code">setInterval</span>
+                        ）。</p>
                     <h3>HTML5的移动端触摸事件</h3>
-                    <p>计算移动端的滑屏方向，可以通过监听touchstart事件和touchend事件分别获取event对象的横纵坐标，把两者的横纵坐标进行减法计算即可判断滑屏方向。但是上下滑动难免会有轻微的左右滑动（或者左右滑动难免会有轻微的上下滑动），由此造成的判断会导致事与愿违。因此我们需要使用Math.abs()方法对比横纵坐标的计算结果，绝对值大者即为触摸滑屏方向。event.preventDefault()方法可以阻止默认处理方式，比如可以监听document的touchmove事件，执行该方法以阻止ios safari 和 chrome的“橡皮筋效果”。</p>
+                    <p>计算移动端的滑屏方向，可以通过监听
+                        <span class="code">touchstart</span>
+                        事件和
+                        <span class="code">touchend</span>
+                        事件分别获取
+                        <span class="code">event</span>
+                        对象的横纵坐标，把两者的横纵坐标进行减法计算即可判断滑屏方向。但是上下滑动难免会有轻微的左右滑动（或者左右滑动难免会有轻微的上下滑动），由此造成的判断会导致事与愿违。因此我们需要使用Math.abs()方法对比横纵坐标的计算结果，绝对值大者即为触摸滑屏方向。
+                        <span class="code">event.preventDefault()</span>
+                        方法可以阻止默认处理方式，比如可以监听
+                        <span class="code">document</span>
+                        的
+                        <span class="code">touchmove</span>
+                        事件，执行该方法以阻止ios safari 和 chrome的“橡皮筋效果”。</p>
                     <h3>优化和兼容</h3>
                     <p>由于每个浏览器的内核和渲染机制都有所差别，所以我在针对移动端浏览器的兼容和优化上花了不少时间，但是效果还是难以让人满意，还需多加学习。</p>
                 </div>
                 <div id="a2">
                     <h2 class="title">3月份学习总结</h2>
-                    <h5 class="time">2019.03.29 05:37</h5>
+                    <h5 class="time">2019.03.29 05:37 Porto</h5>
                     <div class="line"></div>
                     <h3>CSS3轮播图</h3>
                     <p>CSS3动画可开启GPU硬件加速渲染动画, 因此效果更加流畅, 帧数更高, 为了实现无缝轮播, 需要:</p>
                     <p>1. 在图片组最后再放置一张首张图片, 当焦点于最后一张的时候仍然可以滑动到重复放置的第一张图, 此刻又立刻切换到实际的第一张图, 造成无缝的视觉。</p>
-                    <p>2. 对于切换到第一张重点需要用到事件监听, 通过监听transitionend的事件, 可以在不占用定时器的次数的前提下, 于定时器的外部进行无动画无过度地改变动画对象的变型(transform)。 以此来实现css3的无缝轮播。</p>
+                    <p>2. 对于切换到第一张重点需要用到事件监听, 通过监听
+                        <span class="code">transitionend</span>
+                        的事件, 可以在不占用定时器的次数的前提下, 于定时器的外部进行无动画无过度地改变动画对象的变型
+                        <span class="code"></span>transform
+                        。 以此来实现css3的无缝轮播。</p>
                     <h3>纯JS轮播图</h3>
                     <p>动画可控性更好, 但是cpu占用大, 动画帧数低。</p>
                     <p>原理同样需要在图片组最后放置第一张图实现无缝的视觉。</p>
-                    <p>难点: 关于math.ceil()和math.floor()两个方法的使用, 在负值的时候要取整取更小的值, 而正值的时候需要取更大的整数, 意味着取整都要让位移最大化, 最后才能走完目标距离, 否则, 永远无法到达目标距离。</p>
-                    <p>尽量以setTimeout和递归来代替setInterval, 因为setTimeout可以每次释放内存, 而setInterval会一直占用资源, 直到其被清除。</p>
+                    <p>难点: 关于
+                        <span class="code">math.ceil()</span>
+                        和
+                        <span class="code">math.floor()</span>
+                        两个方法的使用, 在负值的时候要取整取更小的值, 而正值的时候需要取更大的整数, 意味着取整都要让位移最大化, 最后才能走完目标距离, 否则, 永远无法到达目标距离。</p>
+                    <p>尽量以
+                        <span class="code">setTimeout</span>
+                        和递归来代替
+                        <span class="code">setInterval</span>
+                        , 因为
+                        <span class="code">setTimeout</span>
+                        可以每次释放内存, 而
+                        <span class="code">setInterval</span>
+                        会一直占用资源, 直到其被清除。</p>
                     <h3>选项卡</h3>
-                    <p>如果直接对每个li标签进行遍历绑定事件, 会消耗内存, 影响性能. 而使用事件委托的方法, 让标签被点击之后才触发事件的绑定和回调相应的函数可以节省更多的内存。</p>
-                    <p>在遍历的时候使用let变量可以打印每次的i值, 而使用var变量只会输出最后一个i的值。</p>
+                    <p>如果直接对每个
+                        <span class="code">li</span>
+                        标签进行遍历绑定事件, 会消耗内存, 影响性能. 而使用事件委托的方法, 让标签被点击之后才触发事件的绑定和回调相应的函数可以节省更多的内存。</p>
+                    <p>在遍历的时候使用
+                        <span class="code">let</span>
+                        变量可以打印每次的i值, 而使用
+                        <span class="code">var</span>
+                        变量只会输出最后一个
+                        <span class="code">i</span>
+                        的值。</p>
                     <h3>布局</h3>
-                    <p>虽然使用table属性的结构布局更加简单, 上手快, 但是实际上加载速度慢, 占用更多的资源。</p>
+                    <p>虽然使用
+                        <span class="code">table</span>
+                        属性的结构布局更加简单, 上手快, 但是实际上加载速度慢, 占用更多的资源。</p>
                 </div>
                 <div id="a1">
                     <h2 class="title">Github 使用教程</h2>
-                    <h5 class="time">2019.03.29 05:26</h5>
+                    <h5 class="time">2019.03.29 05:26 Porto</h5>
                     <div class="line"></div>
                     <h4>自学前端半年了，今天才对github的使用有了初步了解，于是根据自己的经验总结了使用方法。</h4>
-                    <p>1. 进入 github 的网站 [https://github.com/] 注册帐号。</p>
-                    <p>2. 下载安装 git [https://git-scm.com/downloads] 。</p>
-                    <p>3. 打开终端输入 git --version 指令可查看已安装git的版本。</p>
-                    <p>4. 查看.ssh: 在终端输入指令 cd ~/.ssh。如果提示 -bash:cd: ～/.ssh: No such file or directory ，
-                        说明ssh不存在，则需要创建一个。在终端输入指令 ssh-keygen -t rsa -C email，email写注册帐号时的邮箱地址。</p>
+                    <p>1. 进入<a href="https://github.com/">Github</a> 的网站注册帐号。</p>
+                    <p>2. 下载安装<a href="https://git-scm.com/downloads">git</a>。</p>
+                    <p>3. 打开终端输入
+                        <span class="code">git --version</span>
+                        指令可查看已安装git的版本。</p>
+                    <p>4. 查看.ssh: 在终端输入指令
+                        <span>cd ~/.ssh</span>
+                        。如果提示
+                        <span class="code">-bash:cd: ～/.ssh: No such file or directory</span>
+                        ，说明ssh不存在，则需要创建一个。在终端输入指令
+                        <span class="code">ssh-keygen -t rsa -C email</span>，
+                        email写注册帐号时的邮箱地址。</p>
                     <p>回车之后会出现以下提示:</p>
-                    <p>Generating public/private rsa key pair.</p>
-                    <p>Enter file in which to save the key (/Users/username/.ssh/id_rsa):（此为默认路径，可不修改）</p>
-                    <p>Created directory '/Users/username/.ssh'.</p>
-                    <p>Enter passphrase (empty for no passphrase): （设置4位以上的密码）</p>
-                    <p>Enter same passphrase again: （再次输入密码以确认）</p>
-                    <p>Your identification has been saved in /Users/username/.ssh/id_rsa</p>
+                    <p class="code">Generating public/private rsa key pair.</p>
+                    <p class="code">Enter file in which to save the key (/Users/username/.ssh/id_rsa):（此为默认路径，可不修改）</p>
+                    <p class="code">Created directory '/Users/username/.ssh'.</p>
+                    <p class="code">Enter passphrase (empty for no passphrase): （设置4位以上的密码）</p>
+                    <p class="code">Enter same passphrase again: （再次输入密码以确认）</p>
+                    <p class="code">Your identification has been saved in /Users/username/.ssh/id_rsa</p>
                     <p>5. 回到github网站登录帐号，右上角用户头像点击选择 Settings，然后点击左边 Personal settings 一栏
                         中的 SSH and GPG keys，进入之后选择 New SSH key，然后填写Title和Key。</p>
                     <p>Title: 可填写注册邮箱地址</p>
-                    <p>Key: 进入目录 /User/username/.ssh/ 找到 is_rsa.pub，用文本编辑器打开，拷贝里面的内容即可。(
-                        打开Finder使用快捷键Command + Shift + h 进入用户根目录，再使用快捷键 Command + Shift + . 取消文
+                    <p>Key: 进入目录
+                        <span class="code">/User/username/.ssh/</span>
+                        找到 is_rsa.pub，用文本编辑器打开，拷贝里面的内容即可。(
+                        打开Finder使用快捷键 Command + Shift + h 进入用户根目录，再使用快捷键 Command + Shift + . 取消文
                         件隐藏即可找到is_rsa.pub文件)</p>
                     <p>最后点击 Add SSH key。</p>
                     <p>6. 创建版本库，回到github个人主页，点击位于中央的 Start a project, 在 Repository name 处输入一
                         个版本库名称，点击Create repository。</p>
-                    <p>7. 成功创建版本库之后，在终端使用“cd /文件夹路径” 选择你想建立本地版本库的文件夹路径，比如我的是项目是在桌面的
-                        文件夹myGit,则输入 cd /Users/username/Desktop/myGit，然后按照github上新库的提示 …or create a new
-                        repository on the command line 依次输入指令，比如我的是:</p>
-                    <p>echo "# MonGit" >> README.md</p>
-                    <p>git init</p>
-                    <p>git add README.md</p>
-                    <p>git commit -m "first commit"</p>
-                    <p>git remote add origin https://github.com/username/myGit.git</p>
-                    <p>git push -u origin master</p>
+                    <p>7. 成功创建版本库之后，在终端使用
+                        <span class="code">cd /文件夹路径</span>
+                        选择你想建立本地版本库的文件夹路径，比如我的是项目是在桌面的
+                        文件夹myGit,则输入
+                        <span class="code">cd /Users/username/Desktop/myGit</span>
+                        ，然后按照github上新库的提示
+                        <span>…or create a new
+                            repository on the command line</span>
+                        依次输入指令，比如我的是:</p>
+                    <p class="code">echo "# MonGit" >> README.md</p>
+                    <p class="code">git init</p>
+                    <p class="code">git add README.md</p>
+                    <p class="code">git commit -m "first commit"</p>
+                    <p class="code">git remote add origin https://github.com/username/myGit.git</p>
+                    <p class="code">git push -u origin master</p>
                     <p>然后会出现以下提示：</p>
-                    <p>Username for 'https://github.com': （输入github上的用户名）</p>
-                    <p>Password for 'https://username@github.com': （输入github的登录密码）</p>
+                    <p class="code">Username for 'https://github.com': （输入github上的用户名）</p>
+                    <p class="code">Password for 'https://username@github.com': （输入github的登录密码）</p>
                     <p>8. 提交项目，打开终端，同样利用cd指令进入本地仓库，输入:</p>
-                    <p>git add 文件/文件夹路径</p>
-                    <p>git commit –m “你的注释”</p>
-                    <p>git push origin master</p>
-                    <p>成功执行后会显示几行数据，最后以 master -> master 结束。</p>
+                    <p class="code">git add 文件/文件夹路径</p>
+                    <p class="code">git commit –m “你的注释”</p>
+                    <p class="code">git push origin master</p>
+                    <p>成功执行后会显示几行数据，最后以
+                        <span class="code">master -> master</span>
+                        结束。</p>
                 </div>
                 <div id="foot"></div>
             </div>

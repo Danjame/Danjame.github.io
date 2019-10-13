@@ -241,3 +241,8 @@ a {
 .time {
     text-align: right;
 }
+
+.code{
+    background-color: #f8f8f8;
+    color: #d6332d;
+}
