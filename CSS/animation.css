@@ -14,6 +14,7 @@
     position: relative;
     margin: 0 auto;
     overflow: hidden;
+    height: 360px;
 }
 
 #bgBox #imgGroup {
@@ -34,16 +35,25 @@
     #imgGroup img {
         height: 300px;
     }
+    #bgBox{
+        height: 300px;
+    }
 }
 
 @media only screen and (max-width: 1130px) {
     #imgGroup img {
         height: 270px;
     }
+    #bgBox{
+        height: 270px;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
     #imgGroup img {
+        height: 240px;
+    }
+    #bgBox{
         height: 240px;
     }
 }
@@ -383,12 +393,6 @@
 }
 
 #btnBox #btn3 {
-    width: 60px;
-    height: 35px;
-    border-radius: 30px;
-}
-
-#btnBox #btn4 {
     width: 60px;
     height: 35px;
     border-radius: 30px;

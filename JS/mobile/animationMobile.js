@@ -1,7 +1,7 @@
 // 时间线和时间点
 const timeLine = getEle("#timeLine");
 const dots = getAll("#timeDot>li");
-let lineHeight = timeLine.offsetHeight;
+
 // 时间线和文字
 const textDiv1 = getEle("#text1");
 const textDiv2 = getEle("#text2");
@@ -15,7 +15,6 @@ const btn0 = getEle("#btnBox input:first-child");
 const btn1 = getEle("#btnBox input:nth-child(2)");
 const btn2 = getEle("#btnBox input:nth-child(3)");
 const btn3 = getEle("#btnBox input:nth-child(4)");
-const btn4 = getEle("#btnBox input:last-child");
 //实例化对象
 const animationObj = {
     imgBar: "#imgGroup",
@@ -57,10 +56,6 @@ btn2.addEventListener("click", () => {
 //还原事件
 btn3.addEventListener("click", () => {
     aboutMeObj.initialization();
-}, false);
-//刷新事件
-btn4.addEventListener("click", () => {
-    location.reload()
 }, false);
 
 //背景人物动画对象
@@ -123,9 +118,21 @@ Animation.prototype.initialization = function() {
     imgBar.addEventListener("transitionend", () => {
         imgBar.style.transition = "all 0s linear 0s";
     }, false)
+
+    for(let i=0;i<dots.length;i++){
+        dots[i].style.display = "none";
+    }
+
+    textDiv1.className = "";
+    textDiv2.className = "";
+    textDiv3.className = "";
+    textDiv4.className = "";
+
+    timeLine.style.height = 0;
 }
 //时间线动画函数
 function timeLineAnimationMobile() {
+    let lineHeight = timeLine.offsetHeight;
     //时间轴动画函数
     (function timeLineAni() {
         clearTimeout(timeLineTimer);

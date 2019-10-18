@@ -19,7 +19,6 @@ const btn0 = getEle("#btnBox input:first-child");
 const btn1 = getEle("#btnBox input:nth-child(2)");
 const btn2 = getEle("#btnBox input:nth-child(3)");
 const btn3 = getEle("#btnBox input:nth-child(4)");
-const btn4 = getEle("#btnBox input:last-child");
 //计时器
 let bgTimer = null;
 let skateTimer = null;
@@ -79,19 +78,13 @@ btn2.addEventListener("click", () => {
 btn3.addEventListener("click", () => {
     initialization();
 }, false);
-//绑定重载事件
-btn4.addEventListener("click", () => {
-    location.reload()
-}, false);
 
 //桌面浏览器自动适配
 function forDeskTop() {
-    bgBox.style.height = `${eachImg.offsetHeight}px`;
     container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
     imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
 
     window.addEventListener("resize", () => {
-        bgBox.style.height = `${eachImg.offsetHeight}px`;
         imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
         container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
     }, false)
@@ -163,6 +156,7 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
 
         contentTimer = setInterval(() => {
             lineWidth = timeLine.offsetWidth;
+            console.log(lineWidth);
             switch (lineWidth) {
                 case firstWidth:
                     dots[1].style.display = "block";
@@ -193,6 +187,17 @@ function initialization() {
     imgGroup.addEventListener("transitionend", () => {
         imgGroup.style.transition = "all 0s linear 0s";
     }, false)
+
+    for(let i=0;i<dots.length;i++){
+        dots[i].style.display = "none";
+    }
+
+    textDiv1.className = "";
+    textDiv2.className = "";
+    textDiv3.className = "";
+    textDiv4.className = "";
+
+    timeLine.style.width = 0;
 }
 
 function clearAllTimer() {

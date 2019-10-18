@@ -53,7 +53,6 @@ function toEn() {
     btn1.value = "Start";
     btn2.value = "Pause";
     btn3.value = "Review";
-    btn4.value = "Reload";
     text1.innerHTML = "Graduated in Spanish Language and Literature from Jilin International Studies University.";
     text2.innerHTML = "University of Santiago de Compostela.</br>Study Mobility Program.";
     text3.innerHTML = "China United Engineering Corporation.</br>Interpretation and translation.";
@@ -68,7 +67,6 @@ function toEs() {
     btn1.value = "Empezar";
     btn2.value = "Pausar";
     btn3.value = "Rever";
-    btn4.value = "Recargar";
     text1.innerHTML = "Graduado en lengua y literatura españolas por la Universidad de Estudios Internacionales Jilin.";
     text2.innerHTML = "Universidad de Santiago de Compostela.</br>Movilidad de estudio.";
     text3.innerHTML = "China United Engineering Corporation.</br>Interpretación y traducción.";
@@ -84,7 +82,6 @@ function toPt() {
     btn1.value = "Começar";
     btn2.value = "Pausar";
     btn3.value = "Rever";
-    btn4.value = "Recarregar";
     text1.innerHTML = "Licenciado em Língua e Literatura Espanhola em Jilin International Studies University.";
     text2.innerHTML = "Universidade de Santiago de Compostela.</br>Mobilidade de Estudo.";
     text3.innerHTML = "China United Engineering Corporation.</br>Interpretação e Tradução.";
@@ -100,7 +97,6 @@ function toFr() {
     btn1.value = "Commencer";
     btn2.value = "Pauser";
     btn3.value = "Revoir";
-    btn4.value = "Recharger";
     text1.innerHTML = "Diplômé en langue et littérature espagnoles à l'Université Jilin International Studies University.";
     text2.innerHTML = "Université de Saint-Jacques-de-Compostelle.</br>Mobilité d'étude.";
     text3.innerHTML = "China United Engineering Corporation.</br>Interprétation et Traduction.";
