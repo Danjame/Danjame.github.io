@@ -25,11 +25,13 @@ a {
 
 #content {
     position: absolute;
-    top: 48px;
+    top: 81px;
 }
 
-#content>div:first-child {
-    height: 10px;
+@media only screen and (max-device-width: 425px) {
+    #content {
+        top: 49px;
+    }
 }
 
 #content .textBox {
@@ -219,8 +221,14 @@ a {
     color: #1989C0;
 }
 
-#bottom {
+#anchorFoot {
     height: 80px;
+}
+
+@media only screen and (max-device-width: 425px) {
+    #anchorFoot {
+        height: 30px;
+    }
 }
 
 .line {
@@ -242,7 +250,18 @@ a {
     text-align: right;
 }
 
-.code{
+.code {
     background-color: #f8f8f8;
     color: #d6332d;
+}
+
+.anchor {
+    position: absolute;
+    margin-top: -131px;
+}
+
+@media only screen and (max-device-width: 425px) {
+    .anchor {
+        margin-top: -99px;
+    }
 }
