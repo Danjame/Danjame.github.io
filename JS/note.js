@@ -9,7 +9,7 @@ const arrowDown = getEle(".titleBox>ul>li:last-child div:last-child");
 //浮动导航适应手机和悬浮导航交互适应桌面端
 if (window.matchMedia("(max-device-width:425px)").matches) {
     autoTitleBox();
-}else{
+} else {
     arrowColorDesktop();
 }
 //浮动导航定位
@@ -23,19 +23,19 @@ function autoTitleBox() {
 };
 
 function arrowColorDesktop() {
-    titleUp.addEventListener("mouseover", ()=> {
+    titleUp.addEventListener("mouseover", () => {
         arrowUp.style.borderBottomColor = "#eeeeee";
     }, false);
 
-    titleDown.addEventListener("mouseover", ()=> {
+    titleDown.addEventListener("mouseover", () => {
         arrowDown.style.borderTopColor = "#eeeeee";
     }, false);
 
-    titleUp.addEventListener("mouseout", ()=> {
+    titleUp.addEventListener("mouseout", () => {
         arrowUp.style.borderBottomColor = "white";
     }, false);
 
-    titleDown.addEventListener("mouseout", ()=> {
+    titleDown.addEventListener("mouseout", () => {
         arrowDown.style.borderTopColor = "white";
     }, false);
 }
@@ -47,3 +47,10 @@ titleMid.addEventListener("click", function() {
         artiSelection.style.visibility = "visible";
     }
 }, false);
+
+artiSelection.onclick = () => {
+    let target = event.target;
+    if (target.nodeName.toLowerCase() == "li") {
+        artiSelection.style.visibility = "hidden";
+    }
+}
