@@ -68,14 +68,82 @@
             </div>
             <div id="artiSelection">
                 <ul>
+                    <li onclick="window.location.href = '#a5'">Vue.js 入门总结</li>
                     <li onclick="window.location.href = '#a4'">JavaScript 复习</li>
                     <li onclick="window.location.href = '#a3'">关于此站</li>
                     <li onclick="window.location.href = '#a2'">3月学习总结</li>
-                    <li onclick="window.location.href = '#a1'">Github使用教程</li>
+                    <li onclick="window.location.href = '#a1'">Github 使用教程</li>
                 </ul>
             </div>
             <div class="textBox">
                 <div id="anchorHead" class="anchor"></div>
+                <div>
+                    <div id="5" class="anchor"></div>
+                    <h2 class="title">Vue.js 入门总结</h2>
+                    <h5 class="time">2019.10.19 23:58 Leon</h5>
+                    <div class="line"></div>
+                    <h3>环境搭建</h3>
+                    <p>去node官网下载安装node.js, node里面已经集成了npm</p>
+                    <p>终端下安装:</p>
+                    <p>1. <span class="code">npm install vue</span></p>
+                    <p>2. <span class="code">npm install –global vue-cli</span></p>
+                    <p>3. <span class="code">vue init webpack my-project</span></p>
+                    <h3>项目文件说明</h3>
+                    <p>1. Static: 静态资源</p>
+                    <p>2. Node_modeules: 项目依赖的第三方node包</p>
+                    <p>3. Src: 整个项目的源代码</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Main.js: 项目的入口文件</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. App.vue: 项目的原始根组件 </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. Router</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Index.js: 路由文件</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d. Components: 项目组件</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e. Assets: 图片资源</p>
+                    <p>4. Config: 项目的配置文件 </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Index.js: 基础配置信息</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Dev.env.js: 开发环境的配置信息</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. Prod.env.js: 线上环境配置信息</p>
+                    <p>5. Build: 项目web-pack的配置内容</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Webpack.base.conf.js 的resolve对象可定义路径别名</p>
+                    <p>6. Package.json: 项目开发的依赖</p>
+                    <p>7. Package-lock.json: 第三方包的具体版本</p>
+                    <p>8. LICENSE: 开源协议的说明</p>
+                    <p>9. Index.html: 首页默认的模版文件</p>
+                    <p>10. Gitignore: 定义不被提交到git的文件 </p>
+                    <p>11. Eslintrc.js: 配置了代码的规范</p>
+                    <p>12. Eslintignore: 配置了不受到Eslinktrc影响到文件</p>
+                    <p>13. Editorconfig: 配置了编辑器的自动化语法</p>
+                    <p>14. Balbelrc: 用于作语法的转换</p>
+                    <h3>多页应用与单页应用</h3>
+                    <p>多页应用：每次页面跳转都会返回一个新的HTML页面，首屏时间快，搜索引擎优化效果好，但是页面切换慢。 </p>
+                    <p>单页应用：每次页面跳转都会通过JS动态把当前内容删除，然后再渲染新的DOM结构，页面跳转不需要做HTML请求，减少http发送时延，因此页面切换快，但是首屏时间慢，搜索引擎优化效果差。</p>
+                    <h3>Vue.js知识要点</h3>
+                    <p>1. 以vue结尾的都是单文件组件。</p>
+                    <p>2. 双向绑定使用v-model。</p>
+                    <p>3. 路由就是根据不同的网址，返回不同的内容。</p>
+                    <p>4. Tempalte里面只能有一个根标签。</p>
+                    <p>5. Ref用法：标签使用ref绑定DOM, 逻辑里使用<span class="code">this.$refs</span>操作DOM (尽量避免操作DOM)。 </p>
+                    <p>6. 父子组件传递数据 </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. 父传子：父组件页面的子组件标签上绑定父组件的data里的属性，子组件里使用props来接收该属性。 </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. 子传父：子组件里使用<span class="code">this.$emit('event', params)</span>向外触发事件和传递数据，父组件页面的子组件标签上使用@event监听事件并且触发函数，通过函数给data里的属性赋值。</p>
+                    <p>7. 父子组件数据联动: 使用watch监听传送的数据变化。 </p>
+                    <p>8. Vuex: vue.js的状态管理库，它采用集中式存储管理应用的所有组件的状态，可以利用vue.js的数据响应机制来进行高效的状态更新。 </p>
+                    <p>9. Router-link: 使用属性tag可以改变其默认的a标签。 </p>
+                    <p>10. Keep-alive 是一个包裹组件，可以缓存不活动的组件实例，而不销毁它们。而以下两个钩子会在keep-alive树内所有的嵌套组件中触发:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Activated: 展示组件实例时触发</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Deactivated: 跳出组件实例时触发</p>
+                    <p>11. 递归组件：在组件中引用组件自身，把驼峰式命名的组件名字使用"-"拆分作为标签名即可使用递归组件。</p>
+                    <p>12. Transition是个包裹组件，只会把过渡效果应用到其包裹的内容上，不会额外渲染DOM元素，也不会出现在检测过的组件层级中。</p>
+                    <h3>其他</h3>
+                    <p><span class="code"></span>设定宽高比的方法:</p>
+                    <p><span class="code">Width: 100%;</span></p>
+                    <p><span class="code">Overflow:hidden;</span></p>
+                    <p><span class="code">Height: 0;</span></p>
+                    <p><span class="code">Padding-bottom: 50%;</span></p>
+                    <p>多余文字显示为省略号的方法:</p>
+                    <p><span class="code">Overflow:hidden;</span></p>
+                    <p><span class="code">White-space: nowrap;</span></p>
+                    <p><span class="code">Text-overflow: ellipsis;</span></p>
+                </div>
                 <div>
                     <div id="a4" class="anchor"></div>
                     <h2 class="title">JavaScript 复习</h2>
