@@ -68,6 +68,7 @@
             </div>
             <div id="artiSelection">
                 <ul>
+                    <li onclick="window.location.href = '#a6'">Vue 项目要点总结</li>
                     <li onclick="window.location.href = '#a5'">Vue.js 入门总结</li>
                     <li onclick="window.location.href = '#a4'">JavaScript 复习</li>
                     <li onclick="window.location.href = '#a3'">关于此站</li>
@@ -77,6 +78,32 @@
             </div>
             <div class="textBox">
                 <div id="anchorHead" class="anchor"></div>
+                <div>
+                    <div id="a6" class="anchor"></div>
+                    <h2 class="title">Vue 项目要点总结</h2>
+                    <h5 class="time">2019.11.03 20:50 Leon</h5>
+                    <div class="line"></div>
+                    <p>该项目除了首页接口和首页数据库表格，其余都是自己挖坑填坑做出来，包括后来自己补充数据库已经增加和修改接口。该项目借助了网上免费的数据库，数据获取延时会比较大且本地服务器经常崩掉。项目 <a href="https://github.com/Danjame/myProjects" target="_blank">Github</a> 地址。</p>
+                    <h3>侦听属性 Watch</h3>
+                    <p>如果需要Watch来侦听一个对象或者对象里某一属性的变化, 可以如下操作。</p>
+                    <h4>对对象使用深度监听:</h4>
+                    <p><span class="code">obj: {</span></p>
+                    <p><span class="code">handler: function ( ) { do something... },</span></p>
+                    <p><span class="code">deep: true</span></p>
+                    <p><span class="code">} </span></p>
+                    <h4>侦听对象属性:</h4>
+                    <p><span class="code">'Obj.attribute': funcion ( ){ do something... }</span></p>
+                    <h3>事件修饰符</h3>
+                    <p>使用 <span class="code">@click.stop </span>来阻止事件冒泡。</p>
+                    <p>使用 <span class="code">@click.prevent</span> 来阻止事件的默认行为。</p>
+                    <h3>状态管理模式 Vuex</h3>
+                    <p>我把vuex看作vue的前端数据库，在vue的任何一个组件里的数据可以放进vuex里，而其他任何组件可以直接从vuex里获取其他组件存放的数据。所有的公用数据放在vuex的state对象里，通过dispatch和commit分别调用actions和mutations的方法来存放数据，但是实际上我们可以跳过actions直接使用commit调用mutation来存放数据。</p>
+                    <h3>Vue Router</h3>
+                    <p>个人更加偏向于使用编程式导航:</p>
+                    <p>1. 其可以更好地帮助你根据不同的条件跳转到不同的地址。 </p>
+                    <p>2. 在跳转之前可以先进行某些条件的判断，当条件满足再进行跳转，否则不跳转。</p>
+                    <p>3. 可以在页面跳转时进行其他操作。 </p>
+                </div>
                 <div>
                     <div id="5" class="anchor"></div>
                     <h2 class="title">Vue.js 入门总结</h2>
