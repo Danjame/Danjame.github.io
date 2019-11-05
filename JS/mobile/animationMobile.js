@@ -58,7 +58,7 @@ btn3.addEventListener("click", () => {
     aboutMeObj.initialization();
 }, false);
 
-//背景人物动画对象
+//背景人物动画构造函数
 function Animation(obj) {
     this.imgBar = obj.imgBar;
     this.imgBarWidth = obj.imgBarWidth;
