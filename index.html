@@ -162,17 +162,27 @@
     var obj = new SlideImg(slideObj); //创建构造函数
 
     if (window.matchMedia("(max-device-width:425px)").matches) {
-        obj.touchEvent(); 
+        obj.touchEvent();
         obj.dotsEvent();
     } else {
-        obj.autoSlide(); 
-        obj.slideEngine(); 
+        obj.autoSlide();
+        obj.slideEngine();
         window.onblur = () => {
             clearTimeout(obj.iniTimer);
+            obj.stopSlideEngine();
         };
         window.onfocus = () => {
-            obj.autoSlide(); 
+            obj.autoSlide();
+            obj.slideEngine();
         }
+    }
+
+    function mouseIn() {
+        clearTimeout(obj.iniTimer);
+    }
+
+    function mouseOut() {
+        obj.autoSlide();
     }
     </script>
 </body>

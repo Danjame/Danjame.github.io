@@ -107,16 +107,16 @@ SlideImg.prototype.touchEvent = function() {
     const self = this;
     let startX, startY, endX, endY, x, y;
 
-    document.addEventListener("touchmove", function(event) {
+    document.addEventListener("touchmove", event => {
         event.preventDefault();
     }, { passive: false });
 
-    slideBox.addEventListener("touchstart", function(event) {
+    slideBox.addEventListener("touchstart", event => {
         startX = event.touches[0].pageX;
         startY = event.touches[0].pageY;
     }, { passive: false });
 
-    slideBox.addEventListener("touchend", function(event) {
+    slideBox.addEventListener("touchend", event => {
         endX = event.changedTouches[0].pageX;
         endY = event.changedTouches[0].pageY;
         x = endX - startX;
@@ -148,20 +148,25 @@ SlideImg.prototype.touchEvent = function() {
 SlideImg.prototype.slideEngine = function() {
     const self = this;
     const container = document.querySelector(this.container);
-    container.addEventListener(this.stopEvent, function() {
-        clearTimeout(self.iniTimer);
-    }, false);
+    container.addEventListener(this.stopEvent, mouseIn, false);
 
-    container.addEventListener(this.startEvent, function() {
-        self.autoSlide();
-    }, false);
+    container.addEventListener(this.startEvent, mouseOut, false);
 };
+
+SlideImg.prototype.stopSlideEngine = function() {
+    const self = this;
+    const container = document.querySelector(this.container);
+    container.removeEventListener(this.stopEvent, mouseIn, false);
+
+    container.removeEventListener(this.startEvent, mouseOut, false);
+};
+
 //图片点控制方法
 SlideImg.prototype.dotsEvent = function() {
     const self = this;
     const dotNodes = document.querySelectorAll(this.dotNodes);
     const dotsFather = document.querySelector(this.dotsFather);
-    dotsFather.addEventListener(self.dotsEventType, function() {
+    dotsFather.addEventListener(self.dotsEventType, () => {
         const targetNode = event.target;
         if (targetNode.nodeName === dotsFather.children[0].nodeName) {
             for (let i = 0; i < self.dotNodes.length; i++) {
