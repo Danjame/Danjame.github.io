@@ -92,15 +92,15 @@ SlideImg.prototype.reStore = function() {
 SlideImg.prototype.autoSlide = function() {
     const self = this;
 
-    function iniTimer() {
+    function init() {
         self.iniTimer = setTimeout(() => {
             self.index += 1;
             self.reStore();
             self.slideAnimation();
-            iniTimer();
+            init();
         }, self.interval);
     }
-    iniTimer();
+    init();
 };
 //移动端触屏事件
 SlideImg.prototype.touchEvent = function() {

@@ -25,6 +25,10 @@ const animationObj = {
 };
 var aboutMeObj = new Animation(animationObj);
 
+window.onblur = ()=>{
+    clearAllTimer();
+}
+
 //语言选择框事件
 btn0.addEventListener("click", () => {
     if (floatTitle.className == "floatTitleMin" || floatTitle.className == "floatTitleMin ftHidden") {
@@ -108,11 +112,9 @@ Animation.prototype.manAnimation = function() {
 //动画还原方法
 Animation.prototype.initialization = function() {
     clearAllTimer();
-    const man = document.querySelector(this.man);
     const imgBar = document.querySelector(this.imgBar);
     this.imgOffset = 0;
 
-    man.style.backgroundPositionX = "0";
     imgBar.style.transform = `translate3d(${this.imgOffset}px, 0, 0)`;
     imgBar.style.transition = "all 1s ease 0s";
     imgBar.addEventListener("transitionend", () => {

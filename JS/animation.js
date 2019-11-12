@@ -183,7 +183,6 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
 function initialization() {
     clearAllTimer();
     offset = 0;
-    skateMan.src = `img/transparent/skateMan0.jpg`;
     imgGroup.style.transform = `translate3d(${offset}px, 0, 0)`;
     imgGroup.style.transition = "all 1s ease 0s";
     imgGroup.addEventListener("transitionend", () => {

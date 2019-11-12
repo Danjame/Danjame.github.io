@@ -162,11 +162,17 @@
     var obj = new SlideImg(slideObj); //创建构造函数
 
     if (window.matchMedia("(max-device-width:425px)").matches) {
-        obj.touchEvent(); //触屏滑动
+        obj.touchEvent(); 
         obj.dotsEvent();
     } else {
-        obj.autoSlide(); //动画初始化
-        obj.slideEngine(); //停止与启动轮播
+        obj.autoSlide(); 
+        obj.slideEngine(); 
+        window.onblur = () => {
+            clearTimeout(obj.iniTimer);
+        };
+        window.onfocus = () => {
+            obj.autoSlide(); 
+        }
     }
     </script>
 </body>
