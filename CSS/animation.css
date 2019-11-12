@@ -70,14 +70,29 @@
 }
 
 #main #mainLeft {
+    width: 320px;
+    height: 240px;
+    position: absolute;
+    margin-top: -120px;
+    margin-left: -80px;
+    -webkit-background-image: url('../img/skateMan.jpg');
+    background-image: url('../img/skateMan.jpg');
+    -webkit-background-size: auto 240px;
+    background-size: auto 240px;
+    -webkit-background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    -webkit-transition: all 0s linear 0s;
+    transition: all 0s linear 0s;
+/* 
+
     position: absolute;
     margin-left: -60px;
-    margin-top: -120px;
+    margin-top: -120px; */
 }
 
-#mainLeft>img {
+/* #mainLeft>img {
     height: 240px;
-}
+} */
 
 #mainRight {
     position: absolute;
@@ -243,9 +258,9 @@
         margin-top: -210px;
     }
 
-    #mainLeft>img {
+/*     #mainLeft>img {
         height: 400px;
-    }
+    } */
 
     #mainRight {
         left: 320px;
@@ -282,9 +297,9 @@
         margin-top: -140px;
     }
 
-    #mainLeft>img {
+/*     #mainLeft>img {
         height: 300px;
-    }
+    } */
 
     #mainRight {
         left: 238px;

@@ -47,9 +47,9 @@
     transition: all 0s linear 0s;
 }
 
-#main #mainLeft>img{
+/* #main #mainLeft>img{
     display: none;
-}
+} */
 
 /* 文字和时间线*/
 #main #mainRight {

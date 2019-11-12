@@ -3,8 +3,7 @@ const bgBox = getEle("#bgBox");
 const imgGroup = getEle("#imgGroup");
 const eachImg = getEle("#imgGroup>li:first-child img");
 const imgNum = getAll("#imgGroup>li").length;
-const mainLeft = getEle("#mainLeft");
-const skateMan = getEle("#mainLeft>img");
+const skateMan = getEle("#mainLeft");
 const screenWidth = document.documentElement.clientWidth;
 // 时间线和时间点
 const timeLine = getEle("#timeLine");
@@ -35,7 +34,7 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
         } else {
-            skateAnimation(1, 29, 50);
+            skateAnimation(320, 9600, 50);
             bgAnimationTablet(2, 1);
             timeAnimation(123, 243, 363, 437, 25);
         }
@@ -47,7 +46,7 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
         } else {
-            skateAnimation(1, 29, 50);
+            skateAnimation(320, 9600, 50);
             bgAnimationTablet(2, 1);
             timeAnimation(166, 330, 496, 596, 25);
         }
@@ -58,7 +57,7 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
         } else {
-            skateAnimation(1, 29, 50);
+            skateAnimation(320, 9600, 50);
             bgAnimation(1, 1);
             if (window.matchMedia("(min-width:1301px)").matches) {
                 timeAnimation(180, 357, 532, 650, 25);
@@ -122,18 +121,22 @@ function bgAnimationTablet(distance, ms) {
     }, ms);
 };
 //滑板动画函数
-function skateAnimation(firstImg, lastImg, mS) {
-    clearTimeout(skateTimer);
-    skateTimer = setTimeout(() => {
-        i++;
-        if (i <= lastImg) {
-            skateMan.src = `img/transparent/skateMan${i}.jpg`;
-        } else {
-            i = firstImg;
-        }
-        skateAnimation(firstImg, lastImg, mS);
-    }, mS);
-};
+function skateAnimation(eachWidth, totalWidth, manMs) {
+    let manOffset = 0;
+    let each = eachWidth;
+    let total = totalWidth;
+    const ms = manMs;
+
+    (function skateAni() {
+        clearTimeout(skateTimer);
+        skateTimer = setTimeout(() => {
+            manOffset -= each;
+            manOffset <= -total ? manOffset = 0 : manOffset;
+            skateMan.style.backgroundPositionX = `${manOffset}px`;
+            skateAni();
+        }, ms);
+    })()
+}
 //时间动画函数
 function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLineMS) {
     let lineWidth;
@@ -156,7 +159,6 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
 
         contentTimer = setInterval(() => {
             lineWidth = timeLine.offsetWidth;
-            console.log(lineWidth);
             switch (lineWidth) {
                 case firstWidth:
                     dots[1].style.display = "block";
@@ -188,7 +190,7 @@ function initialization() {
         imgGroup.style.transition = "all 0s linear 0s";
     }, false)
 
-    for(let i=0;i<dots.length;i++){
+    for (let i = 0; i < dots.length; i++) {
         dots[i].style.display = "none";
     }
 
