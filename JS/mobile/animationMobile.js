@@ -2,19 +2,16 @@
 const timeLine = getEle("#timeLine");
 const dots = getAll("#timeDot>li");
 
-// 时间线和文字
-const textDiv1 = getEle("#text1");
-const textDiv2 = getEle("#text2");
-const textDiv3 = getEle("#text3");
-const textDiv4 = getEle("#text4");
+// 文字
+const textWraps = [getEle("#text1"),
+    getEle("#text2"),
+    getEle("#text3"),
+    getEle("#text4")
+];
 //时间线计时器
 let timeLineTimer = null;
 let contentTimer = null;
-// 按钮
-const btn0 = getEle("#btnBox input:first-child");
-const btn1 = getEle("#btnBox input:nth-child(2)");
-const btn2 = getEle("#btnBox input:nth-child(3)");
-const btn3 = getEle("#btnBox input:nth-child(4)");
+
 //实例化对象
 const animationObj = {
     imgBar: "#imgGroup",
@@ -25,12 +22,12 @@ const animationObj = {
 };
 var aboutMeObj = new Animation(animationObj);
 
-window.onblur = ()=>{
+window.onblur = () => {
     clearAllTimer();
 }
 
 //语言选择框事件
-btn0.addEventListener("click", () => {
+getEle("#btnBox input:first-child").addEventListener("click", () => {
     if (floatTitle.className == "floatTitleMin" || floatTitle.className == "floatTitleMin ftHidden") {
         floatTitle.className = "floatTitleMin ftDisplay";
     } else {
@@ -38,7 +35,7 @@ btn0.addEventListener("click", () => {
     }
 }, false);
 //监听点击事件, 开启动画
-btn1.addEventListener("click", () => {
+getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
     if (imgGroup.style.transition === "all 1s ease 0s") {
         return;
     } else {
@@ -54,11 +51,11 @@ btn1.addEventListener("click", () => {
     }
 }, false);
 //监听点击事件, 停止动画
-btn2.addEventListener("click", () => {
+getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
     clearAllTimer();
 }, false);
 //还原事件
-btn3.addEventListener("click", () => {
+getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
     aboutMeObj.initialization();
 }, false);
 
@@ -121,14 +118,13 @@ Animation.prototype.initialization = function() {
         imgBar.style.transition = "all 0s linear 0s";
     }, false)
 
-    for(let i=0;i<dots.length;i++){
-        dots[i].style.display = "none";
-    }
+    dots.forEach(item => {
+        item.style.display = "none";
+    })
 
-    textDiv1.className = "";
-    textDiv2.className = "";
-    textDiv3.className = "";
-    textDiv4.className = "";
+    textWraps.forEach(item => {
+        item.className = "";
+    })
 
     timeLine.style.height = 0;
 }
@@ -148,38 +144,36 @@ function timeLineAnimationMobile() {
             }
         }, 50);
     })();
+
     //文本框和时间点根据时间轴长度分别淡出和显示
-    (function contentAni() {
+    (function contentAni(firPoint, secPoint, thirPoint, fourtPoint) {
         cancelAnimationFrame(contentTimer);
         contentTimer = requestAnimationFrame(() => {
-            lineLength = timeLine.offsetHeight;
             switch (true) {
-                case lineLength < 70:
-                    dots[0].style.display = "block";
-                    textDiv1.className = "text";
-                    contentAni();
+                case lineHeight < firPoint:
+                    displayDotTest(dots[0], textWraps[0]);
                     break;
-                case (lineLength >= 70 && lineLength < 139):
-                    dots[1].style.display = "block";
-                    textDiv2.className = "text";
-                    contentAni();
+                case lineHeight >= firPoint && lineHeight < secPoint:
+                    displayDotTest(dots[1], textWraps[1]);
                     break;
-                case lineLength >= 139 && lineLength < 209:
-                    dots[2].style.display = "block";
-                    textDiv3.className = "text";
-                    contentAni();
+                case lineHeight >= secPoint && lineHeight < thirPoint:
+                    displayDotTest(dots[2], textWraps[2]);
                     break;
-                case lineLength >= 209 && lineLength < 239:
-                    dots[3].style.display = "block";
-                    textDiv4.className = "text";
-                    contentAni();
+                case lineHeight >= thirPoint && lineHeight < fourtPoint:
+                    displayDotTest(dots[3], textWraps[3]);
                     break;
-                case lineLength >= 239:
+                case lineHeight >= fourtPoint:
                     cancelAnimationFrame(contentTimer);
                     break;
             }
         })
-    })();
+
+        function displayDotTest(dot, textWrap) {
+            dot.style.display = "block";
+            textWrap.className = "text";
+            contentAni(70, 139, 209, 239);
+        }
+    })(70, 139, 209, 239)
 }
 
 function clearAllTimer() {
