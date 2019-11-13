@@ -1,7 +1,6 @@
 // 时间线和时间点
 const timeLine = getEle("#timeLine");
 const dots = getAll("#timeDot>li");
-
 // 文字
 const textWraps = [getEle("#text1"),
     getEle("#text2"),
@@ -11,7 +10,6 @@ const textWraps = [getEle("#text1"),
 //时间线计时器
 let timeLineTimer = null;
 let contentTimer = null;
-
 //实例化对象
 const animationObj = {
     imgBar: "#imgGroup",

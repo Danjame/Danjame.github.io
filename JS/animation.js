@@ -9,15 +9,11 @@ const screenWidth = document.documentElement.clientWidth;
 const timeLine = getEle("#timeLine");
 const dots = getAll("#timeDot>li");
 // 时间线和文字
-const textDiv1 = getEle("#text1");
-const textDiv2 = getEle("#text2");
-const textDiv3 = getEle("#text3");
-const textDiv4 = getEle("#text4");
-// 按钮
-const btn0 = getEle("#btnBox input:first-child");
-const btn1 = getEle("#btnBox input:nth-child(2)");
-const btn2 = getEle("#btnBox input:nth-child(3)");
-const btn3 = getEle("#btnBox input:nth-child(4)");
+const textWraps = [getEle("#text1"),
+    getEle("#text2"),
+    getEle("#text3"),
+    getEle("#text4")
+];
 //计时器
 let bgTimer = null;
 let skateTimer = null;
@@ -30,7 +26,7 @@ let offset = 0;
 //适配Ipad
 if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024px)").matches) {
     forTablet();
-    btn1.addEventListener("click", () => {
+    getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
         } else {
@@ -42,7 +38,7 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
     //适配Ipad Pro
 } else if (window.matchMedia("(width:1024px)").matches & window.matchMedia("(height:1366px)").matches) {
     forTablet();
-    btn1.addEventListener("click", () => {
+    getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
         } else {
@@ -53,7 +49,7 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
     }, false);
 } else { //桌面浏览器
     forDeskTop();
-    btn1.addEventListener("click", () => {
+    getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
         if (imgGroup.style.transition === "all 1s ease 0s") {
             return;
         } else {
@@ -70,11 +66,11 @@ if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024
     }, false);
 };
 //监听点击事件, 停止动画
-btn2.addEventListener("click", () => {
+getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
     clearAllTimer();
 }, false);
 //绑定重看事件
-btn3.addEventListener("click", () => {
+getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
     initialization();
 }, false);
 
@@ -154,29 +150,30 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
     })();
     //文本框和时间点根据时间轴长度分别淡出和显示
     (function contentAnimation() {
-        dots[0].style.display = "block";
-        textDiv1.className = "text";
+        displayDotTest(dots[0], textWraps[0]);
 
         contentTimer = setInterval(() => {
             lineWidth = timeLine.offsetWidth;
             switch (lineWidth) {
                 case firstWidth:
-                    dots[1].style.display = "block";
-                    textDiv2.className = "text";
+                    displayDotTest(dots[1], textWraps[1]);
                     break;
                 case secondWidth:
-                    dots[2].style.display = "block";
-                    textDiv3.className = "text";
+                    displayDotTest(dots[2], textWraps[2]);
                     break;
                 case thirdWidth:
-                    dots[3].style.display = "block";
-                    textDiv4.className = "text";
+                    displayDotTest(dots[3], textWraps[3]);
                     break;
                 case totalWidth:
                     clearInterval(contentTimer);
                     break;
             }
         }, 10);
+
+        function displayDotTest(dot, textWrap) {
+            dot.style.display = "block";
+            textWrap.className = "text";
+        }
     })();
 }
 //还原函数
@@ -189,16 +186,15 @@ function initialization() {
         imgGroup.style.transition = "all 0s linear 0s";
     }, false)
 
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].style.display = "none";
-    }
+    dots.forEach(item => {
+        item.style.display = "none";
+    })
 
-    textDiv1.className = "";
-    textDiv2.className = "";
-    textDiv3.className = "";
-    textDiv4.className = "";
+    textWraps.forEach(item => {
+        item.className = "";
+    })
 
-    timeLine.style.width = 0;
+    timeLine.style.height = 0;
 }
 
 function clearAllTimer() {
