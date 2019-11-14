@@ -51,15 +51,12 @@ Multilan.prototype.switchLan = function(index) {
     btns.forEach((item, index) => {
         item.value = this.btnVal[index];
     })
-
     cvWrappers.forEach((item, index) => {
         item.innerHTML = this.textVal[index];
     })
-
     menus.forEach((item, index) => {
         item.innerHTML = this.menuVal[index];
     })
-
     floatText.innerHTML = this.floatText;
 };
 

@@ -1,4 +1,4 @@
-#header{
+#header {
     min-width: 640px;
 }
 
@@ -35,7 +35,8 @@
     #imgGroup img {
         height: 300px;
     }
-    #bgBox{
+
+    #bgBox {
         height: 300px;
     }
 }
@@ -44,7 +45,8 @@
     #imgGroup img {
         height: 270px;
     }
-    #bgBox{
+
+    #bgBox {
         height: 270px;
     }
 }
@@ -53,11 +55,11 @@
     #imgGroup img {
         height: 240px;
     }
-    #bgBox{
+
+    #bgBox {
         height: 240px;
     }
 }
-
 
 #imgGroup>li {
     float: left;
