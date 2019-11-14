@@ -64,7 +64,7 @@ Multilan.prototype.switchLan = function(index) {
 const toEn = new Multilan({
     btnVal: ["En", "Start", "Pause", "Review"],
     textVal: [
-        "Jilin International Studies University.</br>Spanish Language and Literature.",
+        "Jilin International Studies University.</br>Bachelor in Spanish Language.",
         "China United Engineering Corporation.</br>Interpretation and translation.",
         "University of Santiago de Compostela.</br>Study Mobility Program.",
         "University of Porto.</br>Master in PLE of FLUP."
@@ -100,7 +100,7 @@ const toPt = new Multilan({
 const toFr = new Multilan({
     btnVal: ["FR", "Commencer", "Pauser", "Revoir"],
     textVal: [
-        "Université Jilin International Studies University.</br>Langue et Littérature Espagnoles.",
+        "Université Jilin International Studies University.</br>Licence Espagnol.",
         "China United Engineering Corporation.</br>Interprétation et Traduction.",
         "Université de Saint-Jacques-de-Compostelle.</br>Mobilité d'étude.",
         "Université de Porto.</br>Master en PLE à FLUP."
