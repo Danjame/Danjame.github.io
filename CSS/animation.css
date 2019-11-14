@@ -314,26 +314,23 @@
     text-align: center;
 }
 
-#text1 {
-    background-color: #d25959;
+.descriptionUp li:nth-child(1) {
+    background: #d25959;
 }
 
-#text2 {
-    background-color: #b0e0a8;
+.descriptionDown li:nth-child(1) {
+    background: #b0e0a8;
 }
 
-#text3 {
-    background-color: #f0f69f;
+.descriptionUp li:nth-child(2) {
+    background: #f0f69f;
 }
 
-#text4 {
-    background-color: #a773c3;
+.descriptionDown li:nth-child(2) {
+    background: #a773c3;
 }
 
-#text1,
-#text2,
-#text3,
-#text4 {
+.cvInfo {
     color: #545454;
 }
 
@@ -348,7 +345,7 @@
     }
 }
 
-.text {
+.cvWrapFrames {
     animation-name: textFrames;
     animation-timing-function: linear;
     animation-duration: 1s;
@@ -374,30 +371,30 @@
     cursor: pointer;
 }
 
-#btn0 {
+#btnBox input:nth-child(1) {
     display: none;
 }
 
-#btnBox #btn1 {
+#btnBox input:nth-child(2) {
     width: 70px;
     height: 70px;
     border-radius: 50%;
 }
 
-#btnBox #btn2 {
+#btnBox input:nth-child(3) {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 
-#btnBox #btn3 {
+#btnBox input:nth-child(4) {
     width: 60px;
     height: 35px;
     border-radius: 30px;
 }
 
 #btnBox .btnMove:hover,
-#btn1:hover {
+#btnBox input:nth-child(2):hover {
     background-color: #1989C0;
     color: white;
     opacity: 1;

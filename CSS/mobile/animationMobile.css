@@ -93,33 +93,30 @@
     font-weight: bold;
 }
 
-#text1 {
+.descriptionUp li:nth-child(1) {
     background-color: #d25959;
     opacity: 0;
 }
 
-#text2 {
+.descriptionDown li:nth-child(1) {
     margin-top: -5.3rem;
     background-color: #b0e0a8;
     opacity: 0;
 }
 
-#text3 {
+.descriptionUp li:nth-child(2) {
     margin-top: 4.75rem;
     background-color: #f0f69f;
     opacity: 0;
 }
 
-#text4 {
+.descriptionDown li:nth-child(2) {
     margin-top: 4.78rem;
     background-color: #a773c3;
     opacity: 0;
 }
 
-#text1,
-#text2,
-#text3,
-#text4 {
+.cvInfo {
     color: #545454;
 }
 
@@ -134,7 +131,7 @@
     }
 }
 
-.text {
+.cvWrapFrames {
     animation-name: textFrames;
     animation-timing-function: linear;
     animation-duration: 1s;
@@ -199,14 +196,14 @@
     cursor: pointer;
 }
 
-#btn0 {
+#btnBox input:nth-child(1) {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
     display: none;
 }
 
-#btn1 {
+#btnBox input:nth-child(2) {
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 50%;
@@ -272,12 +269,12 @@
     }
 }
 
-#btnBox #btn0:hover {
+#btnBox input:nth-child(1):hover {
     background-color: #1989C0;
     color: white;
 }
 
-#btnBox #btn1:hover {
+#btnBox input:nth-child(2):hover {
     background-color: #1989C0;
     color: white;
     animation-name: btnFrames1;

@@ -2,11 +2,7 @@
 const timeLine = getEle("#timeLine");
 const dots = getAll("#timeDot>li");
 // 文字
-const textWraps = [getEle("#text1"),
-    getEle("#text2"),
-    getEle("#text3"),
-    getEle("#text4")
-];
+const cvWraps = getAll(".cvInfo");
 //时间线计时器
 let timeLineTimer = null;
 let contentTimer = null;
@@ -45,7 +41,7 @@ getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
             lanDivs[i].style.textAlign = "left";
         };
         floatTitle.className = "floatTitleMin";
-        btn0.style.display = "block";
+        getEle("#btnBox input:first-child").style.display = "block";
     }
 }, false);
 //监听点击事件, 停止动画
@@ -120,7 +116,7 @@ Animation.prototype.initialization = function() {
         item.style.display = "none";
     })
 
-    textWraps.forEach(item => {
+    cvWraps.forEach(item => {
         item.className = "";
     })
 
@@ -149,16 +145,16 @@ function timeLineAnimationMobile() {
         contentTimer = requestAnimationFrame(() => {
             switch (true) {
                 case lineHeight < firPoint:
-                    displayDotTest(dots[0], textWraps[0]);
+                    displayDotTest(dots[0], cvWraps[0]);
                     break;
                 case lineHeight >= firPoint && lineHeight < secPoint:
-                    displayDotTest(dots[1], textWraps[1]);
+                    displayDotTest(dots[1], cvWraps[2]);
                     break;
                 case lineHeight >= secPoint && lineHeight < thirPoint:
-                    displayDotTest(dots[2], textWraps[2]);
+                    displayDotTest(dots[2], cvWraps[1]);
                     break;
                 case lineHeight >= thirPoint && lineHeight < fourtPoint:
-                    displayDotTest(dots[3], textWraps[3]);
+                    displayDotTest(dots[3], cvWraps[3]);
                     break;
                 case lineHeight >= fourtPoint:
                     cancelAnimationFrame(contentTimer);
@@ -166,9 +162,9 @@ function timeLineAnimationMobile() {
             }
         })
 
-        function displayDotTest(dot, textWrap) {
+        function displayDotTest(dot, cvWrap) {
             dot.style.display = "block";
-            textWrap.className = "text";
+            cvWrap.className = "cvWrapFrames";
             contentAni(70, 139, 209, 239);
         }
     })(70, 139, 209, 239)

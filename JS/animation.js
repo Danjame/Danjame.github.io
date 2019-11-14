@@ -5,15 +5,11 @@ const eachImg = getEle("#imgGroup>li:first-child img");
 const imgNum = getAll("#imgGroup>li").length;
 const skateMan = getEle("#mainLeft");
 const screenWidth = document.documentElement.clientWidth;
-// 时间线和时间点
+//时间线和时间点
 const timeLine = getEle("#timeLine");
 const dots = getAll("#timeDot>li");
-// 时间线和文字
-const textWraps = [getEle("#text1"),
-    getEle("#text2"),
-    getEle("#text3"),
-    getEle("#text4")
-];
+//文字
+const cvWraps = getAll(".cvInfo");
 //计时器
 let bgTimer = null;
 let skateTimer = null;
@@ -135,9 +131,8 @@ function skateAnimation(eachWidth, totalWidth, manMs) {
 }
 //时间动画函数
 function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLineMS) {
-    let lineWidth;
+    let lineWidth = timeLine.offsetWidth;;
     (function lineAnimation() {
-        lineWidth = timeLine.offsetWidth;
         timeLineTimer = setTimeout(() => {
             lineWidth += 1;
             if (lineWidth <= totalWidth) {
@@ -150,19 +145,19 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
     })();
     //文本框和时间点根据时间轴长度分别淡出和显示
     (function contentAnimation() {
-        displayDotTest(dots[0], textWraps[0]);
+        displayDotTest(dots[0], cvWraps[0]);
 
         contentTimer = setInterval(() => {
             lineWidth = timeLine.offsetWidth;
             switch (lineWidth) {
                 case firstWidth:
-                    displayDotTest(dots[1], textWraps[1]);
+                    displayDotTest(dots[2], cvWraps[2]);
                     break;
                 case secondWidth:
-                    displayDotTest(dots[2], textWraps[2]);
+                    displayDotTest(dots[1], cvWraps[1]);
                     break;
                 case thirdWidth:
-                    displayDotTest(dots[3], textWraps[3]);
+                    displayDotTest(dots[3], cvWraps[3]);
                     break;
                 case totalWidth:
                     clearInterval(contentTimer);
@@ -172,7 +167,7 @@ function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLine
 
         function displayDotTest(dot, textWrap) {
             dot.style.display = "block";
-            textWrap.className = "text";
+            textWrap.className = "cvWrapFrames";
         }
     })();
 }
@@ -190,11 +185,11 @@ function initialization() {
         item.style.display = "none";
     })
 
-    textWraps.forEach(item => {
+    cvWraps.forEach(item => {
         item.className = "";
     })
 
-    timeLine.style.height = 0;
+    timeLine.style.width = 0;
 }
 
 function clearAllTimer() {
