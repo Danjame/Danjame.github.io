@@ -64,7 +64,7 @@ Multilan.prototype.switchLan = function(index) {
 const toEn = new Multilan({
     btnVal: ["En", "Start", "Pause", "Review"],
     textVal: [
-        "Spanish Language and Literature</br>Jilin International Studies University.",
+        "Jilin International Studies University.</br>Spanish Language and Literature.",
         "China United Engineering Corporation.</br>Interpretation and translation.",
         "University of Santiago de Compostela.</br>Study Mobility Program.",
         "University of Porto.</br>Master in PLE of FLUP."
@@ -76,7 +76,7 @@ const toEn = new Multilan({
 const toEs = new Multilan({
     btnVal: ["ES", "Empezar", "Pausar", "Rever"],
     textVal: [
-        "Lengua y Literatura Españolas</br>Universidad de Estudios Internacionales Jilin.",
+        "Universidad de Estudios Internacionales Jilin.</br>Lengua y Literatura Españolas.",
         "China United Engineering Corporation.</br>Interpretación y traducción.",
         "Universidad de Santiago de Compostela.</br>Movilidad de estudio.",
         "Universidad de Porto.</br>Master en PLE de FLUP."
@@ -88,7 +88,7 @@ const toEs = new Multilan({
 const toPt = new Multilan({
     btnVal: ["PT", "Começar", "Pausar", "Rever"],
     textVal: [
-        "Língua e Literatura Espanhola</br>Jilin International Studies University.",
+        "Jilin International Studies University.</br>Língua e Literatura Espanholas.",
         "China United Engineering Corporation.</br>Interpretação e Tradução.",
         "Universidade de Santiago de Compostela.</br>Mobilidade de Estudo.",
         "Universidade do Porto.</br>Mestrado em PLE na FLUP."
@@ -100,7 +100,7 @@ const toPt = new Multilan({
 const toFr = new Multilan({
     btnVal: ["FR", "Commencer", "Pauser", "Revoir"],
     textVal: [
-        "Langue et Littérature Espagnoles</br>Université Jilin International Studies University.",
+        "Université Jilin International Studies University.</br>Langue et Littérature Espagnoles.",
         "China United Engineering Corporation.</br>Interprétation et Traduction.",
         "Université de Saint-Jacques-de-Compostelle.</br>Mobilité d'étude.",
         "Université de Porto.</br>Master en PLE à FLUP."
