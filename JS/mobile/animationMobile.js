@@ -17,38 +17,71 @@ const animationObj = {
 
 const aboutMeObj = new Animation(animationObj);
 
-//语言选择框事件
-getEle("#btnBox input:first-child").addEventListener("click", () => {
-    if (floatTitle.className == "floatTitleMin" || floatTitle.className == "floatTitleMin ftHidden") {
-        floatTitle.className = "floatTitleMin ftDisplay";
-    } else {
-        floatTitle.className = "floatTitleMin ftHidden";
+const setEventListener = (() => {
+    const btns = {
+        lanBtn: "#btnBox input:first-child",
+        startBtn: "#btnBox input:nth-child(2)",
+        stopBtn: "#btnBox input:nth-child(3)",
+        reviewBtn: "#btnBox input:nth-child(4)"
+    };
+
+    const elements = {
+        floatTitle: ".floatTitle",
+        lanDivs: "#myLanguage>div"
+    };
+
+    return {
+        getEle(ele) {
+            return document.querySelector(ele);
+        },
+        getEles(eles) {
+            return document.querySelectorAll(eles);
+        },
+        //语言选择框事件
+        setLan() {
+            this.getEle(btns.lanBtn).addEventListener("click", () => {
+                const floatTitle = this.getEle(elements.floatTitle);
+                if(!floatTitle.classList.contains("ftDisplay") && !floatTitle.classList.contains("ftDisplay")){
+                    floatTitle.classList.add("ftDisplay");
+                }else if (floatTitle.classList.contains("ftDisplay")) {
+                    floatTitle.classList.replace("ftDisplay", "ftHidden")
+                } else {
+                    floatTitle.classList.replace("ftHidden", "ftDisplay")
+                }
+            }, false);
+        },
+        //监听点击事件, 开启动画
+        setStart() {
+            this.getEle(btns.startBtn).addEventListener("click", () => {
+                if (imgGroup.style.transitionDuration !== "1s") {
+                    aboutMeObj.manAnimation();
+                    aboutMeObj.bgAnimation();
+                    aboutMeObj.timeLineAnimation();
+                    for (let i = 0; i < lanDivs.length; i++) {
+                        lanDivs[i].style.left = "5%";
+                        lanDivs[i].style.textAlign = "left";
+                    };
+                    floatTitle.classList.add("floatTitleMin");
+                    getEle("#btnBox input:first-child").style.display = "block";
+                }
+            }, false);
+        },
+        //监听点击事件, 停止动画
+        setStop() {
+            this.getEle(btns.stopBtn).addEventListener("click", ()=>{aboutMeObj.clearAllTimer()}, false);
+        },
+        //还原事件
+        setReview() {
+            this.getEle(btns.reviewBtn).addEventListener("click", ()=>{aboutMeObj.initialization()}, false);
+        }
     }
-}, false);
-//监听点击事件, 开启动画
-getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
-    if (imgGroup.style.transition === "all 1s ease 0s") {
-        return;
-    } else {
-        aboutMeObj.manAnimation();
-        aboutMeObj.bgAnimation();
-        aboutMeObj.timeLineAnimation();
-        for (let i = 0; i < lanDivs.length; i++) {
-            lanDivs[i].style.left = "5%";
-            lanDivs[i].style.textAlign = "left";
-        };
-        floatTitle.className = "floatTitleMin";
-        getEle("#btnBox input:first-child").style.display = "block";
-    }
-}, false);
-//监听点击事件, 停止动画
-getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
-    aboutMeObj.clearAllTimer();
-}, false);
-//还原事件
-getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
-    aboutMeObj.initialization();
-}, false);
+})();
+
+setEventListener.setLan();
+setEventListener.setStart();
+setEventListener.setStop();
+setEventListener.setReview();
+
 
 //背景人物动画构造函数
 function Animation(obj) {
@@ -108,25 +141,33 @@ Animation.prototype.manAnimation = function() {
 Animation.prototype.initialization = function() {
     this.clearAllTimer();
     const imgBar = document.querySelector(this.imgBar);
+    const timeLine = document.querySelector(this.timeLine);
     const timeDots = document.querySelectorAll(this.timeDots);
     const cvWraps = document.querySelectorAll(this.cvWraps);
 
     const init = (() => {
         this.imgOffset = 0;
         this.lineHeight = 0;
+        timeLine.style.height = this.lineHeight;
         imgBar.style.transform = `translate3d(${this.imgOffset}px, 0, 0)`;
         imgBar.style.transition = "all 1s ease 0s";
-        imgBar.addEventListener("transitionend", () => {
-            imgBar.style.transition = "all 0s linear 0s";
-        }, false);
 
         timeDots.forEach(item => {
             item.style.display = "none";
         })
 
         cvWraps.forEach(item => {
-            item.className = "";
+            item.classList.remove("cvWrapFrames");
         })
+
+        const transitionEnd = () => {
+            imgBar.style.transition = "all 0s linear 0s";
+            imgBar.removeEventListener("transitionend", transitionEnd);
+        }
+
+        imgBar.addEventListener("transitionend", transitionEnd, false);
+
+
     })()
 }
 //时间线动画函数
@@ -151,24 +192,23 @@ Animation.prototype.timeLineAnimation = function() {
 
 
     //文本框和时间点根据时间轴长度分别淡出和显示
-    const contentAni = (firPoint = 70, secPoint = 139, thirPoint = 209, fourtPoint = 239) => {
+    const contentAni = (point1 = 70, point2 = 139, point3 = 209, point4 = 239) => {
         cancelAnimationFrame(this.contentTimer);
         this.contentTimer = requestAnimationFrame(() => {
-            console.log(this.lineHeight)
             switch (true) {
-                case this.lineHeight < firPoint:
+                case this.lineHeight < point1:
                     displayDotText(dots[0], cvWraps[0]);
                     break;
-                case this.lineHeight >= firPoint && this.lineHeight < secPoint:
+                case this.lineHeight >= point1 && this.lineHeight < point2:
                     displayDotText(dots[1], cvWraps[2]);
                     break;
-                case this.lineHeight >= secPoint && this.lineHeight < thirPoint:
+                case this.lineHeight >= point2 && this.lineHeight < point3:
                     displayDotText(dots[2], cvWraps[1]);
                     break;
-                case this.lineHeight >= thirPoint && this.lineHeight < fourtPoint:
+                case this.lineHeight >= point3 && this.lineHeight < point4:
                     displayDotText(dots[3], cvWraps[3]);
                     break;
-                case this.lineHeight >= fourtPoint:
+                case this.lineHeight >= point4:
                     cancelAnimationFrame(this.contentTimer);
                     break;
             }
@@ -176,13 +216,13 @@ Animation.prototype.timeLineAnimation = function() {
 
     }
 
-    contentAni();
-
-    function displayDotText(dot, cvWrap) {
+    const displayDotText = (dot, cvWrap) => {
         dot.style.display = "block";
-        cvWrap.className = "cvWrapFrames";
-        contentAni(70,139,209,239);
+        cvWrap.classList.add("cvWrapFrames");
+        contentAni();
     }
+
+    contentAni();
 }
 
 Animation.prototype.clearAllTimer = function() {

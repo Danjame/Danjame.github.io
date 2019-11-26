@@ -10,7 +10,7 @@
     width: 2560px;
     height: 100%;
     position: absolute;
-    -webkit-transition: all all 0s linear 0s;
+    -webkit-transition: all 0s linear 0s;
     transition: all 0s linear 0s;
 }
 
