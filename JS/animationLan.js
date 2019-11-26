@@ -5,7 +5,7 @@ const setLans = (() => {
         menus: ".headNav li div",
 
         lanWrappers: "#myLanguage>div",
-        floatTitle: "#content>ul:last-child",
+        floatTitle: ".floatTitle",
         floatTitles: "#content>ul:last-child>li",
         floatText: "#floatText"
     };
@@ -20,10 +20,9 @@ const setLans = (() => {
         setListener() {
             this.getEle(doms.floatTitle).addEventListener("click", () => {
                 const floatTitles = this.getEles(doms.floatTitles);
-                const floatText = this.getEle(doms.floatText);
                 const lanWrappers = this.getEles(doms.lanWrappers);
                 const target = event.target;
-                let index
+                let index;
                 if (target.nodeName.toLowerCase() == "li") {
                     for (let i = 0; i < floatTitles.length; i++) {
                         floatTitles[i].className = ""; //初始化标题
@@ -32,9 +31,8 @@ const setLans = (() => {
                         if (floatTitles[i] === target) {
                             index = i;
                         }
-                    }
+                    };
                     target.className = "floatTitleAni"; //标题动画
-                    floatText.className = "floatTextAni"; //文字动画
                     lanWrappers[index].className = "lan"; //语言栏动画
                     switch (index) { //动画文字内容变更
                         case 0:

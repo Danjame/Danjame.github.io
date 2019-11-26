@@ -1,134 +1,199 @@
-const container = getEle("#container");
-const bgBox = getEle("#bgBox");
-const imgGroup = getEle("#imgGroup");
-const eachImg = getEle("#imgGroup>li:first-child img");
-const imgNum = getAll("#imgGroup>li").length;
-const skateMan = getEle("#mainLeft");
-const screenWidth = document.documentElement.clientWidth;
-//时间线和时间点
-const timeLine = getEle("#timeLine");
-const dots = getAll("#timeDot>li");
-//文字
-const cvWraps = getAll(".cvInfo");
-//计时器
-let bgTimer = null;
-let skateTimer = null;
-let timeLineTimer = null;
-let contentTimer = null;
-let textTimer = null;
-let i = 0;
-let offset = 0;
+const controller = (() => {
+    const elements = {
+        imgGroup: "#imgGroup",
+        eachImg: "#imgGroup>li:first-child img",
+        container: "#container",
+        bgBox: "#bgBox",
+        imgNum:"#imgGroup>li",
+    };
+
+    return {
+        getEle(ele) {
+            return document.querySelector(ele);
+        },
+        getEles(eles) {
+            return document.querySelectorAll(eles);
+        },
+        //桌面浏览器自动适配
+        forDeskTop() {
+            const container = this.getEle("#container");
+            const bgBox = this.getEle("#bgBox");
+            const imgGroup = this.getEle("#imgGroup");
+            const eachImg = this.getEle("#imgGroup>li:first-child img");
+            const imgNum = this.getEles("#imgGroup>li").length;
+
+            container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
+            imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
+
+            window.addEventListener("resize", () => {
+                imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
+                container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
+            }, false)
+        },
+
+    }
+})()
+controller.forDeskTop();
+// // const skateMan = getEle("#mainLeft");
+// const screenWidth = document.documentElement.clientWidth;
+// //时间线和时间点
+// const timeLine = getEle("#timeLine");
+// const dots = getAll("#timeDot>li");
+// //文字
+// const cvWraps = getAll(".cvInfo");
+// //计时器
+// let bgTimer = null;
+// let skateTimer = null;
+// let timeLineTimer = null;
+// let contentTimer = null;
+// let textTimer = null;
+// let i = 0;
+// let offset = 0;
 
 //适配Ipad
-if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024px)").matches) {
-    forTablet();
-    getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
-        if (imgGroup.style.transition === "all 1s ease 0s") {
-            return;
-        } else {
-            skateAnimation(320, 9600, 50);
-            bgAnimationTablet(2, 1);
-            timeAnimation(123, 243, 363, 437, 25);
-        }
-    }, false);
-    //适配Ipad Pro
-} else if (window.matchMedia("(width:1024px)").matches & window.matchMedia("(height:1366px)").matches) {
-    forTablet();
-    getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
-        if (imgGroup.style.transition === "all 1s ease 0s") {
-            return;
-        } else {
-            skateAnimation(320, 9600, 50);
-            bgAnimationTablet(2, 1);
-            timeAnimation(166, 330, 496, 596, 25);
-        }
-    }, false);
-} else { //桌面浏览器
-    forDeskTop();
-    getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
-        if (imgGroup.style.transition === "all 1s ease 0s") {
-            return;
-        } else {
-            skateAnimation(320, 9600, 50);
-            bgAnimation(1, 1);
-            if (window.matchMedia("(min-width:1301px)").matches) {
-                timeAnimation(180, 357, 532, 650, 25);
-            } else if (window.matchMedia("(min-width:1131px)").matches) {
-                timeAnimation(143, 278, 413, 495, 27);
-            } else if (window.matchMedia("(max-width:1130px)").matches) {
-                timeAnimation(113, 218, 323, 385, 30);
-            }
-        }
-    }, false);
-};
-//监听点击事件, 停止动画
-getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
-    clearAllTimer();
-}, false);
-//绑定重看事件
-getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
-    initialization();
-}, false);
+// if (window.matchMedia("(width:768px)").matches & window.matchMedia("(height:1024px)").matches) {
+//     forTablet();
+//     getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
+//         if (imgGroup.style.transition === "all 1s ease 0s") {
+//             return;
+//         } else {
+//             skateAnimation(320, 9600, 50);
+//             bgAnimationTablet(2, 1);
+//             timeAnimation(123, 243, 363, 437, 25);
+//         }
+//     }, false);
+//     //适配Ipad Pro
+// } else if (window.matchMedia("(width:1024px)").matches & window.matchMedia("(height:1366px)").matches) {
+//     forTablet();
+//     getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
+//         if (imgGroup.style.transition === "all 1s ease 0s") {
+//             return;
+//         } else {
+//             skateAnimation(320, 9600, 50);
+//             bgAnimationTablet(2, 1);
+//             timeAnimation(166, 330, 496, 596, 25);
+//         }
+//     }, false);
+// } else { //桌面浏览器
+//     forDeskTop();
+//     getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
+//         if (imgGroup.style.transition === "all 1s ease 0s") {
+//             return;
+//         } else {
+//             skateAnimation(320, 9600, 50);
+//             bgAnimation(1, 1);
+//             if (window.matchMedia("(min-width:1301px)").matches) {
+//                 timeAnimation(180, 357, 532, 650, 25);
+//             } else if (window.matchMedia("(min-width:1131px)").matches) {
+//                 timeAnimation(143, 278, 413, 495, 27);
+//             } else if (window.matchMedia("(max-width:1130px)").matches) {
+//                 timeAnimation(113, 218, 323, 385, 30);
+//             }
+//         }
+//     }, false);
+// };
+// //监听点击事件, 停止动画
+// getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
+//     clearAllTimer();
+// }, false);
+// //绑定重看事件
+// getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
+//     initialization();
+// }, false);
 
-//桌面浏览器自动适配
-function forDeskTop() {
-    container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
-    imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
 
-    window.addEventListener("resize", () => {
-        imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
-        container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
-    }, false)
+
+// //平板自动适配
+// function forTablet() {
+//     bgBox.style.height = `${eachImg.offsetHeight}px`;
+//     imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
+//     container.style.width = bgBox.style.width = `${screenWidth}px`;
+// };
+
+const obj = new Animation({
+    imgGroup: "#imgGroup",
+    eachImg: "#imgGroup>li:first-child img",
+})
+
+function Animation(obj) {
+    // this.imgBar = obj.imgBar;
+    // this.imgBarWidth = obj.imgBarWidth;
+    // this.imgOffset = obj.imgOffset || 0;
+    // this.man = obj.man;
+    // this.manOffset = obj.manOffset || 0;
+    // this.manEachWidth = obj.manEachWidth;
+    // this.manTotalWidth = obj.manTotalWidth;
+    // this.manMs = obj.manMs || 50;
+    // this.manTimer = null;
+
+    this.bgTimer = null;
+    this.bgOffset = 0;
+    this.imgGroup = obj.imgGroup;
+    this.eachImg = obj.eachImg;
+
+    this.manOffset = 0;
+    this.eachFrame = 320;
+    this.totalFrame = 9600;
+    this.skateMan = "#mainLeft";
+    this.skateTimer = null;
+    // this.timeLine = obj.timeLine;
+    // this.lineHeight = obj.lineHeight || 0;
+    // this.timeDots = obj.timeDots;
+    // this.cvWraps = obj.cvWraps;
+    // this.timeLineTimer = null;
+    // this.contentTimer = null;
 }
-//平板自动适配
-function forTablet() {
-    bgBox.style.height = `${eachImg.offsetHeight}px`;
-    imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
-    container.style.width = bgBox.style.width = `${screenWidth}px`;
-};
+
 //背景动画函数
-function bgAnimation(distance, ms) {
-    clearTimeout(bgTimer);
-    bgTimer = setTimeout(() => {
-        offset -= distance;
-        if (offset < -imgGroup.offsetWidth + eachImg.offsetWidth) {
-            clearTimeout(bgTimer);
-        } else {
-            imgGroup.style.transform = `translate3d(${offset}px, 0, 0)`;
-            bgAnimation(distance, ms);
-        }
-    }, ms);
-};
-//背景动画函数（平板适配）
-function bgAnimationTablet(distance, ms) {
-    clearTimeout(bgTimer);
-    bgTimer = setTimeout(() => {
-        offset -= distance;
-        if (offset < -imgGroup.offsetWidth + screenWidth) {
-            clearTimeout(bgTimer);
-        } else {
-            imgGroup.style.transform = `translate3d(${offset}px, 0, 0)`;
-            bgAnimationTablet(distance, ms);
-        }
-    }, ms);
-};
-//滑板动画函数
-function skateAnimation(eachWidth, totalWidth, manMs) {
-    let manOffset = 0;
-    let each = eachWidth;
-    let total = totalWidth;
-    const ms = manMs;
+Animation.prototype.bgAnimation = function() {
+    clearTimeout(this.bgTimer);
+    const imgGroup = document.querySelector(this.imgGroup);
+    const eachImg = document.querySelector(this.eachImg);
 
-    (function skateAni() {
-        clearTimeout(skateTimer);
-        skateTimer = setTimeout(() => {
-            manOffset -= each;
-            manOffset <= -total ? manOffset = 0 : manOffset;
-            skateMan.style.backgroundPositionX = `${manOffset}px`;
+    const bgAni = () => {
+        this.bgTimer = setTimeout(() => {
+            this.bgOffset -= 1;
+            if (this.bgOffset < -imgGroup.offsetWidth + eachImg.offsetWidth) {
+                clearTimeout(this.bgTimer);
+                console.log("end")
+            } else {
+                imgGroup.style.transform = `translate3d(${this.bgOffset}px, 0, 0)`;
+                bgAni();
+            }
+        }, 1);
+    };
+    bgAni();
+};
+
+obj.bgAnimation();
+//背景动画函数（平板适配）
+// function bgAnimationTablet(distance, ms) {
+//     clearTimeout(bgTimer);
+//     bgTimer = setTimeout(() => {
+//         offset -= distance;
+//         if (offset < -imgGroup.offsetWidth + screenWidth) {
+//             clearTimeout(bgTimer);
+//         } else {
+//             imgGroup.style.transform = `translate3d(${offset}px, 0, 0)`;
+//             bgAnimationTablet(distance, ms);
+//         }
+//     }, ms);
+// };
+//滑板动画函数
+Animation.prototype.skateAnimation = function() {
+    const skateMan = document.querySelector(this.skateMan);
+    const skateAni = () => {
+        clearTimeout(this.skateTimer);
+        this.skateTimer = setTimeout(() => {
+            this.manOffset -= this.eachFrame;
+            this.manOffset <= -this.totalFrame ? this.manOffset = 0 : this.manOffset;
+            skateMan.style.backgroundPositionX = `${this.manOffset}px`;
             skateAni();
-        }, ms);
-    })()
+        }, 50);
+    };
+    skateAni();
 }
+// obj.skateAnimation();
 //时间动画函数
 function timeAnimation(firstWidth, secondWidth, thirdWidth, totalWidth, timeLineMS) {
     let lineWidth = timeLine.offsetWidth;;
