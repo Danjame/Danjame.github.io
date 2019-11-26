@@ -1,11 +1,7 @@
-// 时间线和时间点
-const timeLine = getEle("#timeLine");
-const dots = getAll("#timeDot>li");
-// 文字
-const cvWraps = getAll(".cvInfo");
-//时间线计时器
-let timeLineTimer = null;
-let contentTimer = null;
+window.onblur = () => {
+    aboutMeObj.clearAllTimer();
+}
+
 //实例化对象
 const animationObj = {
     imgBar: "#imgGroup",
@@ -13,12 +9,13 @@ const animationObj = {
     man: "#mainLeft",
     manEachWidth: "20",
     manTotalWidth: "600",
-};
-var aboutMeObj = new Animation(animationObj);
 
-window.onblur = () => {
-    clearAllTimer();
-}
+    timeLine: "#timeLine",
+    timeDots: "#timeDot>li",
+    cvWraps: ".cvInfo",
+};
+
+const aboutMeObj = new Animation(animationObj);
 
 //语言选择框事件
 getEle("#btnBox input:first-child").addEventListener("click", () => {
@@ -35,7 +32,7 @@ getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
     } else {
         aboutMeObj.manAnimation();
         aboutMeObj.bgAnimation();
-        timeLineAnimationMobile();
+        aboutMeObj.timeLineAnimation();
         for (let i = 0; i < lanDivs.length; i++) {
             lanDivs[i].style.left = "5%";
             lanDivs[i].style.textAlign = "left";
@@ -46,7 +43,7 @@ getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
 }, false);
 //监听点击事件, 停止动画
 getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
-    clearAllTimer();
+    aboutMeObj.clearAllTimer();
 }, false);
 //还原事件
 getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
@@ -65,114 +62,132 @@ function Animation(obj) {
     this.manMs = obj.manMs || 50;
     this.manTimer = null;
     this.bgTimer = null;
+
+    this.timeLine = obj.timeLine;
+    this.lineHeight = obj.lineHeight || 0;
+    this.timeDots = obj.timeDots;
+    this.cvWraps = obj.cvWraps;
+    this.timeLineTimer = null;
+    this.contentTimer = null;
 }
 //背景动画方法
 Animation.prototype.bgAnimation = function() {
     clearTimeout(this.bgTimer);
-    const self = this;
     const imgBar = document.querySelector(this.imgBar);
     const screenWidth = document.documentElement.clientWidth;
 
-    (function bgAni() {
-        self.bgTimer = setTimeout(() => {
-            self.imgOffset -= 1;
-            if (self.imgOffset < -self.imgBarWidth + screenWidth) {
-                clearTimeout(self.bgTimer);
+    const bgAni = () => {
+        this.bgTimer = setTimeout(() => {
+            this.imgOffset -= 1;
+            if (this.imgOffset < -this.imgBarWidth + screenWidth) {
+                clearTimeout(this.bgTimer);
             } else {
-                imgBar.style.transform = `translate3d(${self.imgOffset}px, 0, 0)`;
+                imgBar.style.transform = `translate3d(${this.imgOffset}px, 0, 0)`;
                 bgAni();
             }
         }, 5);
-    })()
+    };
+    bgAni();
 }
 //人物动画方法
 Animation.prototype.manAnimation = function() {
     clearTimeout(this.manTimer);
-    const self = this;
     const man = document.querySelector(this.man);
 
-    (function manAni() {
-        self.manTimer = setTimeout(() => {
-            self.manOffset -= self.manEachWidth;
-            self.manOffset <= -self.manTotalWidth ? self.manOffset = 0 : self.manOffset;
-            man.style.backgroundPositionX = `${self.manOffset}rem`;
+    const manAni = () => {
+        this.manTimer = setTimeout(() => {
+            this.manOffset -= this.manEachWidth;
+            this.manOffset <= -this.manTotalWidth ? this.manOffset = 0 : this.manOffset;
+            man.style.backgroundPositionX = `${this.manOffset}rem`;
             manAni();
-        }, self.manMs);
-    })();
+        }, this.manMs);
+    }
+    manAni();
 }
 //动画还原方法
 Animation.prototype.initialization = function() {
-    clearAllTimer();
+    this.clearAllTimer();
     const imgBar = document.querySelector(this.imgBar);
-    this.imgOffset = 0;
+    const timeDots = document.querySelectorAll(this.timeDots);
+    const cvWraps = document.querySelectorAll(this.cvWraps);
 
-    imgBar.style.transform = `translate3d(${this.imgOffset}px, 0, 0)`;
-    imgBar.style.transition = "all 1s ease 0s";
-    imgBar.addEventListener("transitionend", () => {
-        imgBar.style.transition = "all 0s linear 0s";
-    }, false)
+    const init = (() => {
+        this.imgOffset = 0;
+        this.lineHeight = 0;
+        imgBar.style.transform = `translate3d(${this.imgOffset}px, 0, 0)`;
+        imgBar.style.transition = "all 1s ease 0s";
+        imgBar.addEventListener("transitionend", () => {
+            imgBar.style.transition = "all 0s linear 0s";
+        }, false);
 
-    dots.forEach(item => {
-        item.style.display = "none";
-    })
+        timeDots.forEach(item => {
+            item.style.display = "none";
+        })
 
-    cvWraps.forEach(item => {
-        item.className = "";
-    })
-
-    timeLine.style.height = 0;
+        cvWraps.forEach(item => {
+            item.className = "";
+        })
+    })()
 }
 //时间线动画函数
-function timeLineAnimationMobile() {
-    let lineHeight = timeLine.offsetHeight;
+Animation.prototype.timeLineAnimation = function() {
+    const timeLine = document.querySelector(this.timeLine);
+    const dots = document.querySelectorAll(this.timeDots);
+    const cvWraps = document.querySelectorAll(this.cvWraps);
     //时间轴动画函数
-    (function timeLineAni() {
-        clearTimeout(timeLineTimer);
-        timeLineTimer = setTimeout(() => {
-            lineHeight += 1;
-            if (lineHeight <= 239) {
-                timeLine.style.height = `${lineHeight}px`;
+    const timeLineAni = () => {
+        clearTimeout(this.timeLineTimer);
+        this.timeLineTimer = setTimeout(() => {
+            this.lineHeight += 1;
+            if (this.lineHeight <= 239) {
+                timeLine.style.height = `${this.lineHeight}px`;
                 timeLineAni();
             } else {
-                clearTimeout(timeLineTimer);
+                clearTimeout(this.timeLineTimer);
             }
         }, 50);
-    })();
+    };
+    timeLineAni();
+
 
     //文本框和时间点根据时间轴长度分别淡出和显示
-    (function contentAni(firPoint, secPoint, thirPoint, fourtPoint) {
-        cancelAnimationFrame(contentTimer);
-        contentTimer = requestAnimationFrame(() => {
+    const contentAni = (firPoint = 70, secPoint = 139, thirPoint = 209, fourtPoint = 239) => {
+        cancelAnimationFrame(this.contentTimer);
+        this.contentTimer = requestAnimationFrame(() => {
+            console.log(this.lineHeight)
             switch (true) {
-                case lineHeight < firPoint:
-                    displayDotTest(dots[0], cvWraps[0]);
+                case this.lineHeight < firPoint:
+                    displayDotText(dots[0], cvWraps[0]);
                     break;
-                case lineHeight >= firPoint && lineHeight < secPoint:
-                    displayDotTest(dots[1], cvWraps[2]);
+                case this.lineHeight >= firPoint && this.lineHeight < secPoint:
+                    displayDotText(dots[1], cvWraps[2]);
                     break;
-                case lineHeight >= secPoint && lineHeight < thirPoint:
-                    displayDotTest(dots[2], cvWraps[1]);
+                case this.lineHeight >= secPoint && this.lineHeight < thirPoint:
+                    displayDotText(dots[2], cvWraps[1]);
                     break;
-                case lineHeight >= thirPoint && lineHeight < fourtPoint:
-                    displayDotTest(dots[3], cvWraps[3]);
+                case this.lineHeight >= thirPoint && this.lineHeight < fourtPoint:
+                    displayDotText(dots[3], cvWraps[3]);
                     break;
-                case lineHeight >= fourtPoint:
-                    cancelAnimationFrame(contentTimer);
+                case this.lineHeight >= fourtPoint:
+                    cancelAnimationFrame(this.contentTimer);
                     break;
             }
         })
 
-        function displayDotTest(dot, cvWrap) {
-            dot.style.display = "block";
-            cvWrap.className = "cvWrapFrames";
-            contentAni(70, 139, 209, 239);
-        }
-    })(70, 139, 209, 239)
+    }
+
+    contentAni();
+
+    function displayDotText(dot, cvWrap) {
+        dot.style.display = "block";
+        cvWrap.className = "cvWrapFrames";
+        contentAni(70,139,209,239);
+    }
 }
 
-function clearAllTimer() {
-    clearTimeout(aboutMeObj.manTimer);
-    clearTimeout(aboutMeObj.bgTimer);
-    clearTimeout(timeLineTimer);
-    cancelAnimationFrame(contentTimer);
+Animation.prototype.clearAllTimer = function() {
+    clearTimeout(this.manTimer);
+    clearTimeout(this.bgTimer);
+    clearTimeout(this.timeLineTimer);
+    cancelAnimationFrame(this.contentTimer);
 }
