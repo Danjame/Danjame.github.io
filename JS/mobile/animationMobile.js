@@ -27,7 +27,7 @@ const setEventListener = (() => {
 
     const elements = {
         floatTitle: ".floatTitle",
-        lanDivs: "#myLanguage>div"
+        lanWrappers: "#myLanguage>div"
     };
 
     return {
@@ -41,7 +41,7 @@ const setEventListener = (() => {
         setLan() {
             this.getEle(btns.lanBtn).addEventListener("click", () => {
                 const floatTitle = this.getEle(elements.floatTitle);
-                if(!floatTitle.classList.contains("ftDisplay") && !floatTitle.classList.contains("ftDisplay")){
+                if(!floatTitle.classList.contains("ftDisplay") && !floatTitle.classList.contains("ftHidden")){
                     floatTitle.classList.add("ftDisplay");
                 }else if (floatTitle.classList.contains("ftDisplay")) {
                     floatTitle.classList.replace("ftDisplay", "ftHidden")
@@ -53,14 +53,19 @@ const setEventListener = (() => {
         //监听点击事件, 开启动画
         setStart() {
             this.getEle(btns.startBtn).addEventListener("click", () => {
+                const lanWrappers = this.getEles(elements.lanWrappers);
+                const floatTitle = this.getEle(elements.floatTitle);
+                
                 if (imgGroup.style.transitionDuration !== "1s") {
                     aboutMeObj.manAnimation();
                     aboutMeObj.bgAnimation();
                     aboutMeObj.timeLineAnimation();
-                    for (let i = 0; i < lanDivs.length; i++) {
-                        lanDivs[i].style.left = "5%";
-                        lanDivs[i].style.textAlign = "left";
-                    };
+
+                    lanWrappers.forEach(item=>{
+                        item.style.left = "5%";
+                        item.style.textAlign = "left";
+                    })
+
                     floatTitle.classList.add("floatTitleMin");
                     getEle("#btnBox input:first-child").style.display = "block";
                 }
@@ -81,7 +86,6 @@ setEventListener.setLan();
 setEventListener.setStart();
 setEventListener.setStop();
 setEventListener.setReview();
-
 
 //背景人物动画构造函数
 function Animation(obj) {
@@ -189,7 +193,6 @@ Animation.prototype.timeLineAnimation = function() {
         }, 50);
     };
     timeLineAni();
-
 
     //文本框和时间点根据时间轴长度分别淡出和显示
     const contentAni = (point1 = 70, point2 = 139, point3 = 209, point4 = 239) => {

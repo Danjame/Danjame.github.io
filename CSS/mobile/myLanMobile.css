@@ -38,7 +38,7 @@
 /* 多语标题 */
 .floatTitle {
     position: absolute;
-    top: 22rem;
+    top: 21rem;
     left: 3%;
     font-size: 2.3rem;
     color: #5e6073;
@@ -95,22 +95,14 @@
     width: 4rem;
     float: left;
     text-align: center;
+    border-bottom: 2px solid transparent;
 }
 
 .floatTitle>li {
-    border-bottom: 2px solid transparent;
     cursor: pointer;
 }
 
-.floatTitle>li:hover {
-    border-bottom: 2px solid #1989C0;
-}
-
-.floatTitleMin>li:hover {
-    color: #1989C0;
-}
-
-.floatTitle .floatTitleAni {
+.floatTitleAni {
     border-bottom: 2px solid #1989C0;
     color: #1989C0;
 }
