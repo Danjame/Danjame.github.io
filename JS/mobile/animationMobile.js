@@ -41,9 +41,9 @@ const setEventListener = (() => {
         setLan() {
             this.getEle(btns.lanBtn).addEventListener("click", () => {
                 const floatTitle = this.getEle(elements.floatTitle);
-                if(!floatTitle.classList.contains("ftDisplay") && !floatTitle.classList.contains("ftHidden")){
+                if (!floatTitle.classList.contains("ftDisplay") && !floatTitle.classList.contains("ftHidden")) {
                     floatTitle.classList.add("ftDisplay");
-                }else if (floatTitle.classList.contains("ftDisplay")) {
+                } else if (floatTitle.classList.contains("ftDisplay")) {
                     floatTitle.classList.replace("ftDisplay", "ftHidden")
                 } else {
                     floatTitle.classList.replace("ftHidden", "ftDisplay")
@@ -55,13 +55,13 @@ const setEventListener = (() => {
             this.getEle(btns.startBtn).addEventListener("click", () => {
                 const lanWrappers = this.getEles(elements.lanWrappers);
                 const floatTitle = this.getEle(elements.floatTitle);
-                
+
                 if (imgGroup.style.transitionDuration !== "1s") {
                     aboutMeObj.manAnimation();
                     aboutMeObj.bgAnimation();
                     aboutMeObj.timeLineAnimation();
 
-                    lanWrappers.forEach(item=>{
+                    lanWrappers.forEach(item => {
                         item.style.left = "5%";
                         item.style.textAlign = "left";
                     })
@@ -73,11 +73,11 @@ const setEventListener = (() => {
         },
         //监听点击事件, 停止动画
         setStop() {
-            this.getEle(btns.stopBtn).addEventListener("click", ()=>{aboutMeObj.clearAllTimer()}, false);
+            this.getEle(btns.stopBtn).addEventListener("click", () => { aboutMeObj.clearAllTimer() }, false);
         },
         //还原事件
         setReview() {
-            this.getEle(btns.reviewBtn).addEventListener("click", ()=>{aboutMeObj.initialization()}, false);
+            this.getEle(btns.reviewBtn).addEventListener("click", () => { aboutMeObj.initialization() }, false);
         }
     }
 })();
