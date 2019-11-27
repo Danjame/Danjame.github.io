@@ -34,37 +34,37 @@ a {
     }
 }
 
-#content .textBox {
+#content .textWrapper {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
 }
 
 @media only screen and (max-width: 1000px) {
-    #content .textBox {
+    #content .textWrapper {
         width: 75%;
     }
 }
 
 @media only screen and (max-width: 900px) {
-    #content .textBox {
+    #content .textWrapper {
         width: 80%;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    #content .textBox {
+    #content .textWrapper {
         width: 85%;
     }
 }
 
 @media only screen and (max-device-width: 425px) {
-    #content .textBox {
+    #content .textWrapper {
         width: 90%;
     }
 }
 
-#content .titleBox {
+#content .titleWrapper {
     position: fixed;
     right: 60px;
     margin-top: 100px;
@@ -72,12 +72,12 @@ a {
 }
 
 @media only screen and (max-width: 850px) {
-    #content .titleBox {
+    #content .titleWrapper {
         right: 0;
     }
 }
 
-.titleBox>ul>li {
+.titleWrapper>ul>li {
     box-sizing: border-box;
     width: 51px;
     height: 51px;
@@ -87,18 +87,18 @@ a {
 }
 
 @media not screen and (max-device-width: 425px) {
-    .titleBox>ul>li:hover {
+    .titleWrapper>ul>li:hover {
         background-color: #eeeeee;
     }
 }
 
 /* 浮动导航向上div */
-.titleBox>ul>li:first-child {
+.titleWrapper>ul>li:first-child {
     cursor: pointer;
 }
 
 /* 浮动导航中间div */
-.titleBox>ul>li:nth-child(2) {
+.titleWrapper>ul>li:nth-child(2) {
     height: 60px;
     display: flex;
     flex-direction: column;
@@ -107,13 +107,13 @@ a {
 }
 
 /* 浮动导航向下div */
-.titleBox>ul>li:last-child {
+.titleWrapper>ul>li:last-child {
     border-bottom: 1px solid grey;
     cursor: pointer;
 }
 
 /* 浮动导航向上箭头 */
-.titleBox>ul>li:first-child div:first-child {
+.titleWrapper>ul>li:first-child div:first-child {
     width: 0;
     height: 0;
     margin-right: auto;
@@ -123,7 +123,7 @@ a {
     border-bottom: 16px solid #1989C0;
 }
 
-.titleBox>ul>li:first-child div:last-child {
+.titleWrapper>ul>li:first-child div:last-child {
     width: 0;
     height: 0;
     margin-right: auto;
@@ -134,7 +134,7 @@ a {
 }
 
 /* 浮动导航向下箭头 */
-.titleBox>ul>li:last-child div:first-child {
+.titleWrapper>ul>li:last-child div:first-child {
     width: 0;
     height: 0;
     margin-right: auto;
@@ -144,7 +144,7 @@ a {
     border-top: 16px solid #1989C0;
 }
 
-.titleBox>ul>li:last-child div:last-child {
+.titleWrapper>ul>li:last-child div:last-child {
     width: 0;
     height: 0;
     margin-right: auto;
@@ -155,14 +155,14 @@ a {
 }
 
 /* 浮动导航中间div原点 */
-.titleBox>ul>li:nth-child(2) div {
+.titleWrapper>ul>li:nth-child(2) div {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background-color: #1989C0;
 }
 
-.titleBox>ul>li:nth-child(2) .blank {
+.titleWrapper>ul>li:nth-child(2) .blank {
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -170,18 +170,18 @@ a {
 }
 
 @media only screen and (max-device-width: 425px) {
-    #content .titleBox {
+    #content .titleWrapper {
         right: 0;
         margin-top: auto;
         background-color: rgb(255, 255, 255, 0.6);
     }
 
-    .titleBox>ul>li {
+    .titleWrapper>ul>li {
         border-color: transparent;
     }
 
     /* 浮动导航向下div */
-    .titleBox>ul>li:last-child {
+    .titleWrapper>ul>li:last-child {
         border-color: transparent;
     }
 }
@@ -236,7 +236,7 @@ a {
     border-top: 1px solid #e8e8e8;
 }
 
-.textBox {
+.textWrapper {
     line-height: 1.7;
     font-weight: 400;
     color: #606060;

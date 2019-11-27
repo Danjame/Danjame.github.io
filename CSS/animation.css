@@ -10,14 +10,14 @@
     margin: 0 auto;
 }
 
-#bgBox {
+#bgWrapper {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
     height: 360px;
 }
 
-#bgBox #imgGroup {
+#bgWrapper #imgGroup {
     height: auto;
     position: absolute;
     -webkit-transition: all 0s linear 0s;
@@ -36,7 +36,7 @@
         height: 300px;
     }
 
-    #bgBox {
+    #bgWrapper {
         height: 300px;
     }
 }
@@ -46,7 +46,7 @@
         height: 270px;
     }
 
-    #bgBox {
+    #bgWrapper {
         height: 270px;
     }
 }
@@ -56,7 +56,7 @@
         height: 240px;
     }
 
-    #bgBox {
+    #bgWrapper {
         height: 240px;
     }
 }
@@ -358,13 +358,13 @@
     font-weight: bold;
 }
 
-#container #btnBox {
+#container #btnWrapper {
     position: absolute;
     margin-top: -36px;
     width: auto;
 }
 
-#btnBox>input {
+#btnWrapper>input {
     background-color: white;
     border: 2px solid #1989C0;
     outline: none;
@@ -373,30 +373,30 @@
     cursor: pointer;
 }
 
-#btnBox input:nth-child(1) {
+#btnWrapper input:nth-child(1) {
     display: none;
 }
 
-#btnBox input:nth-child(2) {
+#btnWrapper input:nth-child(2) {
     width: 70px;
     height: 70px;
     border-radius: 50%;
 }
 
-#btnBox input:nth-child(3) {
+#btnWrapper input:nth-child(3) {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 
-#btnBox input:nth-child(4) {
+#btnWrapper input:nth-child(4) {
     width: 60px;
     height: 35px;
     border-radius: 30px;
 }
 
-#btnBox .btnMove:hover,
-#btnBox input:nth-child(2):hover {
+#btnWrapper .btnMove:hover,
+#btnWrapper input:nth-child(2):hover {
     background-color: #1989C0;
     color: white;
     opacity: 1;

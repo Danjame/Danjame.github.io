@@ -174,7 +174,7 @@ const Setting = (() => {
         imgGroup: "#imgGroup",
         eachImg: "#imgGroup>li:first-child img",
         container: "#container",
-        bgBox: "#bgBox",
+        bgWrapper: "#bgWrapper",
         imgNum: "#imgGroup>li",
     };
 
@@ -188,31 +188,31 @@ const Setting = (() => {
         //桌面浏览器自动适配
         forDeskTop() {
             const container = this.getEle("#container");
-            const bgBox = this.getEle("#bgBox");
+            const bgWrapper = this.getEle("#bgWrapper");
             const imgGroup = this.getEle("#imgGroup");
             const eachImg = this.getEle("#imgGroup>li:first-child img");
             const imgNum = this.getEles("#imgGroup>li").length;
 
-            container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
+            container.style.width = bgWrapper.style.width = `${eachImg.offsetWidth}px`;
             imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
 
             window.addEventListener("resize", () => {
                 imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
-                container.style.width = bgBox.style.width = `${eachImg.offsetWidth}px`;
+                container.style.width = bgWrapper.style.width = `${eachImg.offsetWidth}px`;
             }, false)
         },
         //平板自动适配
         forTablet() {
             const container = this.getEle("#container");
-            const bgBox = this.getEle("#bgBox");
+            const bgWrapper = this.getEle("#bgWrapper");
             const imgGroup = this.getEle("#imgGroup");
             const eachImg = this.getEle("#imgGroup>li:first-child img");
             const imgNum = this.getEles("#imgGroup>li").length;
             const screenWidth = document.documentElement.clientWidth;
 
-            bgBox.style.height = `${eachImg.offsetHeight}px`;
+            bgWrapper.style.height = `${eachImg.offsetHeight}px`;
             imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
-            container.style.width = bgBox.style.width = `${screenWidth}px`;
+            container.style.width = bgWrapper.style.width = `${screenWidth}px`;
         },
         screenSetting() {
             if ((window.matchMedia("(width:768px)").matches && window.matchMedia("(height:1024px)").matches) ||
@@ -251,7 +251,7 @@ const SetListner = ((Setting) => {
         init() {
             console.log("The animation is ready!");
             // 适配Ipad
-            Setting.getEle("#btnBox input:nth-child(2)").addEventListener("click", () => {
+            Setting.getEle("#btnWrapper input:nth-child(2)").addEventListener("click", () => {
                 if (imgGroup.style.transitionDuration !== "1s") {
                     if (window.matchMedia("(width:768px)").matches && window.matchMedia("(height:1024px)").matches) {
                         Setting.ipadSetting()
@@ -263,11 +263,11 @@ const SetListner = ((Setting) => {
                 }
             }, false);
             //监听点击事件, 停止动画
-            Setting.getEle("#btnBox input:nth-child(3)").addEventListener("click", () => {
+            Setting.getEle("#btnWrapper input:nth-child(3)").addEventListener("click", () => {
                 aboutMe.clearAllTimer();
             }, false);
             //绑定重看事件
-            Setting.getEle("#btnBox input:nth-child(4)").addEventListener("click", () => {
+            Setting.getEle("#btnWrapper input:nth-child(4)").addEventListener("click", () => {
                 aboutMe.initialization();
             }, false)
         }

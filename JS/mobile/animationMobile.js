@@ -161,10 +161,10 @@ Animation.prototype.clearAllTimer = function() {
 
 const EventsListener = (() => {
     const btns = {
-        lanBtn: "#btnBox input:first-child",
-        startBtn: "#btnBox input:nth-child(2)",
-        stopBtn: "#btnBox input:nth-child(3)",
-        reviewBtn: "#btnBox input:nth-child(4)"
+        lanBtn: "#btnWrapper input:first-child",
+        startBtn: "#btnWrapper input:nth-child(2)",
+        stopBtn: "#btnWrapper input:nth-child(3)",
+        reviewBtn: "#btnWrapper input:nth-child(4)"
     }
 
     const elements = {
@@ -209,7 +209,7 @@ const EventsListener = (() => {
                     })
 
                     floatTitle.classList.add("floatTitleMin");
-                    getEle("#btnBox input:first-child").style.display = "block";
+                    getEle("#btnWrapper input:first-child").style.display = "block";
                 }
             }, false)
         },
