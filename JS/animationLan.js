@@ -19,7 +19,7 @@ Multilan.prototype.switchLan = function(doms) {
 };
 
 const toEn = new Multilan({
-    btnVal: ["En", "Start", "Pause", "Review"],
+    btnVal: ["EN", "Start", "Pause", "Review"],
     textVal: [
         "Jilin International Studies University.</br>Bachelor in Spanish Language.",
         "China United Engineering Corporation.</br>Interpretation and translation.",

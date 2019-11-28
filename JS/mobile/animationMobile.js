@@ -209,7 +209,7 @@ const EventsListener = (() => {
                     })
 
                     floatTitle.classList.add("floatTitleMin");
-                    getEle("#btnWrapper input:first-child").style.display = "block";
+                    this.getEle("#btnWrapper input:first-child").style.display = "block";
                 }
             }, false)
         },
