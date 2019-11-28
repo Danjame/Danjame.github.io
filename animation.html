@@ -150,16 +150,17 @@
             </ul>
         </div>
     </div>
-    <script type="text/javascript" src="JS/mobile/commonMobile.js"></script>
+    <script class="commonScriptMobile" type="text/javascript"></script>
+    <script type="text/javascript" src="JS/animationLan.js"></script>
     <script class="animationScript" type="text/javascript"></script>
     <script type="text/javascript">
     if (window.matchMedia("(max-device-width:425px)").matches) {
+        document.querySelector(".commonScriptMobile").src = "JS/mobile/commonMobile.js";
         document.querySelector(".animationScript").src = "JS/mobile/animationMobile.js";
     } else {
         document.querySelector(".animationScript").src = "JS/animation.js";
     }
     </script>
-    <script type="text/javascript" src="JS/animationLan.js"></script>
 </body>
 
 </html>

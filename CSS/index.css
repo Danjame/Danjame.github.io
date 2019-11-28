@@ -1,9 +1,9 @@
-#slideBox {
+#slideWrapper {
     position: relative;
     overflow: hidden;
 }
 
-.navBox {
+.navWrapper {
     width: 8%;
     position: absolute;
     margin-left: 92%;
@@ -12,7 +12,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-    .navBox{
+    .navWrapper{
         width: 15%;
         margin-left: 85%;
     }
@@ -30,13 +30,13 @@
     cursor: pointer;
 }
 
-.navBox>ul:last-child {
+.navWrapper>ul:last-child {
     width: 100%;
     position: absolute;
     margin-left: 100%;
 }
 
-.navBox>ul:last-child>li {
+.navWrapper>ul:last-child>li {
     height: 70px;
     line-height: 70px;
     background-color: black;

@@ -1,33 +1,14 @@
-const header = getEle("#header");
-const slideBox = getEle("#slideBox");
-const eachSlide = getAll("#slideBar>div");
-const navBox = getEle(".navBox");
-const contentNav = document.querySelector(".contentNav");
-const contentNavAni = document.querySelector(".navBox>ul:last-child");
-let clientHeight = document.documentElement.clientHeight;
+// const header = getEle("#header");
+// const slideWrapper = getEle("#slideWrapper");
+// const slides = getAll("#slideBar>div");
+// const navWrapper = getEle(".navWrapper");
+// const contentNav = document.querySelector(".contentNav");
+// const contentNavAni = document.querySelector(".navWrapper>ul:last-child");
 
-autoAdjust();
-//自适应函数
-function autoAdjust() {
-    //轮播导航自适应
-    contentNav.style.marginTop = `${(clientHeight-header.offsetHeight-contentNav.offsetHeight)/2}px`;
-    //每张幻灯片高度自适应
-    for (let i = 0; i < eachSlide.length; i++) {
-        eachSlide[i].style.height = `${clientHeight-header.offsetHeight}px`;
-    }
-    //幻灯片div与导航div高度自适应
-    slideBox.style.height = navBox.style.height = `${clientHeight-header.offsetHeight}px`;
-    //轮播副本导航自适应
-    contentNavAni.style.marginTop = `${contentNav.style.marginTop}`;
-}
-
-window.addEventListener("resize", () => {
-    clientHeight = document.documentElement.clientHeight;
-    autoAdjust();
-}, false);
 
 function SlideImg(obj) { //定义构造函数
     this.container = obj.container;
+    this.header = obj.header;
     this.barNode = obj.barNode; //图片组节点
     this.totalNum = obj.totalNum; //图片数
     this.iniPosition = obj.iniPosition || 0; //图片组初始x坐标
@@ -53,21 +34,23 @@ function SlideImg(obj) { //定义构造函数
 };
 //单张图片动画方法
 SlideImg.prototype.slideAnimation = function() {
-    const self = this;
+    clearTimeout(this.slideTimer);
+    const header = document.querySelector(this.header);
     const slideBar = document.querySelector(this.barNode);
+    const clientHeight = document.documentElement.clientHeight;
     const iniPosition = this.iniPosition;
     const speed = this.speed;
     let index = this.index;
-    clearTimeout(this.slideTimer);
+
     //单张图片动画定时器
-    (function slideAni() {
-        self.slideTimer = setTimeout(
+    const slideAni = () => {
+        this.slideTimer = setTimeout(
             () => {
                 let targetPosition = index * (-clientHeight + header.offsetHeight) + iniPosition;
                 let currentPosition = slideBar.offsetTop;
                 let step = (targetPosition - currentPosition) / speed;
                 if (!step) {
-                    clearTimeout(self.slideTimer);
+                    clearTimeout(this.slideTimer);
                     return;
                 }
                 step > 0 ? step = Math.ceil(step) : step = Math.floor(step);
@@ -75,14 +58,14 @@ SlideImg.prototype.slideAnimation = function() {
                 slideBar.style.top = `${currentPosition}px`;
                 slideAni();
             }, 1)
-    })();
+    }
+    slideAni();
     //图片点动画方法
     this.dotsAnimation();
 };
 //轮播首尾过度方法
 SlideImg.prototype.reStore = function() {
     const slideBar = document.querySelector(this.barNode);
-
     if (this.index >= this.totalNum + 1) {
         this.index = 1;
         slideBar.style.top = `${this.iniPosition}px`;
@@ -90,90 +73,43 @@ SlideImg.prototype.reStore = function() {
 };
 //全局动画初始化方法
 SlideImg.prototype.autoSlide = function() {
-    const self = this;
-
-    function init() {
-        self.iniTimer = setTimeout(() => {
-            self.index += 1;
-            self.reStore();
-            self.slideAnimation();
+    const init = () => {
+        this.iniTimer = setTimeout(() => {
+            this.index += 1;
+            this.reStore();
+            this.slideAnimation();
             init();
-        }, self.interval);
+        }, this.interval);
     }
     init();
 };
 //移动端触屏事件
-SlideImg.prototype.touchEvent = function() {
-    const self = this;
-    let startX, startY, endX, endY, x, y;
-
-    document.addEventListener("touchmove", event => {
-        event.preventDefault();
-    }, { passive: false });
-
-    slideBox.addEventListener("touchstart", event => {
-        startX = event.touches[0].pageX;
-        startY = event.touches[0].pageY;
-    }, { passive: false });
-
-    slideBox.addEventListener("touchend", event => {
-        endX = event.changedTouches[0].pageX;
-        endY = event.changedTouches[0].pageY;
-        x = endX - startX;
-        y = endY - startY;
-
-        if (Math.abs(x) > Math.abs(y) && x > 0) {
-            //向右
-            return;
-        } else if (Math.abs(x) > Math.abs(y) && x < 0) {
-            //向左
-            return;
-        } else if (Math.abs(x) < Math.abs(y) && y > 0) {
-            //向上
-            self.index -= 1;
-            if (self.index < 0) {
-                self.index = self.totalNum - 1;
-                slideBar.style.top = `${self.totalNum * (-clientHeight + header.offsetHeight) + self.iniPosition}px`;
-            };
-        } else if (Math.abs(x) < Math.abs(y) && y < 0) {
-            //向下
-            self.index += 1;
-            self.reStore();
-        }
-        self.slideAnimation();
-    }, { passive: false });
-}
 
 //停止与启动轮播控制方法
-SlideImg.prototype.slideEngine = function() {
-    const self = this;
+SlideImg.prototype.startListener = function() {
     const container = document.querySelector(this.container);
     container.addEventListener(this.stopEvent, mouseIn, false);
-
     container.addEventListener(this.startEvent, mouseOut, false);
 };
 
-SlideImg.prototype.stopSlideEngine = function() {
-    const self = this;
+SlideImg.prototype.stopListener = function() {
     const container = document.querySelector(this.container);
     container.removeEventListener(this.stopEvent, mouseIn, false);
-
     container.removeEventListener(this.startEvent, mouseOut, false);
 };
 
 //图片点控制方法
 SlideImg.prototype.dotsEvent = function() {
-    const self = this;
     const dotNodes = document.querySelectorAll(this.dotNodes);
     const dotsFather = document.querySelector(this.dotsFather);
-    dotsFather.addEventListener(self.dotsEventType, () => {
+    dotsFather.addEventListener(this.dotsEventType, () => {
         const targetNode = event.target;
         if (targetNode.nodeName === dotsFather.children[0].nodeName) {
-            for (let i = 0; i < self.dotNodes.length; i++) {
+            for (let i = 0; i < dotNodes.length; i++) {
                 if (dotNodes[i] === targetNode)
-                    self.index = i;
+                    this.index = i;
             }
-            self.slideAnimation();
+            this.slideAnimation();
         }
     }, false);
 };
@@ -190,4 +126,134 @@ SlideImg.prototype.dotsAnimation = function() {
             dotNodesAni[this.index].className = this.dotActived;
         }
     }
+}
+//实例化对象
+const slideObj = {
+    container: "#slideWrapper",
+    header: "#header",
+    barNode: "#slideBar",
+    totalNum: 3,
+    dotsFather: ".contentNav",
+    dotNodes: ".contentNav>li",
+    dotNodesAni: ".navWrapper>ul:last-child>li",
+    dotActived: "actived",
+    dotUnactived: "unactived",
+    colorForActivedDot: "rgba(222, 222, 222, 0.5)",
+    colorForUnactivedDot: "",
+};
+
+var obj = new SlideImg(slideObj); //创建构造函数
+
+
+const Setting = (() => {
+    const elements = {
+        header: "#header",
+        slideWrapper: "#slideWrapper",
+        slides: "#slideBar>div",
+        navWrapper: ".navWrapper",
+        contentNav: ".contentNav",
+        contentNavAni: ".navWrapper>ul:last-child",
+    }
+
+    return {
+        getEle(ele) {
+            return document.querySelector(ele);
+        },
+        getEles(eles) {
+            return document.querySelectorAll(eles);
+        },
+        getClientHeight() {
+            return document.documentElement.clientHeight;
+        },
+        //自适应
+        autoAdjust() {
+            const header = this.getEle(elements.header);
+            const contentNav = this.getEle(elements.contentNav);
+            const contentNavAni = this.getEle(elements.contentNavAni);
+            const slides = this.getEles(elements.slides);
+
+            const slideWrapper = this.getEle(elements.slideWrapper);
+            const navWrapper = this.getEle(elements.navWrapper);
+            //轮播导航自适应
+            contentNav.style.marginTop =
+                `${(this.getClientHeight()-header.offsetHeight-contentNav.offsetHeight)/2}px`;
+            //幻灯片与导航高度自适应
+            slides.forEach(item => item.style.height =
+                slideWrapper.style.height =
+                navWrapper.style.height =
+                `${this.getClientHeight()-header.offsetHeight}px`)
+            //轮播副本导航自适应
+            contentNavAni.style.marginTop = `${contentNav.style.marginTop}`;
+        },
+        resize() {
+            window.addEventListener("resize", () => { this.autoAdjust() }, false);
+        },
+        touchEvent() {
+            let startX, startY, endX, endY, x, y;
+            document.addEventListener("touchmove", event => {
+                event.preventDefault();
+            }, { passive: false });
+
+            this.getEle(elements.slideWrapper).addEventListener("touchstart", event => {
+                startX = event.touches[0].pageX;
+                startY = event.touches[0].pageY;
+            }, { passive: false });
+
+            this.getEle(elements.slideWrapper).addEventListener("touchend", event => {
+                endX = event.changedTouches[0].pageX;
+                endY = event.changedTouches[0].pageY;
+                x = endX - startX;
+                y = endY - startY;
+
+                if (Math.abs(x) > Math.abs(y) && x > 0) {
+                    //向右
+                    return;
+                } else if (Math.abs(x) > Math.abs(y) && x < 0) {
+                    //向左
+                    return;
+                } else if (Math.abs(x) < Math.abs(y) && y > 0) {
+                    //向上
+                    obj.index -= 1;
+                    if (obj.index < 0) {
+                        obj.index = obj.totalNum - 1;
+                        slideBar.style.top = `${obj.totalNum * (-clientHeight + header.offsetHeight) + obj.iniPosition}px`;
+                    };
+                } else if (Math.abs(x) < Math.abs(y) && y < 0) {
+                    //向下
+                    obj.index += 1;
+                    obj.reStore();
+                }
+                obj.slideAnimation();
+            }, { passive: false });
+        },
+        init() {
+            this.autoAdjust();
+            this.resize();
+            if (window.matchMedia("(max-device-width:425px)").matches) {
+                this.touchEvent();
+                obj.dotsEvent();
+            } else {
+                obj.autoSlide();
+                obj.startListener();
+                window.onblur = () => {
+                    clearTimeout(obj.iniTimer);
+                    obj.stopListener();
+                };
+                window.onfocus = () => {
+                    obj.autoSlide();
+                    obj.startListener();
+                }
+            }
+        }
+    }
+})()
+
+Setting.init();
+
+function mouseIn() {
+    clearTimeout(obj.iniTimer);
+}
+
+function mouseOut() {
+    obj.autoSlide();
 };
