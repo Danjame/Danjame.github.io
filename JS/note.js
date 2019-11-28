@@ -19,9 +19,7 @@ const Navigation = (() => {
             const artiSelection = this.getEle(elements.artiSelection);
 
             this.getEle(elements.titleMid).addEventListener("click", () => {
-                artiSelection.style.visibility === "visible" ?
-                    artiSelection.style.visibility = "hidden" :
-                    artiSelection.style.visibility = "visible";
+                artiSelection.style.visibility = artiSelection.style.visibility === "visible" ? "hidden" : "visible";
             }, false);
 
             artiSelection.addEventListener("click", () => {

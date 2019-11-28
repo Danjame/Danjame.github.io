@@ -249,7 +249,6 @@ const Setting = (() => {
 const SetListner = ((Setting) => {
     return {
         init() {
-            console.log("The animation is ready!");
             // 适配Ipad
             Setting.getEle("#btnWrapper input:nth-child(2)").addEventListener("click", () => {
                 if (imgGroup.style.transitionDuration !== "1s") {
@@ -269,7 +268,9 @@ const SetListner = ((Setting) => {
             //绑定重看事件
             Setting.getEle("#btnWrapper input:nth-child(4)").addEventListener("click", () => {
                 aboutMe.initialization();
-            }, false)
+            }, false);
+
+            console.log("The animation is ready!");
         }
     }
 })(Setting);

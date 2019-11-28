@@ -1,11 +1,3 @@
-// const header = getEle("#header");
-// const slideWrapper = getEle("#slideWrapper");
-// const slides = getAll("#slideBar>div");
-// const navWrapper = getEle(".navWrapper");
-// const contentNav = document.querySelector(".contentNav");
-// const contentNavAni = document.querySelector(".navWrapper>ul:last-child");
-
-
 function SlideImg(obj) { //定义构造函数
     this.container = obj.container;
     this.header = obj.header;
@@ -30,9 +22,8 @@ function SlideImg(obj) { //定义构造函数
 
     this.colorForActivedDot = obj.colorForActivedDot; //图片点激活颜色
     this.colorForUnactivedDot = obj.colorForUnactivedDot; //图片点未激活颜色
-    this.dotsEvent(); //图片点控制方法
 };
-//单张图片动画方法
+//单张图片动画
 SlideImg.prototype.slideAnimation = function() {
     clearTimeout(this.slideTimer);
     const header = document.querySelector(this.header);
@@ -60,10 +51,10 @@ SlideImg.prototype.slideAnimation = function() {
             }, 1)
     }
     slideAni();
-    //图片点动画方法
+    //图片点动画
     this.dotsAnimation();
 };
-//轮播首尾过度方法
+//轮播首尾过度
 SlideImg.prototype.reStore = function() {
     const slideBar = document.querySelector(this.barNode);
     if (this.index >= this.totalNum + 1) {
@@ -71,7 +62,7 @@ SlideImg.prototype.reStore = function() {
         slideBar.style.top = `${this.iniPosition}px`;
     }
 };
-//全局动画初始化方法
+//动画初始化
 SlideImg.prototype.autoSlide = function() {
     const init = () => {
         this.iniTimer = setTimeout(() => {
@@ -83,22 +74,21 @@ SlideImg.prototype.autoSlide = function() {
     }
     init();
 };
-//移动端触屏事件
 
-//停止与启动轮播控制方法
+//停止与启动轮播
 SlideImg.prototype.startListener = function() {
     const container = document.querySelector(this.container);
-    container.addEventListener(this.stopEvent, mouseIn, false);
-    container.addEventListener(this.startEvent, mouseOut, false);
+    container.addEventListener(this.stopEvent, () => { clearTimeout(this.iniTimer) }, false);
+    container.addEventListener(this.startEvent, () => { this.autoSlide() }, false);
 };
 
 SlideImg.prototype.stopListener = function() {
     const container = document.querySelector(this.container);
-    container.removeEventListener(this.stopEvent, mouseIn, false);
-    container.removeEventListener(this.startEvent, mouseOut, false);
+    container.removeEventListener(this.stopEvent, () => { clearTimeout(this.iniTimer) }, false);
+    container.removeEventListener(this.startEvent, () => { this.autoSlide() }, false);
 };
 
-//图片点控制方法
+//图片点控制
 SlideImg.prototype.dotsEvent = function() {
     const dotNodes = document.querySelectorAll(this.dotNodes);
     const dotsFather = document.querySelector(this.dotsFather);
@@ -113,7 +103,7 @@ SlideImg.prototype.dotsEvent = function() {
         }
     }, false);
 };
-//图片点动画方法
+//图片点动画
 SlideImg.prototype.dotsAnimation = function() {
     const dotNodesAni = document.querySelectorAll(this.dotNodesAni);
     for (let i = 0; i < dotNodesAni.length; i++) {
@@ -127,7 +117,7 @@ SlideImg.prototype.dotsAnimation = function() {
         }
     }
 }
-//实例化对象
+
 const slideObj = {
     container: "#slideWrapper",
     header: "#header",
@@ -141,8 +131,8 @@ const slideObj = {
     colorForActivedDot: "rgba(222, 222, 222, 0.5)",
     colorForUnactivedDot: "",
 };
-
-var obj = new SlideImg(slideObj); //创建构造函数
+//实例化对象
+var obj = new SlideImg(slideObj); 
 
 
 const Setting = (() => {
@@ -185,9 +175,11 @@ const Setting = (() => {
             //轮播副本导航自适应
             contentNavAni.style.marginTop = `${contentNav.style.marginTop}`;
         },
+        //窗口大小适配
         resize() {
             window.addEventListener("resize", () => { this.autoAdjust() }, false);
         },
+        //移动端触屏事件
         touchEvent() {
             let startX, startY, endX, endY, x, y;
             document.addEventListener("touchmove", event => {
@@ -229,31 +221,26 @@ const Setting = (() => {
         init() {
             this.autoAdjust();
             this.resize();
+            obj.dotsEvent();
             if (window.matchMedia("(max-device-width:425px)").matches) {
                 this.touchEvent();
-                obj.dotsEvent();
             } else {
                 obj.autoSlide();
                 obj.startListener();
+                //页面失去焦点停止动画
                 window.onblur = () => {
                     clearTimeout(obj.iniTimer);
                     obj.stopListener();
                 };
+                //页面得到焦点启动动画
                 window.onfocus = () => {
                     obj.autoSlide();
                     obj.startListener();
                 }
-            }
+            };
+            console.log("Home Page is Ready!")
         }
     }
-})()
+})();
 
 Setting.init();
-
-function mouseIn() {
-    clearTimeout(obj.iniTimer);
-}
-
-function mouseOut() {
-    obj.autoSlide();
-};
