@@ -71,7 +71,7 @@
     }
 }
 
-.floatTitle {
+.lanTitle {
     position: absolute;
     margin-top: -560px;
     font-size: 56px;
@@ -79,21 +79,21 @@
 }
 
 @media only screen and (max-width: 1300px) {
-    .floatTitle {
+    .lanTitle {
         margin-top: -528px;
         font-size: 48px;
     }
 }
 
 @media only screen and (max-width: 1130px) {
-    .floatTitle {
+    .lanTitle {
         margin-top: -480px;
         font-size: 40px;
     }
 }
 
 @media only screen and (width: 1024px) and (height: 1366px) {
-    .floatTitle {
+    .lanTitle {
         width: auto;
         top: 923px;
         margin-left: 280px;
@@ -103,7 +103,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-    .floatTitle {
+    .lanTitle {
         width: 260px;
         top: 451px;
         margin-top: 0;
@@ -113,7 +113,7 @@
 }
 
 @media only screen and (width: 768px) and (height: 1024px) {
-    .floatTitle {
+    .lanTitle {
         width: auto;
         top: 720px;
         margin-left: 300px;
@@ -122,38 +122,38 @@
     }
 }
 
-.floatTitle>li {
+.lanTitle>li {
     margin-left: 20px;
     border-bottom: 2px solid transparent;
     cursor: pointer;
 }
 
 @media only screen and (width: 1024px) and (height: 1366px) {
-    .floatTitle>li {
+    .lanTitle>li {
         float: left;
         margin-left: 100px;
     }
 }
 
 @media only screen and (max-width: 1000px) {
-    .floatTitle>li {
+    .lanTitle>li {
         float: left;
         margin-left: 20px;
     }
 }
 
 @media only screen and (width: 768px) and (height: 1024px) {
-    .floatTitle>li {
+    .lanTitle>li {
         float: left;
         margin-left: 50px;
     }
 }
 
-.floatTitle>li:hover {
+.lanTitle>li:hover {
     border-bottom: 2px solid #1989C0;
 }
 
-#content .floatTitle .floatTitleAni {
+#content .lanTitleStyle {
     border-bottom: 2px solid #1989C0;
     color: #1989C0;
 }
