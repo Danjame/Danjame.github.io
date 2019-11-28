@@ -168,7 +168,7 @@ const EventsListener = (() => {
     }
 
     const elements = {
-        floatTitle: ".floatTitle",
+        lanTitleWrapper: "#content>ul:last-child",
         lanWrappers: "#myLanguage>div"
     }
 
@@ -182,13 +182,13 @@ const EventsListener = (() => {
         //语言选择框
         setLan() {
             this.getEle(btns.lanBtn).addEventListener("click", () => {
-                const floatTitle = this.getEle(elements.floatTitle);
-                if (!floatTitle.classList.contains("ftDisplay") && !floatTitle.classList.contains("ftHidden")) {
-                    floatTitle.classList.add("ftDisplay");
-                } else if (floatTitle.classList.contains("ftDisplay")) {
-                    floatTitle.classList.replace("ftDisplay", "ftHidden")
+                const lanTitleWrapper = this.getEle(elements.lanTitleWrapper);
+                if (!lanTitleWrapper.classList.contains("ftDisplay") && !lanTitleWrapper.classList.contains("ftHidden")) {
+                    lanTitleWrapper.classList.add("ftDisplay");
+                } else if (lanTitleWrapper.classList.contains("ftDisplay")) {
+                    lanTitleWrapper.classList.replace("ftDisplay", "ftHidden")
                 } else {
-                    floatTitle.classList.replace("ftHidden", "ftDisplay")
+                    lanTitleWrapper.classList.replace("ftHidden", "ftDisplay")
                 }
             }, false)
         },
@@ -196,7 +196,7 @@ const EventsListener = (() => {
         setStart() {
             this.getEle(btns.startBtn).addEventListener("click", () => {
                 const lanWrappers = this.getEles(elements.lanWrappers);
-                const floatTitle = this.getEle(elements.floatTitle);
+                const lanTitleWrapper = this.getEle(elements.lanTitleWrapper);
 
                 if (imgGroup.style.transitionDuration !== "1s") {
                     aboutMeObj.manAnimation();
@@ -208,7 +208,7 @@ const EventsListener = (() => {
                         item.style.textAlign = "left";
                     })
 
-                    floatTitle.classList.add("floatTitleMin");
+                    lanTitleWrapper.classList.replace("lanTitle", "lanTitleMin");
                     this.getEle("#btnWrapper input:first-child").style.display = "block";
                 }
             }, false)

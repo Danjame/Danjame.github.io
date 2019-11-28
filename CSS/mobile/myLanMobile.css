@@ -36,9 +36,9 @@
 }
 
 /* 多语标题 */
-.floatTitle {
+.lanTitle {
     position: absolute;
-    top: 21rem;
+    top: 22rem;
     left: 3%;
     font-size: 2.3rem;
     color: #5e6073;
@@ -79,7 +79,7 @@
 }
 
 /* 多语标题小化 */
-.floatTitleMin {
+.lanTitleMin {
     width: auto;
     position: absolute;
     margin-top: 52.6%;
@@ -91,18 +91,18 @@
     z-index: 1;
 }
 
-.floatTitleMin>li {
+.lanTitleMin>li {
     width: 4rem;
     float: left;
     text-align: center;
     border-bottom: 2px solid transparent;
 }
 
-.floatTitle>li {
+#content>ul:last-child>li {
     cursor: pointer;
 }
 
-.floatTitleAni {
+.lanTitleStyle {
     border-bottom: 2px solid #1989C0;
     color: #1989C0;
 }
