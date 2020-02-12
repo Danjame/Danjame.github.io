@@ -189,6 +189,7 @@ a {
 /* 浮动标题 */
 #artiSelection {
     position: fixed;
+    width: 150px;
     right: 110px;
     margin-top: 151px;
     border: 1px solid grey;
@@ -215,6 +216,10 @@ a {
 
 #artiSelection>ul>li {
     color: #666666;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
 }
 
 #artiSelection>ul>li:hover {
