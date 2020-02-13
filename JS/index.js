@@ -131,9 +131,9 @@ const slideObj = {
     colorForActivedDot: "rgba(222, 222, 222, 0.5)",
     colorForUnactivedDot: "",
 };
-//实例化对象
-var obj = new SlideImg(slideObj); 
 
+//实例化对象
+var obj = new SlideImg(slideObj);
 
 const Setting = (() => {
     const elements = {
@@ -181,42 +181,49 @@ const Setting = (() => {
         },
         //移动端触屏事件
         touchEvent() {
+            const handler = (event) => {
+                event.preventDefault();
+                switch (event.type) {
+                    case "touchstart":
+                        startX = event.touches[0].pageX;
+                        startY = event.touches[0].pageY;
+                        break;
+                    case "touchend":
+                        endX = event.changedTouches[0].pageX;
+                        endY = event.changedTouches[0].pageY;
+                        x = endX - startX;
+                        y = endY - startY;
+
+                        if (Math.abs(x) > Math.abs(y) && x > 0) {
+                            //向右
+                            return;
+                        } else if (Math.abs(x) > Math.abs(y) && x < 0) {
+                            //向左
+                            return;
+                        } else if (Math.abs(x) < Math.abs(y) && y > 0) {
+                            //向上
+                            obj.index -= 1;
+                            if (obj.index < 0) {
+                                obj.index = obj.totalNum - 1;
+                                slideBar.style.top = `${obj.totalNum * (-clientHeight + header.offsetHeight) + obj.iniPosition}px`;
+                            };
+                        } else if (Math.abs(x) < Math.abs(y) && y < 0) {
+                            //向下
+                            obj.index += 1;
+                            obj.reStore();
+                        }
+                        obj.slideAnimation();
+                        break;
+                }
+            }
+
             let startX, startY, endX, endY, x, y;
             document.addEventListener("touchmove", event => {
                 event.preventDefault();
             }, { passive: false });
 
-            this.getEle(elements.slideWrapper).addEventListener("touchstart", event => {
-                startX = event.touches[0].pageX;
-                startY = event.touches[0].pageY;
-            }, { passive: false });
-
-            this.getEle(elements.slideWrapper).addEventListener("touchend", event => {
-                endX = event.changedTouches[0].pageX;
-                endY = event.changedTouches[0].pageY;
-                x = endX - startX;
-                y = endY - startY;
-
-                if (Math.abs(x) > Math.abs(y) && x > 0) {
-                    //向右
-                    return;
-                } else if (Math.abs(x) > Math.abs(y) && x < 0) {
-                    //向左
-                    return;
-                } else if (Math.abs(x) < Math.abs(y) && y > 0) {
-                    //向上
-                    obj.index -= 1;
-                    if (obj.index < 0) {
-                        obj.index = obj.totalNum - 1;
-                        slideBar.style.top = `${obj.totalNum * (-clientHeight + header.offsetHeight) + obj.iniPosition}px`;
-                    };
-                } else if (Math.abs(x) < Math.abs(y) && y < 0) {
-                    //向下
-                    obj.index += 1;
-                    obj.reStore();
-                }
-                obj.slideAnimation();
-            }, { passive: false });
+            this.getEle(elements.slideWrapper).addEventListener("touchstart", handler, { passive: false });
+            this.getEle(elements.slideWrapper).addEventListener("touchend", handler, { passive: false });
         },
         init() {
             this.autoAdjust();

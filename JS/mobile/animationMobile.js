@@ -1,4 +1,3 @@
-//实例化对象
 const animationObj = {
     imgBar: "#imgGroup",
     imgBarWidth: "2560",
@@ -10,6 +9,7 @@ const animationObj = {
     timeDots: "#timeDot>li",
     cvWraps: ".cvInfo",
 }
+//实例化对象
 const aboutMeObj = new Animation(animationObj);
 
 //动画构造函数
