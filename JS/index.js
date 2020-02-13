@@ -181,8 +181,8 @@ const Setting = (() => {
         },
         //移动端触屏事件
         touchEvent() {
+            let startX, startY, endX, endY, x, y;
             const handler = (event) => {
-                event.preventDefault();
                 switch (event.type) {
                     case "touchstart":
                         startX = event.touches[0].pageX;
@@ -194,11 +194,8 @@ const Setting = (() => {
                         x = endX - startX;
                         y = endY - startY;
 
-                        if (Math.abs(x) > Math.abs(y) && x > 0) {
-                            //向右
-                            return;
-                        } else if (Math.abs(x) > Math.abs(y) && x < 0) {
-                            //向左
+                        if (Math.abs(x) > Math.abs(y)) {
+                            //向右向右
                             return;
                         } else if (Math.abs(x) < Math.abs(y) && y > 0) {
                             //向上
@@ -217,7 +214,6 @@ const Setting = (() => {
                 }
             }
 
-            let startX, startY, endX, endY, x, y;
             document.addEventListener("touchmove", event => {
                 event.preventDefault();
             }, { passive: false });
