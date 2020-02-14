@@ -136,6 +136,13 @@ const slideObj = {
 var obj = new SlideImg(slideObj);
 
 const Setting = (() => {
+    const getEle = ele => {
+        return document.querySelector(ele);
+    };
+    const getEles = eles => {
+        return document.querySelectorAll(eles);
+    };
+    
     const elements = {
         header: "#header",
         slideWrapper: "#slideWrapper",
@@ -145,25 +152,17 @@ const Setting = (() => {
         contentNavAni: ".navWrapper>ul:last-child",
     }
 
-    const getEle = ele =>{
-        return document.querySelector(ele);
-    };
-
-    const getEles = eles =>{
-        return document.querySelectorAll(eles);
-    }
     const header = getEle(elements.header);
-    const contentNav = getEle(elements.contentNav);
-    const contentNavAni = getEle(elements.contentNavAni);
-    const slides = getEles(elements.slides);
-
     const slideWrapper = getEle(elements.slideWrapper);
-    const navWrapper = getEle(elements.navWrapper);
     const clientHeight = document.documentElement.clientHeight;
 
     return {
         //自适应
         autoAdjust() {
+            const contentNav = getEle(elements.contentNav);
+            const contentNavAni = getEle(elements.contentNavAni);
+            const slides = getEles(elements.slides);
+            const navWrapper = getEle(elements.navWrapper);
             //轮播导航自适应
             contentNav.style.marginTop =
                 `${(clientHeight-header.offsetHeight-contentNav.offsetHeight)/2}px`;

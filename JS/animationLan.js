@@ -86,7 +86,7 @@ const setLans = (() => {
             return document.querySelectorAll(eles);
         },
         setListener() {
-            this.getEle(doms.lanTitleWrapper).addEventListener("click", () => {
+            this.getEle(doms.lanTitleWrapper).addEventListener("click", event => {
                 const lanTitles = this.getEles(doms.lanTitles);
                 const lanWrappers = this.getEles(doms.lanWrappers);
                 const target = event.target;

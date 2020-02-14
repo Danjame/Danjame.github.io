@@ -5,24 +5,25 @@ const MenuEvents = (() => {
         menuBars: "#menu>span"
     }
 
+    const getEle = ele => {
+        return document.querySelector(ele);
+    };
+    const getEles = eles => {
+        return document.querySelectorAll(eles);
+    };
+
     return {
-        getEle(ele) {
-            return document.querySelector(ele);
-        },
-        getEles(eles) {
-            return document.querySelectorAll(eles);
-        },
         menuListener() {
             // 头部菜单
-            this.getEle(elements.menu).addEventListener("click", () => {
-                const menuList = this.getEle(elements.menuList);
-                const menuBars = this.getEles(elements.menuBars);
+            getEle(elements.menu).addEventListener("click", () => {
+                const menuList = getEle(elements.menuList);
+                const menuBars = getEles(elements.menuBars);
                 if (menuList.className === "activedMenu") {
-                    menuBars.forEach(item=>item.className = "menuBarsOff");
+                    menuBars.forEach(item => item.className = "menuBarsOff");
                     menuList.className = "unactivedMenu";
                     menu.className = "unclickMenu";
                 } else {
-                    menuBars.forEach(item=>item.className = "menuBarsOn");
+                    menuBars.forEach(item => item.className = "menuBarsOn");
                     menuList.className = "activedMenu";
                     menu.className = "clickMenu";
                 }

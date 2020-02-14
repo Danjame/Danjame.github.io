@@ -172,17 +172,19 @@ const EventsListener = (() => {
         lanWrappers: "#myLanguage>div"
     }
 
+    const getEle = ele => {
+        return document.querySelector(ele);
+    };
+    const getEles = eles => {
+        return document.querySelectorAll(eles);
+    };
+
+    const lanTitleWrapper = getEle(elements.lanTitleWrapper);
+
     return {
-        getEle(ele) {
-            return document.querySelector(ele);
-        },
-        getEles(eles) {
-            return document.querySelectorAll(eles);
-        },
         //语言选择框
         setLan() {
-            this.getEle(btns.lanBtn).addEventListener("click", () => {
-                const lanTitleWrapper = this.getEle(elements.lanTitleWrapper);
+            getEle(btns.lanBtn).addEventListener("click", () => {
                 if (!lanTitleWrapper.classList.contains("ftDisplay") && !lanTitleWrapper.classList.contains("ftHidden")) {
                     lanTitleWrapper.classList.add("ftDisplay");
                 } else if (lanTitleWrapper.classList.contains("ftDisplay")) {
@@ -194,10 +196,8 @@ const EventsListener = (() => {
         },
         //开启动画
         setStart() {
-            this.getEle(btns.startBtn).addEventListener("click", () => {
-                const lanWrappers = this.getEles(elements.lanWrappers);
-                const lanTitleWrapper = this.getEle(elements.lanTitleWrapper);
-
+            getEle(btns.startBtn).addEventListener("click", () => {
+                const lanWrappers = getEles(elements.lanWrappers);       
                 if (imgGroup.style.transitionDuration !== "1s") {
                     aboutMeObj.manAnimation();
                     aboutMeObj.bgAnimation();
@@ -209,17 +209,17 @@ const EventsListener = (() => {
                     })
 
                     lanTitleWrapper.classList.replace("lanTitle", "lanTitleMin");
-                    this.getEle("#btnWrapper input:first-child").style.display = "block";
+                    getEle(btns.lanBtn).style.display = "block";
                 }
             }, false)
         },
         //停止动画
         setStop() {
-            this.getEle(btns.stopBtn).addEventListener("click", () => { aboutMeObj.clearAllTimer() }, false);
+            getEle(btns.stopBtn).addEventListener("click", () => { aboutMeObj.clearAllTimer() }, false);
         },
         //还原事件
         setReview() {
-            this.getEle(btns.reviewBtn).addEventListener("click", () => { aboutMeObj.initialization() }, false);
+            getEle(btns.reviewBtn).addEventListener("click", () => { aboutMeObj.initialization() }, false);
         },
     }
 })();

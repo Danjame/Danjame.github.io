@@ -170,6 +170,13 @@ Animation.prototype.clearAllTimer = function() {
 }
 
 const Setting = (() => {
+    const getEle = ele => {
+        return document.querySelector(ele);
+    };
+    const getEles = eles => {
+        return document.querySelectorAll(eles);
+    };
+
     const elements = {
         imgGroup: "#imgGroup",
         eachImg: "#imgGroup>li:first-child img",
@@ -178,21 +185,15 @@ const Setting = (() => {
         imgNum: "#imgGroup>li",
     };
 
+    const container = getEle(elements.container);
+    const bgWrapper = getEle(elements.bgWrapper);
+    const imgGroup = getEle(elements.imgGroup);
+    const eachImg = getEle(elements.eachImg);
+    const imgNum = getEles(elements.imgNum).length;
+
     return {
-        getEle(ele) {
-            return document.querySelector(ele);
-        },
-        getEles(eles) {
-            return document.querySelectorAll(eles);
-        },
         //桌面浏览器自动适配
         forDeskTop() {
-            const container = this.getEle("#container");
-            const bgWrapper = this.getEle("#bgWrapper");
-            const imgGroup = this.getEle("#imgGroup");
-            const eachImg = this.getEle("#imgGroup>li:first-child img");
-            const imgNum = this.getEles("#imgGroup>li").length;
-
             container.style.width = bgWrapper.style.width = `${eachImg.offsetWidth}px`;
             imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
 
@@ -203,11 +204,6 @@ const Setting = (() => {
         },
         //平板自动适配
         forTablet() {
-            const container = this.getEle("#container");
-            const bgWrapper = this.getEle("#bgWrapper");
-            const imgGroup = this.getEle("#imgGroup");
-            const eachImg = this.getEle("#imgGroup>li:first-child img");
-            const imgNum = this.getEles("#imgGroup>li").length;
             const screenWidth = document.documentElement.clientWidth;
 
             bgWrapper.style.height = `${eachImg.offsetHeight}px`;
@@ -247,10 +243,17 @@ const Setting = (() => {
 })();
 
 const SetListner = ((Setting) => {
+    const getEle = ele => {
+        return document.querySelector(ele);
+    };
+    const getEles = eles => {
+        return document.querySelectorAll(eles);
+    };
+
     return {
         init() {
             // 适配Ipad
-            Setting.getEle("#btnWrapper input:nth-child(2)").addEventListener("click", () => {
+            getEle("#btnWrapper input:nth-child(2)").addEventListener("click", () => {
                 if (imgGroup.style.transitionDuration !== "1s") {
                     if (window.matchMedia("(width:768px)").matches && window.matchMedia("(height:1024px)").matches) {
                         Setting.ipadSetting()
@@ -262,11 +265,11 @@ const SetListner = ((Setting) => {
                 }
             }, false);
             //监听点击事件, 停止动画
-            Setting.getEle("#btnWrapper input:nth-child(3)").addEventListener("click", () => {
+            getEle("#btnWrapper input:nth-child(3)").addEventListener("click", () => {
                 aboutMe.clearAllTimer();
             }, false);
             //绑定重看事件
-            Setting.getEle("#btnWrapper input:nth-child(4)").addEventListener("click", () => {
+            getEle("#btnWrapper input:nth-child(4)").addEventListener("click", () => {
                 aboutMe.initialization();
             }, false);
 

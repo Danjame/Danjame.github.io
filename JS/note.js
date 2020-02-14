@@ -11,14 +11,15 @@ const Navigation = (() => {
         arrowDownWrapper: ".titleWrapper>ul>li:last-child"
     }
 
-    return {
-        getEle(ele) {
-            return document.querySelector(ele);
-        },
-        displayTitles() {
-            const artiSelection = this.getEle(elements.artiSelection);
+    const getEle = ele => {
+        return document.querySelector(ele);
+    }
 
-            this.getEle(elements.titleMid).addEventListener("click", () => {
+    return {
+        displayTitles() {
+            const artiSelection = getEle(elements.artiSelection);
+
+            getEle(elements.titleMid).addEventListener("click", () => {
                 artiSelection.style.visibility = artiSelection.style.visibility === "visible" ? "hidden" : "visible";
             }, false);
 
@@ -32,8 +33,8 @@ const Navigation = (() => {
         //移动端浮动导航定位
         autoPositionForMobile() {
             const clientHeight = document.documentElement.clientHeight;
-            const titleWrapper = this.getEle(elements.titleWrapper);
-            const arrowDownWrapper = this.getEle(elements.arrowDownWrapper);
+            const titleWrapper = getEle(elements.titleWrapper);
+            const arrowDownWrapper = getEle(elements.arrowDownWrapper);
 
             titleWrapper.style.top = `${clientHeight-titleWrapper.offsetHeight}px`;
             artiSelection.style.top = `${clientHeight-artiSelection.offsetHeight-arrowDownWrapper.offsetHeight}px`;
@@ -41,21 +42,21 @@ const Navigation = (() => {
         },
         //桌面导航颜色
         arrowColorForDesktop() {
-            const arrowUp = this.getEle(elements.arrowUp);
-            const arrowDown = this.getEle(elements.arrowDown);
-            this.getEle(elements.titleUp).addEventListener("mouseover", () => {
+            const arrowUp = getEle(elements.arrowUp);
+            const arrowDown = getEle(elements.arrowDown);
+            getEle(elements.titleUp).addEventListener("mouseover", () => {
                 arrowUp.style.borderBottomColor = "#eeeeee";
             }, false);
 
-            this.getEle(elements.titleDown).addEventListener("mouseover", () => {
+            getEle(elements.titleDown).addEventListener("mouseover", () => {
                 arrowDown.style.borderTopColor = "#eeeeee";
             }, false);
 
-            this.getEle(elements.titleUp).addEventListener("mouseout", () => {
+            getEle(elements.titleUp).addEventListener("mouseout", () => {
                 arrowUp.style.borderBottomColor = "white";
             }, false);
 
-            this.getEle(elements.titleDown).addEventListener("mouseout", () => {
+            getEle(elements.titleDown).addEventListener("mouseout", () => {
                 arrowDown.style.borderTopColor = "white";
             }, false);
         },
@@ -66,6 +67,7 @@ const Navigation = (() => {
             } else {
                 this.arrowColorForDesktop();
             }
+            console.log("Note Page is Ready!");
         }
     }
 })();
