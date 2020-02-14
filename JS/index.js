@@ -145,33 +145,33 @@ const Setting = (() => {
         contentNavAni: ".navWrapper>ul:last-child",
     }
 
+    const getEle = ele =>{
+        return document.querySelector(ele);
+    };
+
+    const getEles = eles =>{
+        return document.querySelectorAll(eles);
+    }
+    const header = getEle(elements.header);
+    const contentNav = getEle(elements.contentNav);
+    const contentNavAni = getEle(elements.contentNavAni);
+    const slides = getEles(elements.slides);
+
+    const slideWrapper = getEle(elements.slideWrapper);
+    const navWrapper = getEle(elements.navWrapper);
+    const clientHeight = document.documentElement.clientHeight;
+
     return {
-        getEle(ele) {
-            return document.querySelector(ele);
-        },
-        getEles(eles) {
-            return document.querySelectorAll(eles);
-        },
-        getClientHeight() {
-            return document.documentElement.clientHeight;
-        },
         //自适应
         autoAdjust() {
-            const header = this.getEle(elements.header);
-            const contentNav = this.getEle(elements.contentNav);
-            const contentNavAni = this.getEle(elements.contentNavAni);
-            const slides = this.getEles(elements.slides);
-
-            const slideWrapper = this.getEle(elements.slideWrapper);
-            const navWrapper = this.getEle(elements.navWrapper);
             //轮播导航自适应
             contentNav.style.marginTop =
-                `${(this.getClientHeight()-header.offsetHeight-contentNav.offsetHeight)/2}px`;
+                `${(clientHeight-header.offsetHeight-contentNav.offsetHeight)/2}px`;
             //幻灯片与导航高度自适应
             slides.forEach(item => item.style.height =
                 slideWrapper.style.height =
                 navWrapper.style.height =
-                `${this.getClientHeight()-header.offsetHeight}px`)
+                `${clientHeight-header.offsetHeight}px`)
             //轮播副本导航自适应
             contentNavAni.style.marginTop = `${contentNav.style.marginTop}`;
         },
@@ -218,8 +218,8 @@ const Setting = (() => {
                 event.preventDefault();
             }, { passive: false });
 
-            this.getEle(elements.slideWrapper).addEventListener("touchstart", handler, { passive: false });
-            this.getEle(elements.slideWrapper).addEventListener("touchend", handler, { passive: false });
+            slideWrapper.addEventListener("touchstart", handler, { passive: false });
+            slideWrapper.addEventListener("touchend", handler, { passive: false });
         },
         init() {
             this.autoAdjust();

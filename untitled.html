@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    div {
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+    }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+    const div = document.querySelector("div");
+    div.onmouseenter = () => {
+        console.log("enter");
+    }
+    div.onmouseleave = () => {
+        console.log("leave");
+    }
+    div.onmouseover = () => {
+        console.log("over");
+    }
+    div.onmouseout = () => {
+        console.log("out");
+    }
+    </script>
+</body>
+
+</html>
