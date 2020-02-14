@@ -176,13 +176,16 @@ const Setting = (() => {
         },
         //窗口大小适配
         resize() {
-            window.addEventListener("resize", () => { this.autoAdjust() }, false);
+            window.addEventListener("resize", this.autoAdjust, false);
         },
         //移动端触屏事件
         touchEvent() {
             let startX, startY, endX, endY, x, y;
-            const handler = (event) => {
+            const handler = event => {
                 switch (event.type) {
+                    case "touchmove":
+                    event.preventDefault();
+                    break;
                     case "touchstart":
                         startX = event.touches[0].pageX;
                         startY = event.touches[0].pageY;
@@ -213,10 +216,7 @@ const Setting = (() => {
                 }
             }
 
-            document.addEventListener("touchmove", event => {
-                event.preventDefault();
-            }, { passive: false });
-
+            document.addEventListener("touchmove", handler, { passive: false });
             slideWrapper.addEventListener("touchstart", handler, { passive: false });
             slideWrapper.addEventListener("touchend", handler, { passive: false });
         },
