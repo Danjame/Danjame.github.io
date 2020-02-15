@@ -61,6 +61,7 @@ ECMAScript 提供了3个特殊的引用类型：`Boolean`，`Number`和`String`
 3. `valueOf()`返回原始值。
 
 #### 数组方法
+`Array.prototype.slice.call(array-like)`可以将类数组对象（如：arguments和节点列表）转换成一个新数组。只需要将该方法绑定到这个对象上。
 ##### 栈方法
 1. `push(newItems)`数组末端推入项，返回新长度。
 2. `pop()`数组末尾删除一项，返回被删除项。
@@ -71,9 +72,10 @@ ECMAScript 提供了3个特殊的引用类型：`Boolean`，`Number`和`String`
 1. `reverse()`倒序排列。
 2. `sort(callback(value1, value2))` 规则：若value1需要排在value2前面则返回-1，反正返回1 
 ##### 操作方法
-1. `concat(newItems)`合并数组，返回新数组。
-2. `slice(start, end)`截取数组，返回截取段。
-3. `splice(start, num, newItems)`删除/插入/替换，返回被删除项。
+1. `join(separator)`合并数组各项，返回字符串。
+2. `concat(newItems)`合并数组，返回新数组。
+3. `slice(start, end)`截取数组，返回截取段。
+4. `splice(start, num, newItems)`删除/插入/替换，返回被删除项。
 ##### 位置方法
 1. `indexOf(item)`查询下标，返回下标。
 2. `lastIndexOf(item)`查询下标，从末端开始算，返回下标。
@@ -92,6 +94,7 @@ ECMAScript 提供了3个特殊的引用类型：`Boolean`，`Number`和`String`
 1. `charAt(index)`查询字符，返回字符。
 2. `charCodeAt(index)`查询字符，返回字符编码。
 ##### 操作方法
+1. `split(separator)`分离字符串，返回数组。
 1. `concat(items)`合并字符串，返回新字符串。
 2. `slice(start, end)`截取字符串返回被截取的字符串。
 3. `substring(start, end)`截取字符串，返回被截取的字符串。
