@@ -200,6 +200,10 @@ a {
     box-sizing: border-box;
 }
 
+#artiSelection>ul>li>a {
+    color: #666666;
+}
+
 @media only screen and (max-width: 850px) {
     #artiSelection {
         right: 50px;
@@ -222,7 +226,9 @@ a {
     word-break: break-all;
 }
 
-#artiSelection>ul>li:hover {
+#artiSelection>ul>li:hover,
+#artiSelection>ul>li>a:hover,
+.more>a:hover {
     color: #1989C0;
 }
 
@@ -263,6 +269,15 @@ a {
 .anchor {
     position: absolute;
     margin-top: -131px;
+}
+
+.more {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.more>a {
+    color: #666666;
 }
 
 @media only screen and (max-device-width: 425px) {

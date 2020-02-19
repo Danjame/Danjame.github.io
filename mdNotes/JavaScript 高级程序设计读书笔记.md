@@ -98,7 +98,7 @@ ECMAScript 提供了3个特殊的引用类型：`Boolean`，`Number`和`String`
 1. `concat(items)`合并字符串，返回新字符串。
 2. `slice(start, end)`截取字符串返回被截取的字符串。
 3. `substring(start, end)`截取字符串，返回被截取的字符串。
-3. `subsrt(start, num)`截取字符串，返回被截取的字符串。
+3. `substr(start, num)`截取字符串，返回被截取的字符串。
 ##### 位置方法
 1. `indexOf(item)`查询下标，返回下标。
 2. `lastIndexOf(item)`查询下标，返回下标。
