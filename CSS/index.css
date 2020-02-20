@@ -1,6 +1,7 @@
 #slideWrapper {
     position: relative;
     overflow: hidden;
+    height: auto;
 }
 
 .navWrapper {

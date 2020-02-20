@@ -16,8 +16,8 @@ function SlideImg(obj) { //定义构造函数
     this.slideTimer = null; //单张滑动定时器
     this.iniTimer = null; //全局定时器
 
-    this.stopEvent = obj.stopEvent || "mouseover"; //停止轮播事件类型
-    this.startEvent = obj.startEvent || "mouseout"; //启动轮播事件类型
+    this.stopEvent = obj.stopEvent || "mouseenter"; //停止轮播事件类型
+    this.startEvent = obj.startEvent || "mouseleave"; //启动轮播事件类型
     this.dotsEventType = obj.dotsEventType || "click"; //图片点事件类型
 
     this.colorForActivedDot = obj.colorForActivedDot; //图片点激活颜色
@@ -64,6 +64,7 @@ SlideImg.prototype.reStore = function() {
 };
 //动画初始化
 SlideImg.prototype.autoSlide = function() {
+    clearTimeout(this.iniTimer);
     const init = () => {
         this.iniTimer = setTimeout(() => {
             this.index += 1;
@@ -75,17 +76,28 @@ SlideImg.prototype.autoSlide = function() {
     init();
 };
 
+const eventHandler = (() => {
+    return {
+        activation() {
+            clearTimeout(obj.iniTimer)
+        },
+        desactivation() {
+            obj.autoSlide();
+        }
+    }
+})()
+
 //停止与启动轮播
 SlideImg.prototype.startListener = function() {
     const container = document.querySelector(this.container);
-    container.addEventListener(this.stopEvent, () => { clearTimeout(this.iniTimer) }, false);
-    container.addEventListener(this.startEvent, () => { this.autoSlide() }, false);
+    container.addEventListener(this.stopEvent, eventHandler.activation);
+    container.addEventListener(this.startEvent, eventHandler.desactivation);
 };
 
 SlideImg.prototype.stopListener = function() {
     const container = document.querySelector(this.container);
-    container.removeEventListener(this.stopEvent, () => { clearTimeout(this.iniTimer) }, false);
-    container.removeEventListener(this.startEvent, () => { this.autoSlide() }, false);
+    container.removeEventListener(this.stopEvent, eventHandler.activation);
+    container.removeEventListener(this.startEvent, eventHandler.desactivation);
 };
 
 //图片点控制
@@ -142,7 +154,7 @@ const Setting = (() => {
     const getEles = eles => {
         return document.querySelectorAll(eles);
     };
-    
+
     const elements = {
         header: "#header",
         slideWrapper: "#slideWrapper",
@@ -154,7 +166,6 @@ const Setting = (() => {
 
     const header = getEle(elements.header);
     const slideWrapper = getEle(elements.slideWrapper);
-    const clientHeight = document.documentElement.clientHeight;
 
     return {
         //自适应
@@ -163,6 +174,7 @@ const Setting = (() => {
             const contentNavAni = getEle(elements.contentNavAni);
             const slides = getEles(elements.slides);
             const navWrapper = getEle(elements.navWrapper);
+            const clientHeight = document.documentElement.clientHeight;
             //轮播导航自适应
             contentNav.style.marginTop =
                 `${(clientHeight-header.offsetHeight-contentNav.offsetHeight)/2}px`;
@@ -176,16 +188,21 @@ const Setting = (() => {
         },
         //窗口大小适配
         resize() {
-            window.addEventListener("resize", this.autoAdjust, false);
+            window.addEventListener("resize", () => {
+                clearTimeout(obj.iniTimer);
+                this.autoAdjust();
+                obj.autoSlide();
+            }, false);
         },
         //移动端触屏事件
         touchEvent() {
             let startX, startY, endX, endY, x, y;
+            const clientHeight = document.documentElement.clientHeight;
             const handler = event => {
                 switch (event.type) {
                     case "touchmove":
-                    event.preventDefault();
-                    break;
+                        event.preventDefault();
+                        break;
                     case "touchstart":
                         startX = event.touches[0].pageX;
                         startY = event.touches[0].pageY;
@@ -222,13 +239,13 @@ const Setting = (() => {
         },
         init() {
             this.autoAdjust();
-            this.resize();
             obj.dotsEvent();
+            obj.autoSlide();
+            obj.startListener();
             if (window.matchMedia("(max-device-width:425px)").matches) {
                 this.touchEvent();
             } else {
-                obj.autoSlide();
-                obj.startListener();
+                this.resize();
                 //页面失去焦点停止动画
                 window.onblur = () => {
                     clearTimeout(obj.iniTimer);
