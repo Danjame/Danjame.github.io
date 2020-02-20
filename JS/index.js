@@ -240,12 +240,12 @@ const Setting = (() => {
         init() {
             this.autoAdjust();
             obj.dotsEvent();
-            obj.autoSlide();
-            obj.startListener();
             if (window.matchMedia("(max-device-width:425px)").matches) {
                 this.touchEvent();
             } else {
                 this.resize();
+                obj.autoSlide();
+                obj.startListener();
                 //页面失去焦点停止动画
                 window.onblur = () => {
                     clearTimeout(obj.iniTimer);
