@@ -240,9 +240,11 @@ const Setting = (() => {
         init() {
             this.autoAdjust();
             obj.dotsEvent();
+            //手机端事件
             if (window.matchMedia("(max-device-width:425px)").matches) {
                 this.touchEvent();
             } else {
+            //桌面端事件
                 this.resize();
                 obj.autoSlide();
                 obj.startListener();
