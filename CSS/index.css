@@ -85,7 +85,7 @@
 .slideOne {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     font-size: 24px;
     color: #666666;
     background-color: #f1f4df;
@@ -233,8 +233,8 @@
 
 .slideThree {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
     background-color: #a2a8d3;
     font-size: 24px;
 }
