@@ -400,7 +400,7 @@ function object(obj){
 function inheritePrototype(Super, Sub){
     var proto = object(Supertype.prototype);
     prototype.constructor = Sub;
-    Sub.prototype = protoype;
+    Sub.prototype = proto;
 }
 
 function Supertype(name){
