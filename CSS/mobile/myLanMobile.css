@@ -16,13 +16,7 @@
 /* 多语出现动画 */
 #myLanguage .lan {
     opacity: 1;
-    -ms-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -webkit-transform: scale(1.05);
     transform: scale(1.05);
-    -ms-transition: all 1s ease 0s;
-    -moz-transition: all 1s ease 0s;
-    -webkit-transition: all 1s ease 0s;
     transition: all 1s ease 0s;
 }
 

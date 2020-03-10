@@ -10,7 +10,6 @@
     width: 2560px;
     height: 100%;
     position: absolute;
-    -webkit-transition: all 0s linear 0s;
     transition: all 0s linear 0s;
 }
 
@@ -37,13 +36,9 @@
     position: absolute;
     margin-top: -9rem;
     margin-left: -5rem;
-    -webkit-background-image: url('../../img/skateMan.jpg');
     background-image: url('../../img/skateMan.jpg');
-    -webkit-background-size: auto 15rem;
     background-size: auto 15rem;
-    -webkit-background-repeat: no-repeat;
     background-repeat: no-repeat;
-    -webkit-transition: all 0s linear 0s;
     transition: all 0s linear 0s;
 }
 
@@ -228,8 +223,6 @@
     }
 
     50% {
-        -ms-transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 
@@ -252,8 +245,6 @@
     }
 
     50% {
-        -ms-transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 

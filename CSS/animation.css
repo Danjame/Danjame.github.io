@@ -20,9 +20,6 @@
 #bgWrapper #imgGroup {
     height: auto;
     position: absolute;
-    -webkit-transition: all 0s linear 0s;
-    -ms-transition: all 0s linear 0s;
-    -moz-transition: all 0s linear 0s;
     transition: all 0s linear 0s;
 }
 
@@ -77,13 +74,9 @@
     position: absolute;
     margin-top: -120px;
     margin-left: -80px;
-    -webkit-background-image: url('../img/skateMan.jpg');
     background-image: url('../img/skateMan.jpg');
-    -webkit-background-size: auto 240px;
     background-size: auto 240px;
-    -webkit-background-repeat: no-repeat;
     background-repeat: no-repeat;
-    -webkit-transition: all 0s linear 0s;
     transition: all 0s linear 0s;
 }
 
@@ -401,9 +394,5 @@
     color: white;
     opacity: 1;
     transform: rotate(10deg);
-    -ms-transform: rotate(10deg);
-    -webkit-transform: rotate(10deg);
     transition: background-color 0.5s;
-    -ms-transition: background-color 0.5s;
-    -webkit-transition: background-color 0.5s;
 }
