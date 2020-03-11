@@ -189,9 +189,17 @@ const Setting = (() => {
         //窗口大小适配
         resize() {
             window.addEventListener("resize", () => {
-                clearTimeout(obj.iniTimer);
-                this.autoAdjust();
-                obj.autoSlide();
+                if (obj.iniTimer) {
+                    clearTimeout(obj.iniTimer);
+                }
+                //防抖 Debounce
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                };
+                this.timer = setTimeout(() => {
+                    this.autoAdjust();
+                    obj.autoSlide();
+                }, 500)
             }, false);
         },
         //移动端触屏事件
@@ -244,7 +252,7 @@ const Setting = (() => {
             if (window.matchMedia("(max-device-width:425px)").matches) {
                 this.touchEvent();
             } else {
-            //桌面端事件
+                //桌面端事件
                 this.resize();
                 obj.autoSlide();
                 obj.startListener();
