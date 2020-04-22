@@ -70,7 +70,7 @@ ECMAScript 提供了3个特殊的引用类型：`Boolean`，`Number`和`String`
 2. `shift()`数组前端删除一项，返回被删除项。
 ##### 排序方法
 1. `reverse()`倒序排列。
-2. `sort(callback(value1, value2))` 规则：若value1需要排在value2前面则返回-1，反正返回1 
+2. `sort(callback(value1, value2))` 规则：若value1需要排在value2前面则返回-1，否则返回1 
 ##### 操作方法
 1. `join(separator)`合并数组各项，返回字符串。
 2. `concat(newItems)`合并数组，返回新数组。
@@ -170,12 +170,13 @@ Object.defineProperties(obj, {
 
 ```
 function factoryModel(name, age){
-    var ojb = new Object();
+    var obj = new Object();
     obj.name = name;
     obj.age = age;
     obj.sayName = function(){
         console.log(this.name)
     }
+    return obj;
 } 
 
 var person1 = factoryModel("Tom", 27);
