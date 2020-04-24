@@ -302,16 +302,12 @@ var instance = new Subtype();
 #### 借用构造函数
 缺点：方法存在构造函数当中，失去复用的意义。
 ```
-function Supertype(){
-    this.name = "Tom";
-}
-
-Supertype.prototype.sayName = function(){
-    console.log(this.name);
+function Supertype(name){
+    this.name = name;
 }
 
 function Subtype(){
-    Supertype.call(this, "Tom");
+    Supertype.call(this, "Marry");
     this.age = 27;
 }
 
