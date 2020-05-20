@@ -46,4 +46,52 @@
 - `Object.assign(target, source)` 将多个源对象的属性复制到一个目标对象中
 - `Object.is()` 判断两个值是否相等
 
-### Proxy
+### Proxy 代理对象
+```
+const proxy = new Proxy(obj,{
+    get(target, property){
+        do some things...
+    },
+    set(target, property, value){
+        do some things...
+    }
+})
+```
+- defineProperty只能监视属性的读写，通过重写数组的操作方法来劫持方法的调用过程
+- Proxy可以监视更多的对象操作，更好的支持数组对象监视
+- Proxy以非侵入的方式监视了对象的读写
+
+### Reflect 
+#### 统一的对象操作API， 统一提供了一套用于操作对象的API:
+- `Reflect.has(obj, property)`
+- `Reflect.deleteProperty(obj, property)`
+- `Reflect.ownKeys(obj)`
+
+### Promise 对象
+#### 更优的一步编程解决方案
+
+### class 类
+#### 实例方法
+- 通过实例化的对象调用
+#### 静态方法
+- 静态方法通过类型本身去调用
+- static 静态方法里的this指向当前的类型，而不是某个实例对象
+#### 类的继承 extends
+
+### Set数据结构
+#### 与数组类似，但是每个值都是唯一的
+
+### Map数据结构
+#### 与对象相似，本质上是键值对集合
+- 如果对象的键是非字符串类型，那么使用`Object.keys()`获取的键都是经过toString的处理返回值
+- 而Map里的键可以是任意类型的数据，并且可以通过`Object.keys()`正常获取
+
+### Symbol 数据类型
+- `Symbol('descriptor')`
+- 通过Symbol 创建出来的值是独一无二的，不会重复
+- 通过`Symbol.for('descriptor')`来达到复用的目的
+
+### for...of 循环
+`for ( const item of arr){}`
+#### 可以遍历所有的数据结构
+#### 可以使用`break`随时终止遍历
