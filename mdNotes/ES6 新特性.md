@@ -93,5 +93,34 @@ const proxy = new Proxy(obj,{
 
 ### for...of 循环
 `for ( const item of arr){}`
-#### 可以遍历所有的数据结构
+#### 可以遍历实现了Iterable可迭代接口的数据结构
 #### 可以使用`break`随时终止遍历
+
+### Generator
+```
+function * generator (){
+    do something...
+    yield 100
+    do something...
+    yield 200
+}
+
+const gen = generator()
+gen.next();
+gen.next();
+```
+yield 的值会作为next方法的结果返回
+
+
+### ES 2016
+#### 数组的`includes()`方法
+#### 指数运算符 
+如`Math.pow(2, 10)`结果为2的10次方
+
+### ES 2017
+- `Object.values(obj)` 以数组方式返回属性值
+- `Object.entries(obj)` 以数组方式返回键值对
+- `Object.getOwnPropertyDescriptors()` 获取对象的特性信息
+- `String.prototype.padStart()`/ `String.prototype.padEnd(length, pad)` 使用字符串填充直到达到指定的长度
+- 函数参数结尾可添加逗号
+- Async / Await 语法糖
