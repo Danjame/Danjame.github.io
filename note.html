@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <title>笔记|谢丹军的个人网站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" media="screen and (max-device-width: 425px)" href="CSS/mobile/commonMobile.css" type="text/css">
+    <link rel="stylesheet" media="screen and (max-device-width: 425px)" href="CSS/mobile/commonMobile.css"
+        type="text/css">
     <link rel="stylesheet" media="not screen and (max-device-width: 425px)" href="CSS/common.css" type="text/css">
     <link rel="stylesheet" href="CSS/note.css">
     <style>
         .headNav li:nth-child(2) a {
-        color: #385170;
-    }
+            color: #385170;
+        }
     </style>
 </head>
 
@@ -67,7 +68,8 @@
             </div>
             <div id="artiSelection">
                 <ul>
-                    <li><a href="https://github.com/Danjame/Danjame.github.io/blob/master/mdNotes/JavaScript%20%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0.md" target="_blank">JavaScript 高级程序设计读书笔记</a></li>
+                    <li><a href="https://github.com/Danjame/Danjame.github.io/blob/master/mdNotes/JavaScript%20%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0.md"
+                            target="_blank">JavaScript 高级程序设计读书笔记</a></li>
                     <li onclick="window.location.href = '#VueprojectSummary'">Vue 项目要点总结</li>
                     <li onclick="window.location.href = '#startingVue'">Vue.js 入门总结</li>
                     <li onclick="window.location.href = '#JSreview'">JavaScript 复习</li>
@@ -79,14 +81,17 @@
             <div class="textWrapper">
                 <div id="anchorHead" class="anchor"></div>
                 <div>
-                    <h2 class="title more">更多 => <a href="https://github.com/Danjame/Danjame.github.io/tree/master/mdNotes" target="_blank">新笔记 (Markdown格式)</a></h2>
+                    <h2 class="title more">更多 => <a
+                            href="https://github.com/Danjame/Danjame.github.io/tree/master/mdNotes" target="_blank">新笔记
+                            (Markdown格式)</a></h2>
                 </div>
                 <div>
                     <div id="VueprojectSummary" class="anchor"></div>
                     <h2 class="title">Vue 项目要点总结</h2>
                     <h5 class="time">2019.11.03 20:50 Leon</h5>
                     <div class="line"></div>
-                    <p>该项目除了首页接口和首页数据库表格，其余都是自己挖坑填坑做出来，包括后来自己补充数据库以及增加和修改接口。该项目借助了网上免费的数据库，数据获取延时会比较大且本地服务器经常崩掉。项目 <a href="https://github.com/Danjame/myProjects" target="_blank">Github</a> 地址。</p>
+                    <p>该项目除了首页接口和首页数据库表格，其余都是自己挖坑填坑做出来，包括后来自己补充数据库以及增加和修改接口。该项目借助了网上免费的数据库，数据获取延时会比较大且本地服务器经常崩掉。项目 <a
+                            href="https://github.com/Danjame/myProjects" target="_blank">Github</a> 地址。</p>
                     <h3>侦听属性 Watch</h3>
                     <p>如果需要Watch来侦听一个对象或者对象里某一属性的变化, 可以如下操作。</p>
                     <h4>对对象使用深度监听:</h4>
@@ -100,7 +105,8 @@
                     <p>使用 <span class="code">@click.stop </span>来阻止事件冒泡。</p>
                     <p>使用 <span class="code">@click.prevent</span> 来阻止事件的默认行为。</p>
                     <h3>状态管理模式 Vuex</h3>
-                    <p>我把vuex看作vue的前端数据库，在vue的任何一个组件里的数据可以放进vuex里，而其他任何组件可以直接从vuex里获取其他组件存放的数据。所有的公用数据放在vuex的state对象里，通过dispatch和commit分别调用actions和mutations的方法来存放数据，但是实际上我们可以跳过actions直接使用commit调用mutation来存放数据。</p>
+                    <p>我把vuex看作vue的前端数据库，在vue的任何一个组件里的数据可以放进vuex里，而其他任何组件可以直接从vuex里获取其他组件存放的数据。所有的公用数据放在vuex的state对象里，通过dispatch和commit分别调用actions和mutations的方法来存放数据，但是实际上我们可以跳过actions直接使用commit调用mutation来存放数据。
+                    </p>
                     <h3>Vue Router</h3>
                     <p>个人更加偏向于使用编程式导航:</p>
                     <p>1. 其可以更好地帮助你根据不同的条件跳转到不同的地址。 </p>
@@ -154,7 +160,8 @@
                     <p>5. Ref用法：标签使用ref绑定DOM, 逻辑里使用<span class="code">this.$refs</span>操作DOM (尽量避免操作DOM)。 </p>
                     <p>6. 父子组件传递数据 </p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. 父传子：父组件页面的子组件标签上绑定父组件的data里的属性，子组件里使用props来接收该属性。 </p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. 子传父：子组件里使用<span class="code">this.$emit('event', params)</span>向外触发事件和传递数据，父组件页面的子组件标签上使用@event监听事件并且触发函数，通过函数给data里的属性赋值。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. 子传父：子组件里使用<span class="code">this.$emit('event',
+                            params)</span>向外触发事件和传递数据，父组件页面的子组件标签上使用@event监听事件并且触发函数，通过函数给data里的属性赋值。</p>
                     <p>7. 父子组件数据联动: 使用watch监听传送的数据变化。 </p>
                     <p>8. Vuex: vue.js的状态管理库，它采用集中式存储管理应用的所有组件的状态，可以利用vue.js的数据响应机制来进行高效的状态更新。 </p>
                     <p>9. Router-link: 使用属性tag可以改变其默认的a标签。 </p>
@@ -180,12 +187,21 @@
                     <h5 class="time">2019.10.16 01:22 Leon</h5>
                     <div class="line"></div>
                     <h3>移动端 Touch 事件</h3>
-                    <p>1. Touch 屏幕触摸事件: <span class="code">touchstart</span>, <span class="code">touchmove</span>, <span class="code">touchend</span></p>
-                    <p>2. Touch 事件的触发会产生对象数组: <span class="code">touches</span>, <span class="code">changedTouches</span>, <span class="code">targetTouches</span></p>
-                    <p>3. 通过 <span class="code">event.touches[0]</span>, <span class="code">event.changedTouches[0]</span>, <span class="code">event.targetTouches[0]</span> 可以获取触点对象。</p>
-                    <p>4. 触点对象包含的常用属性: <span class="code">screenX</span>, <span class="code">screenY</span>, <span class="code">clientX</span>, <span class="code">clientY</span>, <span class="code">pageX</span>, <span class="code">pageY</span>, <span class="code">target</span></p>
+                    <p>1. Touch 屏幕触摸事件: <span class="code">touchstart</span>, <span class="code">touchmove</span>, <span
+                            class="code">touchend</span></p>
+                    <p>2. Touch 事件的触发会产生对象数组: <span class="code">touches</span>, <span
+                            class="code">changedTouches</span>, <span class="code">targetTouches</span></p>
+                    <p>3. 通过 <span class="code">event.touches[0]</span>, <span
+                            class="code">event.changedTouches[0]</span>, <span
+                            class="code">event.targetTouches[0]</span> 可以获取触点对象。</p>
+                    <p>4. 触点对象包含的常用属性: <span class="code">screenX</span>, <span class="code">screenY</span>, <span
+                            class="code">clientX</span>, <span class="code">clientY</span>, <span
+                            class="code">pageX</span>, <span class="code">pageY</span>, <span class="code">target</span>
+                    </p>
                     <h3>元素id直接获取 DOM </h3>
-                    <p>做增删改查Demo的时候发现, 元素的id名直接就变成了全局变量，不需要通过方法来获取。问了别人，有人说是H5的新规范，有人说是一种BUG。如果说这是一种新规范，那么这种新规范的缺点就太明显了，因为全局变量或者对象就不能和元素id同名了，否则会造成混乱。</p>
+                    <p>做增删改查Demo的时候发现,
+                        元素的id名直接就变成了全局变量，不需要通过方法来获取。问了别人，有人说是H5的新规范，有人说是一种BUG。如果说这是一种新规范，那么这种新规范的缺点就太明显了，因为全局变量或者对象就不能和元素id同名了，否则会造成混乱。
+                    </p>
                     <h3>Apply 与 Call </h3>
                     <p>同: 两者都是用于改变this的指向，也是函数的调用方式，如果没有传入参数或者传入null，那么this的指向将会是默认的window。</p>
                     <p>异: Apply传入的函数参数是一个参数组，而Call传入的函数参数是相互独立的参数。</p>
@@ -197,7 +213,8 @@
                     <div class="line"></div>
                     <h3>响应式和自适应</h3>
                     <p>在网站开发过程中，我们往往需要考虑到移动端的视觉效果需要符合桌面端的视觉效果。但是和物理像素px不同的是，CSS中的像素px是个相对单位。大部分的桌面显示器的物理像素等同于CSS像素，而目前主流的手机屏幕的物理像素都远远超过了桌面显示器的物理像素，也就是说，同样的面积，移动端会使用更多的物理像素来显示CSS的像素单位。因此开发移动端的页面需要在head标签中加入
-                        <span class="code">&lt;meta name="viewport" content="width=device-width, initial-scale=1”&gt;</span>
+                        <span class="code">&lt;meta name="viewport" content="width=device-width,
+                            initial-scale=1”&gt;</span>
                         。即让viewport宽度等同于设备宽度，同时不允许用户手动缩放。</p>
                     <p>媒体查询的使用，首先需要有一个默认样式，如果后面使用
                         <span class="code">@media</span>
@@ -217,7 +234,8 @@
                         的使用会与
                         <span class="code">min-device-width</span>
                         有条件上的重合，导致同时导入两个css文件，那是因为
-                        <span class="code">&lt;meta name="viewport" content="width=device-width, initial-scale=1”&gt;</span>
+                        <span class="code">&lt;meta name="viewport" content="width=device-width,
+                            initial-scale=1”&gt;</span>
                         的使用让
                         <span class="code">min-width</span>
                         实际上等同于
@@ -371,9 +389,9 @@
     </div>
     <script type="text/javascript" class="commonScriptMobile"></script>
     <script type="text/javascript">
-    if (window.matchMedia("(max-device-width:425px)").matches) {
-        document.querySelector(".commonScriptMobile").src = "JS/mobile/commonMobile.js";
-    }
+        if (window.matchMedia("(max-device-width:425px)").matches) {
+            document.querySelector(".commonScriptMobile").src = "JS/mobile/commonMobile.js";
+        }
     </script>
     <script type="text/javascript" src="JS/note.js"></script>
 </body>

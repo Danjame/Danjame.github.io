@@ -81,7 +81,7 @@ ECMAScript 提供了3个特殊的引用类型：`Boolean`，`Number`和`String`
 2. `lastIndexOf(item)`查询下标，从末端开始算，返回下标。
 ##### 迭代方法
 1. `every(callback(item, index))`当所有项满足条件，返回`true`。
-2. `some(callback(item, index))`当某一项满足条件，返回`false`。
+2. `some(callback(item, index))`当某一项满足条件，返回`true`。
 3. `filter(callback(item, index))`返回由所有满足条件的项组成的新数组。
 4. `map(callback(item, index))`操作每一个项，返回新数组。
 5. `forEach(callback(item, index))`操作每一个项，无返回值。
