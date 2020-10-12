@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About Me | Danjun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" media="screen and (max-device-width: 425px)" href="../css/mobile/animationMobile.css"
+        type="text/css" />
+    <link rel="stylesheet" media="not screen and (max-device-width: 425px)" href="../css/animation.css"
+        type="text/css" />
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <div class="slider">
+                <ul class="imgGroup">
+                    <li><img src="../img/Guangzhou.jpg" alt=""></li>
+                    <li><img src="../img/Santiago.jpg" alt=""></li>
+                    <li><img src="../img/Bogota.jpg" alt=""></li>
+                    <li><img src="../img/Porto.jpg" alt=""></li>
+                </ul>
+            </div>
+            <!-- main -->
+            <div class="main">
+                <div class="mainLeft"></div>
+                <div class="mainRight">
+                    <ul class="desc descUp">
+                        <li class="descWrap">
+                            <p class="year">2010 - 2014</p>
+                            <p>Jilin International Studies University.</br>Bachelor in Spanish Language.</p>
+                        </li>
+                        <li class="descWrap">
+                            <p class="year">2014 - 2015</p>
+                            <p>China United Engineering Corporation.</br>Interpretation and translation.</p>
+                        </li>
+                    </ul>
+                    <!-- time line -->
+                    <div class="time">
+                        <div class="timeLine"></div>
+                        <ul class="timeDot">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <ul class="desc descDown">
+                        <li class="descWrap">
+                            <p class="year">2012 - 2013</p>
+                            <p>University of Santiago de Compostela.</br>Study Mobility Program.</p>
+                        </li>
+                        <li class="descWrap">
+                            <p class="year">2015 - 2017</p>
+                            <p>University of Porto.</br>Master in PLE of FLUP.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <div class="footer">
+            <!-- resume -->
+            <div class="resume">
+                <p class="resumeText">
+                    Hello.</br>My name is Danjun.</br>I am a Frontend Developer.</br>I love languages.
+                </p>
+            </div>
+            <div class="nav">
+                <!-- multilanguages -->
+                <ul class="lan">
+                    <li>
+                        <img src="../img/CN.png">
+                    </li>
+                    <li>
+                        <img src="../img/FR.png">
+                    </li>
+                    <li>
+                        <img src="../img/PT.png">
+                    </li>
+                    <li>
+                        <img src="../img/ES.png">
+                    </li>
+                    <li>
+                        <img src="../img/EN.png">
+                    </li>
+                </ul>
+                <!-- buttons -->
+                <ul class="btns">
+                    <li><img src="../img/EN.png"></li>
+                    <li>Start / Stop</li>
+                    <li>Reset</li>
+                    <li onclick="window.location.href=('../index.html')">Home</li>  
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/multiLan.js"></script>
+    <script type="text/javascript" class="animationScript"></script>
+    <script type="text/javascript">
+    // load js file base on the screen feature
+    document.querySelector(".animationScript").src = window.matchMedia("(max-device-width:425px)").matches?"../js/mobile/animationMobile.js":"../js/animation.js"
+    </script>
+</body>
+</html>

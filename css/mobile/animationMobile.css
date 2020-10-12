@@ -1,0 +1,275 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: Arial;
+}
+/* background */
+.slider {
+    width: 100%;
+    height: 20rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider .imgGroup {
+    width: 160rem;
+    height: 100%;
+    position: absolute;
+    transition: all 0s linear 0s;
+}
+
+.imgGroup>li {
+    float: left;
+}
+
+.imgGroup img {
+    width: auto;
+    height: 20rem;
+}
+
+.main {
+    height: 5rem;
+    position: relative;
+}
+
+/* skate man */
+.main .mainLeft {
+    width: 20rem;
+    height: 15rem;
+    position: absolute;
+    margin-top: -8rem;
+    margin-left: -5rem;
+    background-image: url('../../img/skateMan.png');
+    background-size: auto 15rem;
+    background-repeat: no-repeat;
+    transition: all 0s linear 0s;
+}
+
+.main .mainRight {
+    position: relative;
+}
+
+/* description */
+.mainRight .descUp {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    margin-top: 1rem;
+}
+
+.descUp>li, .descDown>li {
+    width: 93%;
+    height: 4rem;
+    border-radius: 0.5rem;
+    padding: 0.3125rem;
+    font-size: 0.75rem;
+    opacity: 0;
+}
+
+.descDown {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    margin-top: 11rem;
+}
+
+.desc .year {
+    text-align: center;
+    font-weight: bold;
+}
+
+.descUp li:nth-child(1) {
+    background-color: #d25959;
+}
+
+.descDown li:nth-child(1) {
+    margin-top: -5.3rem;
+    background-color: #b0e0a8;
+}
+
+.descUp li:nth-child(2) {
+    margin-top: 4.75rem;
+    background-color: #f0f69f;
+    
+}
+
+.descDown li:nth-child(2) {
+    margin-top: 4.78rem;
+    background-color: #a773c3;
+}
+
+.descWrap {
+    color: #555;
+}
+
+/* description animation */
+@keyframes showDesc {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+.showDesc {
+    animation-name: showDesc;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+/* time line */
+.mainRight .time {
+    width: 0.9rem;
+    position: absolute;
+    margin-top: 2.8rem;
+    margin-left: 45%;
+}
+
+.time .timeLine {
+    width: 0.5rem;
+    position: absolute;
+    margin-left: 0.24rem;
+    border-radius: 0.5rem;
+    background-color: #a9a9a9;
+    transition: all 0s linear 0s;
+}
+
+.time .timeDot>li {
+    width: 0.8rem;
+    height: 0.8rem;
+    position: relative;
+    margin-bottom: 3.8rem;
+    border: 0.0625rem solid #fff;
+    border-radius: 50%;
+    background-color: #4682B4;
+    transition: all 0s linear 0s;
+    display: none;
+}
+
+/* resume */
+.footer .resume{
+    height: 16rem;
+    display: flex;
+    align-items: center;
+}
+
+.resume .resumeText{
+    width: 9.5rem;
+    margin-left: 6.455rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    color: #808080;
+    text-align: center;
+    word-wrap:break-word;
+}
+
+
+/* resumeText animation */
+@keyframes toLeft {
+    0% {        
+        margin-left: 6.455rem;
+    }
+
+    100% {
+        margin-left: 0;
+    }
+}
+.toLeft{
+    animation-name: toLeft;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+/* footer buttons */
+.footer .nav .btns{  
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    line-height: 2rem;
+    text-align: center;
+    border-top: 0.0625rem solid #bbb;
+    margin: 0 0.5rem;
+}
+
+.btns>li {
+    font-size: 0.9rem;
+    color: #808080;
+    cursor: pointer;
+}
+
+.btns>li:hover{
+    color: #1989C0;
+}
+
+.btns>li:first-child,
+.btns>li:last-child {
+    width: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.btns>li>img{
+    height: 1.3rem;
+    width: 1.3rem;
+}
+
+.nav .lan{
+    position: absolute;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}
+
+.lan li{
+    height: 2rem;
+    width: 3rem;
+    text-align: center;
+}
+
+.lan img{
+    height: 1.7rem;
+    width: 1.7rem;
+}
+
+/* multilanguages animation */
+@keyframes showLan {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        height: 10rem;
+        margin-top: -10rem;
+        opacity: 1;
+    }
+}
+.showLan {
+    animation-name: showLan;
+    animation-timing-function: linear;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+@keyframes hideLan {
+    0% {        
+        height: 10rem;
+        margin-top: -10rem;
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+.hideLan {
+    animation-name: hideLan;
+    animation-timing-function: linear;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}

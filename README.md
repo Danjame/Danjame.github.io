@@ -1,0 +1,1 @@
+## This is my personal site developed with pure HTML, CSS and JavaScript.
