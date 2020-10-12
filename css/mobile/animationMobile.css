@@ -31,8 +31,6 @@
 .main {
     height: 6rem;
     position: relative;
-    /* border-bottom: 1px solid #aaa; */
-    /* background-color: #e8e8e8; */
 }
 
 /* skate man */
@@ -57,7 +55,7 @@
     width: 50%;
     position: absolute;
     right: 0;
-    margin-top: -1rem;
+    margin-top: 0.2rem;
 }
 
 .descUp>li, .descDown>li {
@@ -73,7 +71,7 @@
     width: 50%;
     position: absolute;
     right: 0;
-    margin-top: 9rem;
+    margin-top: 10.2rem;
 }
 
 .desc .year {
@@ -126,7 +124,7 @@
 .mainRight .time {
     width: 0.9rem;
     position: absolute;
-    margin-top: 0.8rem;
+    margin-top: 2rem;
     margin-left: 45%;
 }
 
@@ -153,7 +151,7 @@
 
 /* resume */
 .footer .resume{
-    height: 13rem;
+    height: 13.8rem;
     display: flex;
     align-items: center;
 }
@@ -188,19 +186,28 @@
 
 /* footer buttons */
 .footer .nav .btns{  
-    height: 2rem;
+    height: 3rem;
     display: flex;
     justify-content: space-around;
-    line-height: 2rem;
-    text-align: center;
+    align-items: center;
     border-top: 0.0625rem solid #bbb;
     margin: 0 0.5rem;
+    /* background-color: thistle; */
+    /* background-color: #f1f4df;; */
+    /* background-color: #eeecda; */
+    /* background-color: #e8e8e8; */
+    box-shadow: 0 5px 5px #eee;
 }
 
 .btns>li {
     font-size: 1rem;
-    color: #808080;
+    /* color: #808080; */
+    color: #838383;
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btns>li:hover{
@@ -209,9 +216,7 @@
 
 .btns>li:first-child,
 .btns>li:last-child {
-    width: 3rem;
-    display: flex;
-    align-items: center;
+    width: 3.5rem;
 }
 
 .btns>li>img{
