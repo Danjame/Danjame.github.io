@@ -147,11 +147,9 @@ class Animation {
             imgGroup.style.transform = `translate3d(${this.bgOffset}px, 0, 0)`;
             imgGroup.style.transition = "all 1s ease 0s";
             // hide dots and description
-            console.log(dots)
             dots.forEach(item => {
                 item.style.display = "none";
             })
-            console.log(descWraps)
             descWraps.forEach(item => {
                 item.classList.remove(this.showDescClass);
             })
@@ -260,32 +258,33 @@ const Listeners = ((Setting) => {
         resetBtn: getEle(".btns>li:nth-child(3)"),
         homeBtn: getEle(".btns>li:last-child")
     }
-    const eles = {
+    const el = {
         imgGroup: getEle(".imgGroup"),
         resumeText: getEle(".resumeText"),
         lan: getEle(".nav .lan")
     }
     let onMove = false;
+    let isReset = false;
 
     return {
         init() {
             btns.lanBtn.addEventListener("click", () => {
-                if (eles.lan.classList.contains("showLan")) {
-                    setClass(eles.lan, "hideLan", "showLan");
+                if (el.lan.classList.contains("showLan")) {
+                    setClass(el.lan, "hideLan", "showLan");
                 } else {
-                    setClass(eles.lan, "showLan") || setClass(eles.lan, "showLan", "hideLan");
+                    setClass(el.lan, "showLan") || setClass(el.lan, "showLan", "hideLan");
                 }
             }, false);
 
             btns.startBtn.addEventListener("click", () => {
                 // when initializing return
-                if (eles.imgGroup.style.transitionDuration === "1s") {
-                    onMove = false;
+                if (el.imgGroup.style.transitionDuration === "1s") {
                     return
                 }
                 // when moving or stopping, go ahead
                 if (!onMove) {
                     onMove = true;
+                    isReset = false;
                     if (window.matchMedia("(width:768px)").matches && window.matchMedia("(height:1024px)").matches) {
                         Setting.ipadSetting()
                     } else if (window.matchMedia("(width:1024px)").matches && window.matchMedia("(height:1366px)").matches) {
@@ -299,7 +298,13 @@ const Listeners = ((Setting) => {
                 }
             }, false);
 
-            btns.resetBtn.addEventListener("click", () => { instance.initialization() }, false)
+            btns.resetBtn.addEventListener("click", () => {
+                if (el.imgGroup.style.transitionDuration !== "1s" && !isReset) {
+                    instance.initialization();
+                    onMove = false;
+                    isReset = true;
+                }
+            }, false);
         },
     }
 })(Setting);
@@ -307,11 +312,6 @@ const Listeners = ((Setting) => {
 Setting.screenSetting();
 
 const initPage = (listener => {
-    window.onblur = () => {
-        instance.clearAllTimer();
-    };
     listener.init();
-    // listener.setStart();
-    // listener.setReset();
     console.log("The animation is ready!")
 })(Listeners);

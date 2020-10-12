@@ -121,7 +121,6 @@ class Animation {
         const timeLine = document.querySelector(this.timeLine);
         const timeDots = document.querySelectorAll(this.timeDots);
         const descWraps = document.querySelectorAll(this.descWraps);
-
         const init = (() => {
             // reset timeline and background
             this.imgOffset = 0;
@@ -177,6 +176,7 @@ const Listeners = (() => {
         lan: getEle(".nav .lan")
     }
     let onMove = false;
+    let isReset = false;
 
     return {
         init() {
@@ -191,23 +191,29 @@ const Listeners = (() => {
             btns.startBtn.addEventListener("click", () => {
                 // when initializing return
                 if (el.imgGroup.style.transitionDuration === "1s") {
-                    onMove = false;
                     return
                 }
                 // when moving or stopping, go ahead
                 if (!onMove) {
                     onMove = true;
+                    isReset = false;
                     instance.manAnimation();
                     instance.bgAnimation();
                     instance.timeLineAnimation();
-                    setClass(el.resumeText, "toLeft");
+                    setClass(el.resumeText, "toLeft")
                 } else {
                     onMove = false;
                     instance.clearAllTimer()
                 }
             }, false)
 
-            btns.resetBtn.addEventListener("click", () => { instance.initialization() }, false);
+            btns.resetBtn.addEventListener("click", () => {
+                if (el.imgGroup.style.transitionDuration !== "1s" && !isReset) {
+                    instance.initialization();
+                    onMove = false;
+                    isReset = true;
+                }
+            }, false);
         }
     }
 })();

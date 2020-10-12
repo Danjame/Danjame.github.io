@@ -186,23 +186,18 @@
 
 /* footer buttons */
 .footer .nav .btns{  
-    height: 3rem;
+    height: 3.5rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-top: 0.0625rem solid #bbb;
     margin: 0 0.5rem;
-    /* background-color: thistle; */
-    /* background-color: #f1f4df;; */
-    /* background-color: #eeecda; */
-    /* background-color: #e8e8e8; */
     box-shadow: 0 5px 5px #eee;
 }
 
 .btns>li {
     font-size: 1rem;
-    /* color: #808080; */
-    color: #838383;
+    color: #808080;
     cursor: pointer;
     height: 100%;
     display: flex;
