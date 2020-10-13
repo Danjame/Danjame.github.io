@@ -1,22 +1,22 @@
 class Slider {
-    constructor(obj){
-    // slide
-    this.iniPosition = obj.iniPosition || 0; 
-    this.barNode = obj.barNode;
-    this.totalNum = obj.totalNum;
-    this.index = obj.initIndex || 0; 
-    this.speed = obj.speed || 40;
-    this.slideTimer = null;
-    // dots
-    this.dotParent = obj.dotParent;
-    this.dotNodes = obj.dotNodes;
-    this.dotAniNodes = obj.dotAniNodes;
-    this.activated = obj.activated;
-    this.unactivated = obj.unactivated;
-    this.eventType = obj.eventType || "click";
+    constructor(obj) {
+        // slide
+        this.iniPosition = obj.iniPosition || 0;
+        this.barNode = obj.barNode;
+        this.totalNum = obj.totalNum;
+        this.index = obj.initIndex || 0;
+        this.speed = obj.speed || 40;
+        this.slideTimer = null;
+        // dots
+        this.dotParent = obj.dotParent;
+        this.dotNodes = obj.dotNodes;
+        this.dotAniNodes = obj.dotAniNodes;
+        this.activated = obj.activated;
+        this.unactivated = obj.unactivated;
+        this.eventType = obj.eventType || "click";
     }
 
-    slideAnimation () {
+    slideAnimation() {
         clearTimeout(this.slideTimer);
         const slideBar = document.querySelector(this.barNode);
         const clientHeight = document.documentElement.clientHeight;
@@ -26,7 +26,7 @@ class Slider {
         const slideMove = () => {
             this.slideTimer = setTimeout(
                 () => {
-                    let targetPosition = -clientHeight * index  + iniPosition;
+                    let targetPosition = -clientHeight * index + iniPosition;
                     let currentPosition = slideBar.offsetTop;
                     let step = (targetPosition - currentPosition) / speed;
                     if (!step) {
@@ -43,7 +43,7 @@ class Slider {
         this.dotAnimation()
     }
 
-    resetIndex () {
+    resetIndex() {
         const slideBar = document.querySelector(this.barNode);
         const clientHeight = document.documentElement.clientHeight;
         if (this.index >= this.totalNum + 1) {
@@ -56,7 +56,7 @@ class Slider {
         }
     }
 
-    dotAnimation () {
+    dotAnimation() {
         const dotAniNodes = document.querySelectorAll(this.dotAniNodes);
         for (let i = 0; i < dotAniNodes.length; i++) {
             if (dotAniNodes[i].className === this.activated) {
@@ -65,12 +65,12 @@ class Slider {
             if (this.index === dotAniNodes.length) {
                 dotAniNodes[0].className = this.activated;
             } else {
-                dotAniNodes[this.index].className =this.activated;
+                dotAniNodes[this.index].className = this.activated;
             }
         }
     }
 
-    dotEvent () {
+    dotEvent() {
         const dotNodes = document.querySelectorAll(this.dotNodes);
         const dotParent = document.querySelector(this.dotParent);
         dotParent.addEventListener(this.eventType, (event) => {
@@ -105,23 +105,28 @@ const Setting = (() => {
     const getEles = eles => {
         return document.querySelectorAll(eles);
     }
+    const setClass = (ele, classToAdd, classToReplace) => {
+        classToReplace?ele.classList.replace(classToReplace, classToAdd):ele.classList.add(classToAdd)
+    }
     const el = {
         container: getEle(".container"),
         slides: getEles(".slider>div"),
         nav: getEle(".nav"),
         barNode: getEle(".slider"),
         dotParent: getEle(".navTitles"),
-        dotAniNode: getEle(".nav>ul:last-child")
+        dotAniNode: getEle(".nav>ul:last-child"),
+        lanBtn: getEle(".nav>.lan>p"),
+        lan: getEle(".nav>.lan>ul")
     }
     return {
         // screen adjust
         autoAdjust() {
             const clientHeight = document.documentElement.clientHeight;
             // set navigation position
-            el.dotParent.style.marginTop = el.dotAniNode.style.marginTop = `${(clientHeight-el.dotParent.offsetHeight)/2}px`;
+            el.dotParent.style.marginTop = el.dotAniNode.style.marginTop = `${(clientHeight - el.dotParent.offsetHeight) / 2}px`;
             // set container and each slide's height
             el.container.style.height = el.nav.style.height = `${clientHeight}px`
-            el.slides.forEach(item => item.style.height =`${clientHeight}px`)
+            el.slides.forEach(item => item.style.height = `${clientHeight}px`)
         },
         resize() {
             window.addEventListener("resize", () => {
@@ -135,24 +140,18 @@ const Setting = (() => {
             }, false);
         },
         // set desktop mouse wheel event
-        wheelEvent(){
+        wheelEvent() {
             let startTime;
             let endTime = new Date().getTime();
-            const handler = event=>{
+            const handler = event => {
                 startTime = new Date().getTime();
-                if(startTime-endTime<1000){
+                if (startTime - endTime < 1000) {
                     return
                 }
-                if(event.wheelDelta>0){
-                    // scroll down
-                    instance.index -= 1;
-                }else{
-                    // scroll up
-                    instance.index += 1;
-                }
+                // scroll up and down
+                event.wheelDelta > 0? instance.index -= 1: instance.index += 1
                 instance.resetIndex();
                 instance.slideAnimation();
-                // console.log(event.wheelDelta);
                 endTime = new Date().getTime();
             }
             window.onmousewheel = document.onmousewheel = handler
@@ -192,20 +191,28 @@ const Setting = (() => {
             document.addEventListener("touchmove", handler, { passive: false });
             el.container.addEventListener("touchstart", handler, { passive: false });
             el.container.addEventListener("touchend", handler, { passive: false });
+        },
+        clickLanHanlder() {
+            el.lanBtn.addEventListener("click", () => {
+                el.lan.classList.contains("showLan") ? setClass(el.lan, "hideLan", "showLan") : setClass(el.lan, "showLan", "hideLan");
+            }, false)
         }
     }
 })();
 
-const init = ((setting)=>{
+const init = ((setting) => {
     setting.autoAdjust();
+    setting.clickLanHanlder();
     instance.dotEvent();
     if (window.matchMedia("(max-device-width:425px)").matches) {
         // for mobile device
         setting.touchEvent();
+        console.log("Mobile Device.")
     } else {
         // for desk top 
         setting.resize();
         setting.wheelEvent();
+        console.log("Desktop or Tablet.")
     };
-    console.log("Home Page is Ready!")
+    console.log("Home Page Ready!")
 })(Setting)

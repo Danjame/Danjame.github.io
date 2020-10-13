@@ -76,7 +76,7 @@ class Animation {
             clearTimeout(this.skateTimer);
             this.skateTimer = setTimeout(() => {
                 this.manOffset -= this.eachFrame;
-                this.manOffset <= -this.totalFrame ? this.manOffset = 0 : this.manOffset;
+                this.manOffset = this.manOffset <= -this.totalFrame ? this.manOffset = 0 : this.manOffset;
                 skateMan.style.backgroundPositionX = `${this.manOffset}px`;
                 skateMove();
             }, 50);
@@ -195,6 +195,7 @@ const Setting = (() => {
 
     // adjust background width
     const forDeskTop = () => {
+        console.log('Desktop.')
         slider.style.width = main.style.width = `${eachImg.offsetWidth}px`;
         imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
         window.addEventListener("resize", () => {
@@ -203,6 +204,7 @@ const Setting = (() => {
         }, false)
     };
     const forTablet = () => {
+        console.log('Tablet Device.')
         const screenWidth = document.documentElement.clientWidth;
         slider.style.height = `${eachImg.offsetHeight}px`;
         imgGroup.style.width = `${eachImg.offsetWidth * imgNum}px`;
@@ -210,12 +212,10 @@ const Setting = (() => {
     };
     return {
         screenSetting() {
-            if ((window.matchMedia("(width:768px)").matches && window.matchMedia("(height:1024px)").matches) ||
-                (window.matchMedia("(width:1024px)").matches && window.matchMedia("(height:1366px)").matches)) {
-                forTablet();
-            } else {
-                forDeskTop();
-            };
+            ((window.matchMedia("(width:768px)").matches && window.matchMedia("(height:1024px)").matches) ||
+                (window.matchMedia("(width:1024px)").matches && window.matchMedia("(height:1366px)").matches)) ?
+                forTablet() :
+                forDeskTop()
         },
         ipadSetting() {
             instance.skateAnimation();
@@ -246,11 +246,7 @@ const Listeners = ((Setting) => {
         return document.querySelector(ele)
     }
     const setClass = (ele, classToAdd, classToReplace) => {
-        if (classToReplace) {
-            ele.classList.replace(classToReplace, classToAdd)
-        } else {
-            ele.classList.add(classToAdd)
-        }
+        classToReplace ? ele.classList.replace(classToReplace, classToAdd) : ele.classList.add(classToAdd)
     }
     const btns = {
         lanBtn: getEle(".btns>li:first-child"),
@@ -269,11 +265,7 @@ const Listeners = ((Setting) => {
     return {
         init() {
             btns.lanBtn.addEventListener("click", () => {
-                if (el.lan.classList.contains("showLan")) {
-                    setClass(el.lan, "hideLan", "showLan");
-                } else {
-                    setClass(el.lan, "showLan") || setClass(el.lan, "showLan", "hideLan");
-                }
+                el.lan.classList.contains("showLan") ? setClass(el.lan, "hideLan", "showLan") : setClass(el.lan, "showLan") || setClass(el.lan, "showLan", "hideLan")
             }, false);
 
             btns.startBtn.addEventListener("click", () => {
@@ -313,5 +305,5 @@ Setting.screenSetting();
 
 const initPage = (listener => {
     listener.init();
-    console.log("The animation is ready!")
+    console.log("Animation Ready!")
 })(Listeners);

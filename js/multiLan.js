@@ -64,9 +64,9 @@ const setLans = (() => {
                 homeLan.addEventListener("click", event => {
                     const target = event.target;
                     if (target.nodeName.toLowerCase() === "li") {
-                        // console.log(target.innerHTML)
                         homeLanSelected.innerHTML = target.innerHTML;
-                        eval(`${target.innerHTML}.homeSwitchLan()`)
+                        eval(`${target.innerHTML}.homeSwitchLan()`);
+                        homeLan.classList.replace("showLan", "hideLan")
                     }
                 }, false);
             }

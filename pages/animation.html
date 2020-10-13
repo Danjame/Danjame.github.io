@@ -10,6 +10,7 @@
     <link rel="stylesheet" media="not screen and (max-device-width: 425px)" href="../css/animation.css"
         type="text/css" />
 </head>
+
 <body>
     <div class="page">
         <div class="container">
@@ -90,7 +91,7 @@
                     <li><img src="../img/EN.png"></li>
                     <li>Start / Stop</li>
                     <li>Reset</li>
-                    <li onclick="window.location.href=('../index.html')">Home</li>  
+                    <li onclick="window.location.href=('../index.html')">Home</li>
                 </ul>
             </div>
         </div>
@@ -98,8 +99,9 @@
     <script type="text/javascript" src="../js/multiLan.js"></script>
     <script type="text/javascript" class="animationScript"></script>
     <script type="text/javascript">
-    // load js file base on the screen feature
-    document.querySelector(".animationScript").src = window.matchMedia("(max-device-width:425px)").matches?"../js/mobile/animationMobile.js":"../js/animation.js"
+        // load js file base on the screen feature
+        document.querySelector(".animationScript").src = window.matchMedia("(max-device-width:425px)").matches ? "../js/mobile/animationMobile.js" : "../js/animation.js"
     </script>
 </body>
+
 </html>

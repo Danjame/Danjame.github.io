@@ -59,7 +59,7 @@ class Animation {
         const manMove = () => {
             this.manTimer = setTimeout(() => {
                 this.manOffset -= this.manEachWidth;
-                this.manOffset <= -this.manTotalWidth ? this.manOffset = 0 : this.manOffset;
+                this.manOffset = this.manOffset <= -this.manTotalWidth ? this.manOffset = 0 : this.manOffset;
                 man.style.backgroundPositionX = `${this.manOffset}rem`;
                 manMove();
             }, this.manMs)
@@ -158,11 +158,7 @@ const Listeners = (() => {
         return document.querySelector(ele)
     }
     const setClass = (ele, classToAdd, classToReplace) => {
-        if (classToReplace) {
-            ele.classList.replace(classToReplace, classToAdd)
-        } else {
-            ele.classList.add(classToAdd)
-        }
+        classToReplace ? ele.classList.replace(classToReplace, classToAdd) : ele.classList.add(classToAdd)
     }
     const btns = {
         lanBtn: getEle(".btns>li:first-child"),
@@ -181,11 +177,7 @@ const Listeners = (() => {
     return {
         init() {
             btns.lanBtn.addEventListener("click", () => {
-                if (el.lan.classList.contains("showLan")) {
-                    setClass(el.lan, "hideLan", "showLan");
-                } else {
-                    setClass(el.lan, "showLan") || setClass(el.lan, "showLan", "hideLan");
-                }
+                el.lan.classList.contains("showLan") ? setClass(el.lan, "hideLan", "showLan") : setClass(el.lan, "showLan") || setClass(el.lan, "showLan", "hideLan")
             }, false)
 
             btns.startBtn.addEventListener("click", () => {
@@ -224,4 +216,5 @@ const initPage = (listener => {
     };
     listener.init();
     console.log("Animation Ready!");
+    console.log("Mobile Device.");
 })(Listeners);

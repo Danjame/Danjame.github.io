@@ -28,49 +28,30 @@
     align-items: center;
 }
 
-.nav .lan>p{
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    font-size: 14px;
-    color: #808080;
-    cursor: default;
-}
-
-.nav .lan>p:hover{
-    color: #000;
-}
-
-.nav .lan>p:hover+ul{
-    display: block;
-    transition: all 1s linear;
-}
-
-.lan ul{
-    font-size: 14px;
-    color: #808080;
-    display: none;
-}
-
-.lan ul:hover{
-    display: block;
-}
-
-.lan ul>li{
+.lan>p, .lan>ul>li{
     width: 40px;
     height: 40px;
     border-radius: 50%;
     line-height: 40px;
     text-align: center;
-    cursor: pointer;
+    font-size: 14px;
+    color: #808080;
 }
 
-.lan ul>li:hover{
+.lan>p:hover, .lan>ul>li:hover{
     background-color: #ccc;
     cursor: pointer;
     color: #000;
     transition: background-color 0.5s;
+}
+
+.showLan{
+    opacity: 1;
+    transition: all 0.5s;
+}
+.hideLan{
+    opacity: 0;
+    transition: all 0.5s;
 }
 
 @media only screen and (max-width: 700px) {
