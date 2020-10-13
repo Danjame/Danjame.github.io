@@ -1,20 +1,41 @@
-class multiLan{
-    constructor(obj){
-        // text content
+class multiLan {
+    constructor(obj) {
+        // text content in home page
+        this.navTexts = obj.navTexts || null;
+        this.pageOneText = obj.pageOneText || null;
+        this.pageTwoText = obj.pageTwoText || null;
+        this.pageThreeText = obj.pageThreeText || null;
+        // text content in animation page
         this.btnTexts = obj.btnTexts;
         this.descTexts = obj.descTexts;
         this.resumeText = obj.resumeText;
-        // elements
+        // elements in home page
+        this.navWraps = this.getEles(".navTitles>li");
+        this.pageOneWraps = this.getEles(".pageOne>div:first-child");
+        this.pageTwoWrap = this.getEle(".pageTwo>div>h1");
+        this.pageThreeWrap = this.getEle(".pageThree>div:first-child>h2");
+        // elements in animation page
         this.btns = this.getEles(".btns>li");
         this.descWraps = this.getEles(".descWrap>p:last-child");
         this.resumeWrap = this.getEle(".resume .resumeText");
     }
 
-    switch(){
-        this.btns.forEach((item, index)=>{
+    homeSwitchLan() {
+        this.navWraps.forEach((item, index) => {
+            item.innerHTML = this.navTexts[index]
+        })
+        this.pageOneWraps.forEach((item) => {
+            item.innerHTML = this.pageOneText
+        })
+        this.pageTwoWrap.innerHTML = this.pageTwoText
+        this.pageThreeWrap.innerHTML = this.pageThreeText
+    }
+
+    aniSwitchLan() {
+        this.btns.forEach((item, index) => {
             item.innerHTML = this.btnTexts[index]
         })
-        this.descWraps.forEach((item, index)=>{
+        this.descWraps.forEach((item, index) => {
             item.innerHTML = this.descTexts[index]
         })
         this.resumeWrap.innerHTML = this.resumeText
@@ -33,32 +54,33 @@ const setLans = (() => {
     const getEle = ele => {
         return document.querySelector(ele)
     }
-    const indexLan = getEle(".container>.nav>.lan>ul")
-    const selectedLan = getEle(".nav .lan>p")
-    const AnimationLan = getEle(".footer>.nav>.lan")
-    const lanBtnImg = getEle(".btns>li:first-child>img")
+    const homeLan = getEle(".container>.nav>.lan>ul")
+    const homeLanSelected = getEle(".nav>.lan>p")
+    const aniLan = getEle(".footer>.nav>.lan")
+    const aniLanSelected = getEle(".btns>li:first-child>img")
     return {
         setListener() {
-            if(indexLan){
-                indexLan.addEventListener("click", event=>{
+            if (homeLan) {
+                homeLan.addEventListener("click", event => {
                     const target = event.target;
-                    if(target.nodeName.toLowerCase() === "li"){
+                    if (target.nodeName.toLowerCase() === "li") {
                         // console.log(target.innerHTML)
-                        selectedLan.innerHTML = target.innerHTML
+                        homeLanSelected.innerHTML = target.innerHTML;
+                        eval(`${target.innerHTML}.homeSwitchLan()`)
                     }
                 }, false);
             }
-            if(AnimationLan){
-                AnimationLan.addEventListener("click", event => {
+            if (aniLan) {
+                aniLan.addEventListener("click", event => {
                     const target = event.target;
                     // target can be element "li" and its child node "img"
-                    const src = target.nodeName.toLowerCase() === "li"? 
-                    target.childNodes[1].getAttribute("src"): target.getAttribute("src");
+                    const src = target.nodeName.toLowerCase() === "li" ?
+                        target.childNodes[1].getAttribute("src") : target.getAttribute("src");
                     // get the src value and slice the key words
-                    lanBtnImg.setAttribute("src", src);
+                    aniLanSelected.setAttribute("src", src);
                     const type = src.slice(-6, -4);
-                    eval(`${type}.switch()`);
-                    AnimationLan.classList.remove("showLan")
+                    eval(`${type}.aniSwitchLan()`);
+                    aniLan.classList.remove("showLan")
                 }, false)
             }
         },
@@ -75,7 +97,11 @@ const EN = new multiLan({
         "University of Santiago de Compostela.</br>Study Mobility Program.",
         "University of Porto.</br>Master in PLE of FLUP."
     ],
-    resumeText: "Hello.</br>My name is Danjun.</br>I am a Frontend Developer.</br>I love languages."
+    resumeText: "Hello.</br>My name is Danjun.</br>I am a Frontend Developer.</br>I love languages.",
+    navTexts: ["Me", "Stacks", "Contact"],
+    pageOneText: "<h1>Hello.</h1><p style='font-weight:600;'>My name is Danjun.</p><p>I am a front-end developer.</br>I like traveling,</br>and meeting new people.</br>I used to be a translator. </br>Now I spend time on,</br>web development stacks.</p>",
+    pageTwoText: "Stacks",
+    pageThreeText: "Contact"
 })
 
 const CN = new multiLan({
@@ -86,7 +112,11 @@ const CN = new multiLan({
         "圣地亚哥德孔波斯特拉大学</br>学术交流",
         "波尔图大学</br>PLE 硕士"
     ],
-    resumeText: "你好。</br>我叫谢丹军。</br>我是一个前端。</br>我喜欢学习语言。"
+    resumeText: "你好。</br>我叫谢丹军。</br>我是一个前端。</br>我喜欢学习语言。",
+    navTexts: ["角色", "修行", "撩我"],
+    pageOneText: "<h2>吾</h2><p>吾谢氏人士也，</br>身矮貌陋，中庸无才，</p><p>然好编程之技艺，</br>尤为前端之知。</p><p>鄙人深知西学为用，</br>曾处葡萄牙国，为任葡语译者。</p><p>自幼拙而不敏，故勤学补拙，</br>今以前端之技而习之。</p><p>初出茅庐，遂成此作。</p><p>迎同道能士，吾从而师也。</p>",
+    pageTwoText: "技术栈",
+    pageThreeText: "联系方式"
 });
 
 const ES = new multiLan({
