@@ -33,21 +33,34 @@ const setLans = (() => {
     const getEle = ele => {
         return document.querySelector(ele)
     }
-    const lan = getEle(".nav .lan")
+    const indexLan = getEle(".container>.nav>.lan>ul")
+    const selectedLan = getEle(".nav .lan>p")
+    const AnimationLan = getEle(".footer>.nav>.lan")
     const lanBtnImg = getEle(".btns>li:first-child>img")
     return {
         setListener() {
-            lan.addEventListener("click", event => {
-                const target = event.target;
-                // target can be element "li" and its child node "img"
-                const src = target.nodeName.toLowerCase() === "li"? 
-                target.childNodes[1].getAttribute("src"): target.getAttribute("src");
-                // get the src value and slice the key words
-                lanBtnImg.setAttribute("src", src);
-                const type = src.slice(-6, -4);
-                eval(`${type}.switch()`);
-                lan.classList.remove("showLan")
-            }, false)
+            if(indexLan){
+                indexLan.addEventListener("click", event=>{
+                    const target = event.target;
+                    if(target.nodeName.toLowerCase() === "li"){
+                        // console.log(target.innerHTML)
+                        selectedLan.innerHTML = target.innerHTML
+                    }
+                }, false);
+            }
+            if(AnimationLan){
+                AnimationLan.addEventListener("click", event => {
+                    const target = event.target;
+                    // target can be element "li" and its child node "img"
+                    const src = target.nodeName.toLowerCase() === "li"? 
+                    target.childNodes[1].getAttribute("src"): target.getAttribute("src");
+                    // get the src value and slice the key words
+                    lanBtnImg.setAttribute("src", src);
+                    const type = src.slice(-6, -4);
+                    eval(`${type}.switch()`);
+                    AnimationLan.classList.remove("showLan")
+                }, false)
+            }
         },
     }
 })();
@@ -68,8 +81,8 @@ const EN = new multiLan({
 const CN = new multiLan({
     btnTexts: ["<img src='../img/CN.png'>", "开始/停止", "重置", "首页"],
     descTexts: [
-        "吉林外国语大学</br>西班牙语.",
-        "中国联合工程公司</br>翻译",
+        "吉林外国语大学</br>西班牙语",
+        "中国联合工程公司</br>西语翻译",
         "圣地亚哥德孔波斯特拉大学</br>学术交流",
         "波尔图大学</br>PLE 硕士"
     ],

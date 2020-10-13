@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .slider {
@@ -55,8 +55,8 @@
 }
 
 .main {
-    margin: 0 auto;
     height: 160px;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -101,14 +101,14 @@
 .time .timeLine {
     width: 0;
     height: 7px;
+    margin-top: 16px;
     border-radius: 20px;
     background-color: #aaa;
-    margin-top: 16px;
 }
 
 .time .timeDot {
-    margin-top: -11px;
     height: 1px;
+    margin-top: -11px;
 }
 
 .timeDot>li {
@@ -131,11 +131,11 @@
     width: 230px;
     height: 82px;
     float: left;
+    position: absolute;
     margin-left: 183px;
     border-radius: 0 30px 30px 30px;
     padding: 5px;
     font-size: 16px;
-    position: absolute;
     opacity: 0;
 }
 
@@ -143,11 +143,11 @@
     width: 230px;
     height: 82px;
     float: left;
+    position: absolute;
     margin-left: 534px;
     border-radius: 0 30px 30px 30px;
     padding: 5px;
     font-size: 16px;
-    position: absolute;
     opacity: 0;
 }
 
@@ -230,8 +230,8 @@
     }
 
     .main .mainLeft {
-        margin-left: 20px;
         margin-top: -100px;
+        margin-left: 20px;
     }
 
     .mainRight {
@@ -265,13 +265,13 @@
     }
 
     .main .mainLeft {
-        margin-left: -30px;
         margin-top: -90px;
+        margin-left: -30px;
     }
 
     .mainRight {
-        margin-left: 238px;
         margin-top: -23px;
+        margin-left: 238px;
     }
 
     .descUp>li {
@@ -299,23 +299,23 @@
 }
 
 .descUp li:nth-child(1) {
-    background: #d25959;
+    background-color: #ffd57e;
 }
 
 .descDown li:nth-child(1) {
-    background: #b0e0a8;
+    background-color: #e97171;
 }
 
 .descUp li:nth-child(2) {
-    background: #f0f69f;
+    background-color: #c3aed6;
 }
 
 .descDown li:nth-child(2) {
-    background: #a773c3;
+    background-color: #b0e0a8;
 }
 
 .descWrap {
-    color: #545454;
+    color: #555;
 }
 
 @keyframes showDesc {
@@ -339,8 +339,8 @@
 }
 
 .footer{
-    height: auto;
     min-width: 640px;
+    height: auto;
     margin: 80px 5% 0 5%;
     border-top: 1px solid #bbb;
     display: flex;
@@ -363,23 +363,28 @@
 }
 
 .resume .resumeText{
-    word-wrap: break-word;
     padding: 0 10px;
     text-align: center;
+    color: #808080;
+    word-wrap: break-word;
+}
+
+.footer .nav{
+    position: relative;
 }
 
 .footer .nav .btns {
+    height: 100%;
     display: flex;
     justify-content: space-around;
-    height: 100%;
 }
 
 .btns>li {
     height: 100%;
-    padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 10px;
     font-size: 16px;
     color: #1989C0;
     cursor: pointer;
@@ -388,17 +393,13 @@
 .btns>li:hover {
     background-color: #1989C0;
     color: white;
-    transition: background-color 0.8s;
     border-radius: 2px;
+    transition: background-color 0.8s;
 }
 
 .btns>li>img{
-    height: 25px;
     width: 25px;
-}
-
-.nav{
-    position: relative;
+    height: 25px;
 }
 
 .nav .lan{

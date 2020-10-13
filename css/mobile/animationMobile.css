@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
 }
 /* background */
 .slider {
@@ -63,7 +63,7 @@
     height: 4rem;
     border-radius: 0.5rem;
     padding: 0.3125rem;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     opacity: 0;
 }
 
@@ -80,23 +80,22 @@
 }
 
 .descUp li:nth-child(1) {
-    background-color: #d25959;
+    background-color: #ffd57e;
 }
 
 .descDown li:nth-child(1) {
     margin-top: -5.3rem;
-    background-color: #b0e0a8;
+    background-color: #e97171;
 }
 
 .descUp li:nth-child(2) {
     margin-top: 4.75rem;
-    background-color: #f0f69f;
-    
+    background-color: #c3aed6;
 }
 
 .descDown li:nth-child(2) {
     margin-top: 4.78rem;
-    background-color: #a773c3;
+    background-color: #b0e0a8;
 }
 
 .descWrap {
@@ -160,7 +159,7 @@
     width: 9.5rem;
     margin-left: 6.455rem;
     padding: 0.625rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #808080;
     text-align: center;
     word-wrap:break-word;
@@ -182,27 +181,28 @@
     animation-timing-function: linear;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    text-align: left !important;
 }
 
 /* footer buttons */
 .footer .nav .btns{  
     height: 3.5rem;
+    margin: 0 0.5rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-top: 0.0625rem solid #bbb;
-    margin: 0 0.5rem;
     box-shadow: 0 5px 5px #eee;
 }
 
 .btns>li {
-    font-size: 1rem;
-    color: #808080;
-    cursor: pointer;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1rem;
+    color: #808080;
+    cursor: pointer;
 }
 
 .btns>li:hover{
@@ -215,26 +215,26 @@
 }
 
 .btns>li>img{
-    height: 1.5rem;
     width: 1.5rem;
+    height: 1.5rem;
 }
 
 .nav .lan{
+    height: 0;
     position: absolute;
     overflow: hidden;
-    height: 0;
     opacity: 0;
 }
 
 .lan li{
-    height: 2rem;
     width: 3rem;
+    height: 2rem;
     text-align: center;
 }
 
 .lan img{
-    height: 1.7rem;
     width: 1.7rem;
+    height: 1.7rem;
 }
 
 /* multilanguages animation */
@@ -264,8 +264,8 @@
     }
 
     100% {
-        margin-top: 0;
         height: 0;
+        margin-top: 0;
         opacity: 0;
     }
 }

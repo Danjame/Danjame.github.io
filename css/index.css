@@ -2,28 +2,70 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    font-family: Arial;
+    /* font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
     position: relative;
     overflow: hidden;
 }
-
+/* navigation */
 .nav {
-    width: 8%;
+    width: 10%;
     position: absolute;
-    margin-left: 92%;
+    margin-left: 90%;
     background-color: rgba(222, 222, 222, 0.3);
     z-index: 1;
 }
 
 @media only screen and (max-width: 700px) {
     .nav{
-        width: 15%;
-        margin-left: 85%;
+        width: 18%;
+        margin-left: 82%;
+    }
+
+    .nav .lan{
+        width: 18%;
     }
 }
+
+/* index page multilanguages */
+.nav .lan{
+    width: 10%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav .lan>p{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 15px;
+    color: #808080;
+}
+
+.nav .lan>p:hover+ul{
+    display: block;
+    transition: all 1s linear;
+}
+
+.lan ul{
+    font-size: 15px;
+    display: none;
+}
+
+.lan ul:hover{
+    display: block;
+}
+
+.lan ul>li{
+    margin-bottom: 5px;
+}
+/* ------------------ */
 
 .navTitles {
     width: 100%;
@@ -59,7 +101,12 @@
         margin-left: -100%;
     }
 }
-
+.activated {
+    animation-name: navDotAhead;
+    animation-timing-function: ease-out;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
 @keyframes navDotBack {
     0% {
         margin-left: -100%;
@@ -69,21 +116,13 @@
         margin-left: 0%;
     }
 }
-
-.activated {
-    animation-name: navDotAhead;
-    animation-timing-function: ease-out;
-    animation-duration: 0.6s;
-    animation-fill-mode: forwards;
-}
-
 .unactivated {
     animation-name: navDotBack;
     animation-timing-function: ease-out;
     animation-duration: 0.6s;
     animation-fill-mode: forwards;
 }
-
+/* slider container */
 .slider {
     width: 100%;
     position: absolute;
@@ -91,11 +130,12 @@
 
 .pageOne {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 24px;
-    color: #666;
+    align-items: center;
     background-color: #f1f4df;
+    font-size: 27px;
+    line-height: 1.5;
+    color: #666;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -123,18 +163,11 @@
     }
 }
 
-@media only screen and (max-height: 400px) {
-    .pageOne {
-        font-size: 10px;
-    }
-}
-
 .signature {
+    padding-top: 16px;
     display: flex;
     flex-direction: column;
-    /* justify-items: center; */
     align-items: center;
-    /* text-align: center; */
 }
 
 @media only screen and (max-width: 1000px) {
@@ -160,10 +193,6 @@
         width: 130px;
     }
 }
-/* .pageOne>.signature>a{
-    background-color: tomato;
-} */
-
 
 .pageOne>.signature>.link {
     width: 95px;
@@ -199,15 +228,18 @@
 
 .pageOne>.signature>.link:hover {
     background-color: #226089;
+    transition: background-color 0.5s;
 }
 
 .pageTwo {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
-    background-color: #87c0cd;
-    color: #fff;
+    background-color: #f1f4df;
+    color: #666;
     font-size: 24px;
+    line-height: 1.5;
+    text-align: center;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -225,8 +257,8 @@
 @media only screen and (max-width: 600px) {
     .pageTwo {
         font-size: 15px;
-        flex-direction: column;
-        text-align: center;
+        /* flex-direction: column; */
+        
     }
 }
 
@@ -236,27 +268,13 @@
     }
 }
 
-.pageTwo>div:last-child {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-@media only screen and (max-width: 600px) {
-    .pageTwo>div:last-child {
-        height: auto;
-        width: 100%;
-        flex-direction: row-reverse;
-        justify-content: space-around;
-    }
-}
-
 .pageThree {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    background-color: #a2a8d3;
+    background-color: #f1f4df;
+    color: #666;
     font-size: 24px;
 }
 
