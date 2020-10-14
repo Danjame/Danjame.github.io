@@ -1,9 +1,3 @@
 # Personal Website
-### Developed with pure HTML, CSS and JavaScript. No Framework or Library.
-
-This is my personal responsive website.
-
-
-
-
-
+- Developed with HTML, CSS and JavaScript, no Framework nor Library.
+- Responsive and multilingual.
