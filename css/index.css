@@ -199,10 +199,9 @@
     }
 }
 
-.pageOne>.signature>.link {
-    width: 100px;
-    height: 50px;
+.pageOne>.signature>.btn {
     margin-top: 10%;
+    padding: 5px;
     background-color: #1989C0;
     border-radius: 5px;
     font-size: 24px;
@@ -212,36 +211,30 @@
     cursor: pointer;
 }
 
-.pageOne>.signature>.link>a{
+.pageOne>.signature>.btn>a{
     color: #fff;
     text-decoration: none;
 }
 
-.pageOne>.signature>.link:hover {
+.pageOne>.signature>.btn:hover {
     background-color: #226089;
     transition: background-color 0.5s;
 }
 
 @media only screen and (max-width: 1000px) {
-    .pageOne>.signature>.link {
-        width: 80px;
-        height: 40px;
+    .pageOne>.signature>.btn {
         font-size: 20px;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    .pageOne>.signature>.link {
-        width: 60px;
-        height: 30px;
+    .pageOne>.signature>.btn {
         font-size: 16px;
     }
 }
 
 @media only screen and (max-height: 400px) {
-    .pageOne>.signature>.link {
-        width: 40px;
-        height: 20px;
+    .pageOne>.signature>.btn {
         font-size: 12px;
     }
 }
@@ -318,9 +311,4 @@
     .pageThree {
         font-size: 12px;
     }
-}
-
-.pageThree a {
-    text-decoration: none;
-    color: #666666;
 }
