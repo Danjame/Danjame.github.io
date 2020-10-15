@@ -88,6 +88,34 @@ class Animation {
         const timeLine = document.querySelector(this.timeLine);
         const dots = document.querySelectorAll(this.timeDots);
         const descWraps = document.querySelectorAll(this.descWraps);
+
+        const observerOptions = {
+        childList: false,
+        attributes: true,
+        }
+
+        const cb = ()=>{
+            switch (this.lineWidth) {
+                case 1:
+                    showDescDot(dots[0], descWraps[0]);
+                    break;
+                case firstWidth:
+                    showDescDot(dots[1], descWraps[2]);
+                    console.log(1)
+                    break;
+                case secondWidth:
+                    showDescDot(dots[2], descWraps[1]);
+                    console.log(2)
+                    break;
+                case thirdWidth:
+                    showDescDot(dots[3], descWraps[3]);
+                    console.log(3)
+                    break;
+            }
+        }
+
+        const observer = new MutationObserver(cb);
+        observer.observe(timeLine, observerOptions);
         const lineMove = () => {
             clearTimeout(this.timeLineTimer);
             this.timeLineTimer = setTimeout(() => {
@@ -105,31 +133,7 @@ class Animation {
         const showDescDot = (dot, descWrap) => {
             dot.style.display = "block";
             descWrap.classList.add(this.showDescClass);
-            descMove();
         }
-        const descMove = () => {
-            cancelAnimationFrame(this.descTimer);
-            this.descTimer = requestAnimationFrame(() => {
-                switch (true) {
-                    case this.lineWidth < firstWidth:
-                        showDescDot(dots[0], descWraps[0]);
-                        break;
-                    case this.lineWidth >= firstWidth && this.lineWidth < secondWidth:
-                        showDescDot(dots[1], descWraps[2]);
-                        break;
-                    case this.lineWidth >= secondWidth && this.lineWidth < thirdWidth:
-                        showDescDot(dots[2], descWraps[1]);
-                        break;
-                    case this.lineWidth >= thirdWidth && this.lineWidth < totalWidth:
-                        showDescDot(dots[3], descWraps[3]);
-                        break;
-                    case this.lineWidth >= totalWidth:
-                        cancelAnimationFrame(this.descTimer);
-                        break;
-                }
-            })
-        }
-        descMove()
     }
 
     initialization() {

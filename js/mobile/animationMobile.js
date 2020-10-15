@@ -88,31 +88,57 @@ class Animation {
         const showDescDot = (dot, descWrap) => {
             dot.style.display = "block";
             descWrap.classList.add(this.showDescClass);
-            descMove();
+            // descMove();
         }
-        const descMove = (dot1 = 80, dot2 = 160, dot3 = 240, dot4 = 260) => {
-            cancelAnimationFrame(this.descTimer);
-            this.descTimer = requestAnimationFrame(() => {
-                switch (true) {
-                    case this.lineHeight < dot1:
+
+        const observerOptions = {
+            childList: false,
+            attributes: true,
+            }
+    
+            const cb = ()=>{
+                switch (this.lineHeight) {
+                    case 1:
                         showDescDot(dots[0], descWraps[0]);
                         break;
-                    case this.lineHeight >= dot1 && this.lineHeight < dot2:
+                    case 80:
                         showDescDot(dots[1], descWraps[2]);
                         break;
-                    case this.lineHeight >= dot2 && this.lineHeight < dot3:
+                    case 160:
                         showDescDot(dots[2], descWraps[1]);
                         break;
-                    case this.lineHeight >= dot3 && this.lineHeight < dot4:
+                    case 240:
                         showDescDot(dots[3], descWraps[3]);
                         break;
-                    case this.lineHeight >= dot4:
-                        cancelAnimationFrame(this.descTimer);
-                        break;
                 }
-            })
-        }
-        descMove()
+            }
+    
+            const observer = new MutationObserver(cb);
+            observer.observe(timeLine, observerOptions);
+        // const descMove = (dot1 = 80, dot2 = 160, dot3 = 240, dot4 = 260) => {
+        //     cancelAnimationFrame(this.descTimer);
+        //     this.descTimer = requestAnimationFrame(() => {
+        //         switch (true) {
+        //             case this.lineHeight < dot1:
+        //                 showDescDot(dots[0], descWraps[0]);
+        //                 break;
+        //             case this.lineHeight >= dot1 && this.lineHeight < dot2:
+        //                 showDescDot(dots[1], descWraps[2]);
+        //                 break;
+        //             case this.lineHeight >= dot2 && this.lineHeight < dot3:
+        //                 showDescDot(dots[2], descWraps[1]);
+        //                 break;
+        //             case this.lineHeight >= dot3 && this.lineHeight < dot4:
+        //                 showDescDot(dots[3], descWraps[3]);
+        //                 break;
+        //             case this.lineHeight >= dot4:
+        //                 cancelAnimationFrame(this.descTimer);
+        //                 break;
+        //         }
+        //     })
+        // }
+        // descMove()
+
     }
 
     initialization() {
