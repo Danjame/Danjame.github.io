@@ -30,7 +30,7 @@ class Animation {
         this.timeDots = obj.timeDots;
         this.descWraps = obj.descWraps;
         this.timeLineTimer = null;
-        this.descTimer = null;
+        this.observer = null;
         this.showDescClass = obj.showDescClass;
     }
 
@@ -88,34 +88,6 @@ class Animation {
         const timeLine = document.querySelector(this.timeLine);
         const dots = document.querySelectorAll(this.timeDots);
         const descWraps = document.querySelectorAll(this.descWraps);
-
-        const observerOptions = {
-        childList: false,
-        attributes: true,
-        }
-
-        const cb = ()=>{
-            switch (this.lineWidth) {
-                case 1:
-                    showDescDot(dots[0], descWraps[0]);
-                    break;
-                case firstWidth:
-                    showDescDot(dots[1], descWraps[2]);
-                    console.log(1)
-                    break;
-                case secondWidth:
-                    showDescDot(dots[2], descWraps[1]);
-                    console.log(2)
-                    break;
-                case thirdWidth:
-                    showDescDot(dots[3], descWraps[3]);
-                    console.log(3)
-                    break;
-            }
-        }
-
-        const observer = new MutationObserver(cb);
-        observer.observe(timeLine, observerOptions);
         const lineMove = () => {
             clearTimeout(this.timeLineTimer);
             this.timeLineTimer = setTimeout(() => {
@@ -129,11 +101,35 @@ class Animation {
             }, timeLineMS);
         };
         lineMove();
-
+        // show descriptions and dots
         const showDescDot = (dot, descWrap) => {
             dot.style.display = "block";
             descWrap.classList.add(this.showDescClass);
         }
+        // MutationObserver for watching time line
+        const observerOptions = {
+            childList: false,
+            attributes: true,
+            attributeFilter: ["style"]
+        }
+        const cb = () => {
+            switch (this.lineWidth) {
+                case 1:
+                    showDescDot(dots[0], descWraps[0]);
+                    break;
+                case firstWidth:
+                    showDescDot(dots[1], descWraps[2]);
+                    break;
+                case secondWidth:
+                    showDescDot(dots[2], descWraps[1]);
+                    break;
+                case thirdWidth:
+                    showDescDot(dots[3], descWraps[3]);
+                    break;
+            }
+        }
+        this.observer = new MutationObserver(cb);
+        this.observer.observe(timeLine, observerOptions);
     }
 
     initialization() {
@@ -169,7 +165,10 @@ class Animation {
         clearTimeout(this.skateTimer);
         clearTimeout(this.bgTimer);
         clearTimeout(this.timeLineTimer);
-        cancelAnimationFrame(this.descTimer);
+        if (this.observer) {
+            this.observer.disconnect();
+            this.observer = null;
+        }
     }
 }
 

@@ -31,7 +31,7 @@ class Animation {
         this.timeDots = obj.timeDots;
         this.descWraps = obj.descWraps;
         this.timeLineTimer = null;
-        this.descTimer = null;
+        this.observer = null;
         this.showDescClass = obj.showDescClass;
     }
 
@@ -84,61 +84,36 @@ class Animation {
             }, 50)
         }
         lineMove()
-
+        // show descriptions and dots
         const showDescDot = (dot, descWrap) => {
             dot.style.display = "block";
             descWrap.classList.add(this.showDescClass);
-            // descMove();
         }
-
+        // MutationObserver for watching time line
         const observerOptions = {
             childList: false,
             attributes: true,
+            attributeFilter: ["style"]
+        }
+        const cb = () => {
+            switch (this.lineHeight) {
+                case 1:
+                    showDescDot(dots[0], descWraps[0]);
+                    break;
+                case 80:
+                    showDescDot(dots[1], descWraps[2]);
+                    break;
+                case 160:
+                    showDescDot(dots[2], descWraps[1]);
+                    break;
+                case 240:
+                    showDescDot(dots[3], descWraps[3]);
+                    this.observer.disconnect()
+                    break;
             }
-    
-            const cb = ()=>{
-                switch (this.lineHeight) {
-                    case 1:
-                        showDescDot(dots[0], descWraps[0]);
-                        break;
-                    case 80:
-                        showDescDot(dots[1], descWraps[2]);
-                        break;
-                    case 160:
-                        showDescDot(dots[2], descWraps[1]);
-                        break;
-                    case 240:
-                        showDescDot(dots[3], descWraps[3]);
-                        break;
-                }
-            }
-    
-            const observer = new MutationObserver(cb);
-            observer.observe(timeLine, observerOptions);
-        // const descMove = (dot1 = 80, dot2 = 160, dot3 = 240, dot4 = 260) => {
-        //     cancelAnimationFrame(this.descTimer);
-        //     this.descTimer = requestAnimationFrame(() => {
-        //         switch (true) {
-        //             case this.lineHeight < dot1:
-        //                 showDescDot(dots[0], descWraps[0]);
-        //                 break;
-        //             case this.lineHeight >= dot1 && this.lineHeight < dot2:
-        //                 showDescDot(dots[1], descWraps[2]);
-        //                 break;
-        //             case this.lineHeight >= dot2 && this.lineHeight < dot3:
-        //                 showDescDot(dots[2], descWraps[1]);
-        //                 break;
-        //             case this.lineHeight >= dot3 && this.lineHeight < dot4:
-        //                 showDescDot(dots[3], descWraps[3]);
-        //                 break;
-        //             case this.lineHeight >= dot4:
-        //                 cancelAnimationFrame(this.descTimer);
-        //                 break;
-        //         }
-        //     })
-        // }
-        // descMove()
-
+        }
+        this.observer = new MutationObserver(cb);
+        this.observer.observe(timeLine, observerOptions);
     }
 
     initialization() {
@@ -173,7 +148,10 @@ class Animation {
         clearTimeout(this.manTimer);
         clearTimeout(this.bgTimer);
         clearTimeout(this.timeLineTimer);
-        cancelAnimationFrame(this.descTimer)
+        if (this.observer) {
+            this.observer.disconnect();
+            this.observer = null;
+        }
     }
 }
 
@@ -232,14 +210,16 @@ const Listeners = (() => {
                     isReset = true;
                 }
             }, false);
+
+            window.onblur = () => {
+                onMove = false;
+                instance.clearAllTimer();
+            };
         }
     }
 })();
 
 const initPage = (listener => {
-    window.onblur = () => {
-        instance.clearAllTimer();
-    };
     listener.init();
     console.log("Animation Ready!");
     console.log("Mobile Device.");
