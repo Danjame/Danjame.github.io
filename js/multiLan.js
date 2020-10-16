@@ -102,16 +102,16 @@ const setLans = (() => {
 setLans.setListener();
 
 const EN = new multiLan({
-    btnsV: ["<img src='../img/EN.png'>", "Start / Stop", "Reset", "Home"],
+    btnsV: ["<img src='../img/EN.png'>", "Start/Stop", "Reset", "Home"],
     descsV: [
         "Jilin International Studies University.</br>Bachelor in Spanish Language.",
         "China United Engineering Corporation.</br>Interpretation and translation.",
         "University of Santiago de Compostela.</br>Study Mobility Program.",
         "University of Porto.</br>Master in PLE of FLUP."
     ],
-    resumeV: "Hello.</br>My name is Danjun.</br>I am a Frontend Developer.</br>I love languages.",
+    resumeV: "Hello.</br>My name is Danjun.</br>I am a front-end developer.</br>I love languages.",
     nTitlesV: ["Me", "Skills", "More"],
-    p1ResumeV: "<h1>Hello.</h1><p style='font-weight:600;'>My name is Danjun.</p><p>I am a front-end developer.</br>I like building things,</br>and meeting new people.</br>I used to be a translator. </br>Now I spend time on,</br>Web Development.</p>",
+    p1ResumeV: "<h1>Hello.</h1><p style='font-weight:600;'>My name is Danjun.</p><p>I am a front-end developer.</br>I like building things,</br>and meeting new people.</br>I used to be a translator.</br>Now I spend time on,</br>Web Development.</p>",
     p1BtnV: "Resume",
     p2TitleV: "Stacks",
     p3TitlesV: ["Contact", "Links"],
@@ -128,7 +128,7 @@ const CN = new multiLan({
     ],
     resumeV: "你好。</br>我叫谢丹军。</br>我是一个前端。</br>我喜欢学习语言。",
     nTitlesV: ["角色", "修行", "撩我"],
-    p1BtnV: "经历",
+    p1BtnV: "过往",
     p1ResumeV: "<h2>吾</h2><p>吾谢氏人士也，</br>身矮貌陋，中庸无才，</p><p>然好编程之技艺，</br>尤为前端之知。</p><p>鄙人深知西学为用，</br>曾处葡萄牙国，为任葡语译者。</p><p>自幼拙而不敏，故勤学补拙，</br>今以前端之技而习之。</p><p>初出茅庐，遂成此作。</p><p>迎同道能士，吾从而师也。</p>",
     p2TitleV: "技术栈",
     p3TitlesV: ["联系方式", "了解更多"],
@@ -136,34 +136,34 @@ const CN = new multiLan({
 });
 
 const ES = new multiLan({
-    btnsV: ["<img src='../img/ES.png'>", "Empezar / Parar", "Reiniciar", "Inicio"],
+    btnsV: ["<img src='../img/ES.png'>", "Empezar/Parar", "Reiniciar", "Inicio"],
     descsV: [
         "Universidad de Estudios Internacionales Jilin.</br>Lengua y Literatura Españolas.",
         "China United Engineering Corporation.</br>Interpretación y traducción.",
         "Universidad de Santiago de Compostela.</br>Movilidad de estudio.",
         "Universidad de Porto.</br>Master en PLE de FLUP."
     ],
-    resumeV: "Hola.</br>Me llamo Danjun.</br>Soy un programador web.</br>A mi me gustan lenguajes"
+    resumeV: "Hola.</br>Me llamo Danjun.</br>Soy un programador web.</br>A mi me gustan lenguajes."
 })
 
 const PT = new multiLan({
-    btnsV: ["<img src='../img/PT.png'>", "Começar / Parar", "Repor", "Portal"],
+    btnsV: ["<img src='../img/PT.png'>", "Começar/Parar", "Repor", "Portal"],
     descsV: [
         "Jilin International Studies University.</br>Língua e Literatura Espanholas.",
         "China United Engineering Corporation.</br>Interpretação e Tradução.",
         "Universidade de Santiago de Compostela.</br>Mobilidade de Estudo.",
         "Universidade do Porto.</br>Mestrado em PLE na FLUP."
     ],
-    resumeV: " Olá.</br>Chamo-me Danjun. </br>Sou um programador web.</br>Adoro linguagens."
+    resumeV: " Olá.</br>Chamo-me Danjun.</br>Sou um programador web.</br>Adoro linguagens."
 })
 
 const FR = new multiLan({
-    btnsV: ["<img src='../img/FR.png'>", "Commencer / Cesser", "Réinitialiser", "Accueil"],
+    btnsV: ["<img src='../img/FR.png'>", "Débuter/Arrêter ", "Réinitialiser", "Accueil"],
     descsV: [
         "Université Jilin International Studies University.</br>Licence Espagnol.",
         "China United Engineering Corporation.</br>Interprétation et Traduction.",
         "Université de Saint-Jacques-de-Compostelle.</br>Mobilité d'étude.",
         "Université de Porto.</br>Master en PLE à FLUP."
     ],
-    resumeV: "Bonjour.</br>Je m'appelle Danjun,</br>un programmeur web.</br>J'aime des langages."
+    resumeV: "Bonjour.</br>Je m'appelle Danjun.</br>Je suis un programmeur web.</br>J'aime des langages."
 })
