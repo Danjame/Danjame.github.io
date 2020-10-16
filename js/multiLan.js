@@ -111,7 +111,7 @@ const EN = new multiLan({
     ],
     resumeV: "Hello.</br>My name is Danjun.</br>I am a Frontend Developer.</br>I love languages.",
     nTitlesV: ["Me", "Skills", "More"],
-    p1ResumeV: "<h1>Hello.</h1><p style='font-weight:600;'>My name is Danjun.</p><p>I am a front-end developer.</br>I like building things,</br>and meeting new people.</br>I used to be a translator. </br>Now I spend time on,</br>web development stacks.</p>",
+    p1ResumeV: "<h1>Hello.</h1><p style='font-weight:600;'>My name is Danjun.</p><p>I am a front-end developer.</br>I like building things,</br>and meeting new people.</br>I used to be a translator. </br>Now I spend time on,</br>Web Development.</p>",
     p1BtnV: "Resume",
     p2TitleV: "Stacks",
     p3TitlesV: ["Contact", "Links"],
